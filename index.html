@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0e0a11">
   <meta name="description" content="A beginner-friendly guide to learning sim racing, one clean lap at a time.">
-  <link rel="icon" type="image/png" href="purplelap-favicon.png">
+  <link rel="icon" type="image/svg+xml" href="purplelap-favicon.svg">
   <title>PurpleLap — Learn Sim Racing</title>
   <style>
 :root {
@@ -130,6 +130,11 @@ h1 em, h2 em { color: var(--purple); font-family: Georgia, serif; font-weight: 4
 .learning-heading h2 em, .next-inner h2 em { color: var(--purple); }
 .learning-heading > p { max-width: 335px; margin-bottom: 6px; color: var(--muted); font-size: 12px; line-height: 1.85; }
 .learning-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+.advanced-guides { display:flex; align-items:center; justify-content:space-between; gap:28px; margin-top:24px; padding:25px 28px; border:1px solid #4a2a5c; background:#120c17; }
+.advanced-guides .eyebrow { margin:0 0 8px; color:var(--purple); font:9px var(--mono); letter-spacing:.1em; }
+.advanced-guides h3 { margin:0 0 7px; font-size:21px; letter-spacing:-.04em; }
+.advanced-guides p:not(.eyebrow) { max-width:650px; margin:0; color:var(--muted); font-size:11px; line-height:1.75; }
+.advanced-guides .button { flex:none; white-space:nowrap; }
 .learn-card { border: 1px solid var(--line); background: #0d0a10; transition: border-color .2s, transform .2s; }
 .learn-card:hover { transform: translateY(-4px); border-color: #6a1b9a; }
 .card-image { height: 210px; position: relative; background: #18121d; }
@@ -205,6 +210,7 @@ h1 em, h2 em { color: var(--purple); font-family: Georgia, serif; font-weight: 4
   .learning-heading { display: block; padding: 38px 0 30px; }
   .learning-heading > p { margin-top: 20px; }
   .learning-cards { grid-template-columns: 1fr; gap: 14px; }
+  .advanced-guides { align-items:flex-start; flex-direction:column; gap:16px; padding:22px; }
   .learn-card { display: grid; grid-template-columns: .85fr 1fr; }
   .card-image { height: 100%; min-height: 210px; }
   .card-copy { padding: 22px 18px; }
@@ -271,6 +277,7 @@ h1 em, h2 em { color: var(--purple); font-family: Georgia, serif; font-weight: 4
     </button>
     <nav id="site-nav" class="site-nav" aria-label="Main navigation">
       <a href="#start">Start here</a>
+      <a href="all-guides.html">All driving guides</a>
       <a href="#gear">Gear basics</a>
       <a href="feedback.html">Feedback</a>
       <a class="nav-cta" href="#start">Find your first lap <span aria-hidden="true"><span class="icon-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 19 19 5M7 5h12v12"/></svg></span></span></a>
@@ -347,6 +354,10 @@ h1 em, h2 em { color: var(--purple); font-family: Georgia, serif; font-weight: 4
             <div class="card-copy"><span class="card-label">YOUR EQUIPMENT</span><h3>Make your setup yours</h3><p>Understand controllers, wheels, and basic settings before deciding what you need.</p><a href="make-your-setup-yours.html" class="card-link">Explore setup guide <span class="icon-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 19 19 5M7 5h12v12"/></svg></span></a></div>
           </article>
         </div>
+        <aside class="advanced-guides" aria-labelledby="advanced-guides-title">
+          <div><p class="eyebrow">READY FOR THE NEXT LEVEL?</p><h3 id="advanced-guides-title">Go deeper on track.</h3><p>Explore the complete learning path, including detailed lessons on racing lines, clean overtakes, and throttle control.</p></div>
+          <a class="button button-primary" href="all-guides.html">Browse all driving guides <span aria-hidden="true">→</span></a>
+        </aside>
       </div>
     </section>
 
@@ -394,15 +405,17 @@ const searchClear = document.querySelector('.search-clear');
 const searchStatus = document.querySelector('#search-status');
 const searchItems = [
   { title:'Find your first rhythm', detail:'Braking, racing lines, and calmer laps', tag:'DRIVING GUIDE', href:'find-your-rhythm.html', terms:'rhythm racing line lines braking brake apex turns corner track flow consistency smooth clean lap laps speed', keywords:'driving basics' },
-  { title:'How to make a clean pass', detail:'Build a run, get alongside before turn-in, and leave room through the corner', tag:'PASSING TIP', href:'race-with-confidence.html#pass-title', terms:'pass passing passes overtake overtakes overtaking alongside side by side attack move safely clean car cars rivals opponent', keywords:'how to pass', intent:'passing' },
+  { title:'How to make a clean pass', detail:'Build a run, get alongside before turn-in, and leave room through the corner', tag:'PASSING TIP', href:'clean-overtakes.html', terms:'pass passing passes overtake overtakes overtaking alongside side by side attack move safely clean car cars rivals opponent', keywords:'how to pass', intent:'passing' },
+  { title:'Read a racing line', detail:'Brake markers, turn-in points, apex choices, and corner exits', tag:'ADVANCED DRIVING', href:'racing-line.html', terms:'racing line braking marker turn in apex late early exit track position corner sequence', keywords:'corner line' },
+  { title:'Lift-off rotation', detail:'Understand how easing off the throttle can change a car’s balance mid-corner', tag:'CAR CONTROL', href:'throttle-rotation.html', terms:'throttle lift off gas off-throttle rotation oversteer weight transfer steering sting theory', keywords:'throttle control' },
   { title:'Race with confidence', detail:'Starts, awareness, defending, and predictable racecraft', tag:'RACECRAFT', href:'race-with-confidence.html', terms:'race racecraft confidence start starts defend space awareness flags traffic incident clean conduct', keywords:'race safely' },
   { title:'Make your setup yours', detail:'Use your controller or wheel comfortably and confidently', tag:'SETUP GUIDE', href:'make-your-setup-yours.html', terms:'setup wheel controller pedals force feedback calibration settings desk seat comfort equipment gear', keywords:'equipment configure' },
-  { title:'Compare beginner gear', detail:'Platform-aware picks for Xbox, PlayStation, and PC', tag:'GEAR GUIDE', href:'gear-guide.html#picks', terms:'gear buy shopping wheel base bundle direct drive force feedback', keywords:'racing wheel' },
-  { title:'MOZA R3 for Xbox', detail:'An Xbox-licensed entry direct-drive bundle; check the exact version', tag:'DIRECT DRIVE', href:'gear-guide.html#moza-r3', terms:'moza r3 xbox pc direct drive dd bundle 3.9nm', keywords:'wheelbase' },
-  { title:'Logitech G29 / G920', detail:'Budget-friendly gear-driven force feedback; choose PlayStation or Xbox model', tag:'FORCE FEEDBACK', href:'gear-guide.html#force-feedback', terms:'logitech g29 g920 playstation xbox pc force feedback', keywords:'wheel' },
-  { title:'Thrustmaster T128', detail:'A lower-cost hybrid-drive force-feedback option in separate console versions', tag:'FORCE FEEDBACK', href:'gear-guide.html#thrustmaster', terms:'thrustmaster t128 xbox playstation pc hybrid drive force feedback', keywords:'wheel' },
+  { title:'Compare beginner gear', detail:'Platform-aware picks for Xbox, PlayStation, and PC', tag:'GEAR GUIDE', href:'gear-guide.html#compatible-models', terms:'gear buy shopping wheel base bundle direct drive force feedback', keywords:'racing wheel' },
+  { title:'MOZA R3 for Xbox', detail:'An Xbox-licensed entry direct-drive bundle; check the exact version', tag:'DIRECT DRIVE', href:'gear-guide.html#wheel-moza-r3-x', terms:'moza r3 xbox pc direct drive dd bundle 3.9nm', keywords:'wheelbase' },
+  { title:'Logitech G29 / G920', detail:'Budget-friendly gear-driven force feedback; choose PlayStation or Xbox model', tag:'FORCE FEEDBACK', href:'gear-guide.html#wheel-g29', terms:'logitech g29 g920 playstation xbox pc force feedback', keywords:'wheel' },
+  { title:'Thrustmaster T128', detail:'A lower-cost hybrid-drive force-feedback option in separate console versions', tag:'FORCE FEEDBACK', href:'gear-guide.html#wheel-t128-x', terms:'thrustmaster t128 xbox playstation pc hybrid drive force feedback', keywords:'wheel' },
   { title:'Sim racing, explained', detail:'What it is, what you can practise, and what you need to start', tag:'START HERE', href:'index.html?section=explained', terms:'sim racing explained beginner basics learn start video game virtual physics simulator', keywords:'what is' },
-  { title:'All guides', detail:'Open the full learning path and browse every guide', tag:'GUIDE PATH', href:'index.html?section=guides', terms:'all guides guide path browse learning pages', keywords:'everything' },
+  { title:'All guides', detail:'Open the full learning path and browse every driving guide', tag:'GUIDE PATH', href:'all-guides.html', terms:'all guides guide path browse learning pages', keywords:'everything' },
   { title:'Start with what you have', detail:'A practical first setup without a shopping list', tag:'GEAR BASICS', href:'make-your-setup-yours.html#start-here', terms:'first setup need controller gamepad wheel cost money no buy', keywords:'use what you have' }
 ];
 let activeSearchOption = -1;
