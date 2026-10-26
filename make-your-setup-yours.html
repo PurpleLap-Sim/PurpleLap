@@ -36,6 +36,7 @@
     .secondary-link { border:1px solid var(--line); color:var(--muted); }
     .secondary-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-2px); }
     .setup-visual { position:relative; padding:24px; border:1px solid var(--line); background:linear-gradient(145deg,#18121d,#0c090e); }
+    .setup-illustration { display:block; width:100%; height:auto; margin:4px 0 18px; }
     .visual-top { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-bottom:16px; border-bottom:1px solid var(--line); color:var(--subtle); font:9px var(--mono); letter-spacing:.11em; }
     .visual-top strong { color:var(--purple); font-weight:500; }
     .setup-stack { display:grid; gap:10px; padding-top:15px; }
@@ -130,12 +131,26 @@
   <main class="shell">
     <section class="hero" aria-labelledby="page-title">
       <div>
-        <p class="eyebrow">03 / YOUR EQUIPMENT</p>
+        <p class="eyebrow">01 / YOUR EQUIPMENT</p>
         <h1 id="page-title">Make your <em>setup yours.</em></h1>
         <p class="intro">A good setup is one that lets you drive comfortably and consistently. You can learn a lot with a controller, and a wheel is an option when you’re ready. Start with what you own, then change one thing at a time.</p>
         <div class="hero-actions"><a class="primary-link" href="#start-here">START WITH WHAT YOU HAVE <span aria-hidden="true">↓</span></a></div>
       </div>
       <aside class="setup-visual" aria-label="Three foundations for a comfortable sim racing setup">
+        <svg class="setup-illustration" viewBox="0 0 420 150" role="img" aria-label="A monitor, racing wheel, seat, and pedals arranged for a comfortable driving position">
+          <rect x="1" y="1" width="418" height="148" rx="8" fill="#0b080e" stroke="#36273f"/>
+          <path d="M37 118h346" stroke="#514d56" stroke-width="3"/>
+          <rect x="55" y="25" width="123" height="67" rx="4" fill="#17111d" stroke="#A020F0" stroke-width="2"/>
+          <path d="M68 73h96M83 56l19-14 16 11 22-18 17 10" fill="none" stroke="#C77DFF" stroke-width="3"/>
+          <path d="M116 93v17m-18 0h36" stroke="#8b8290" stroke-width="3"/>
+          <circle cx="232" cy="73" r="25" fill="none" stroke="#C77DFF" stroke-width="5"/>
+          <circle cx="232" cy="73" r="5" fill="#A020F0"/>
+          <path d="M232 78v17m-20-13 20 7 20-7" fill="none" stroke="#C77DFF" stroke-width="3"/>
+          <path d="M293 61h47l18 13v12h-17l-10-10h-28l-8 10h-14V71z" fill="#21192a" stroke="#8b8290" stroke-width="3"/>
+          <path d="M303 61V45h26v16m13 38 14 9m-29-9 10 9" fill="none" stroke="#8b8290" stroke-width="3"/>
+          <rect x="365" y="101" width="9" height="16" rx="2" fill="#A020F0"/>
+          <rect x="380" y="101" width="9" height="16" rx="2" fill="#8b8290"/>
+        </svg>
         <div class="visual-top"><strong>THE GARAGE</strong><span>COMFORT · CONTROL · CONSISTENCY</span></div>
         <div class="setup-stack">
           <div class="setup-row"><b>01</b><div><strong>Where you sit</strong><span>Stable seat, relaxed shoulders, easy reach to controls.</span></div></div>
@@ -166,7 +181,7 @@
       <div><p class="eyebrow">YOUR FIRST TEN MINUTES</p><h2 id="quick-title">A simple setup check.</h2><p>Pick a familiar car and track, then practise at a comfortable pace. Aim for settings and posture you can repeat, not the fastest lap straight away.</p></div>
       <ul class="checklist"><li>Place the screen where it’s easy to see and keep your seat stable.</li><li>Check that your steering, throttle, and brake respond smoothly.</li><li>Choose a comfortable force feedback level if you use a wheel.</li><li>Do a few laps, then adjust just one thing if needed.</li></ul>
     </section>
-    <section class="next-guide" aria-labelledby="next-guide-title"><div><p class="eyebrow">READY TO MOVE ON?</p><h2 id="next-guide-title">Read the racing line.</h2><p>Learn how braking points, turn-in, apexes, and exits work together to make a smoother corner.</p></div><a class="primary-link" href="racing-line.html">NEXT DRIVING GUIDE <span aria-hidden="true">→</span></a></section>
+    <section class="next-guide" aria-labelledby="next-guide-title"><div><p class="eyebrow">READY TO MOVE ON?</p><h2 id="next-guide-title">Find your first rhythm.</h2><p>Build consistent laps with a few simple habits for looking ahead, braking, and steering smoothly.</p></div><a class="primary-link" href="find-your-rhythm.html">NEXT GUIDE <span aria-hidden="true">→</span></a></section>
     <p class="all-guides-link"><a href="all-guides.html">ALL GUIDES <span aria-hidden="true">→</span></a></p>
   </main>
   <footer class="site-footer shell"><span>Made for the next generation of racers.</span><a href="index.html#top">BACK TO PURPLELAP</a><button type="button" id="back-to-top" class="back-top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4M5 11l7-7 7 7"/></svg><span>BACK TO TOP</span></button></footer>

@@ -36,6 +36,7 @@
     .secondary-link { border:1px solid var(--line); color:var(--muted); }
     .secondary-link:hover { border-color:var(--purple); color:var(--purple); }
     .race-panel { position:relative; overflow:hidden; padding:27px; border:1px solid var(--line); background:linear-gradient(145deg,#18121d,#0c090e); }
+    .race-illustration { display:block; width:100%; height:auto; margin:0 0 18px; }
     .panel-top { display:flex; justify-content:space-between; align-items:center; gap:14px; padding-bottom:19px; border-bottom:1px solid var(--line); color:var(--subtle); font:9px var(--mono); letter-spacing:.12em; }
     .panel-top strong { color:var(--purple); font-weight:500; }
     .race-step { display:grid; grid-template-columns:40px 1fr; gap:15px; align-items:start; padding:20px 0; border-bottom:1px solid var(--line); }
@@ -134,12 +135,21 @@
   <main class="shell">
     <section class="hero" aria-labelledby="page-title">
       <div>
-        <p class="eyebrow">02 / ON THE TRACK</p>
+        <p class="eyebrow">03 / ON THE TRACK</p>
         <h1 id="page-title">Race with <em>confidence.</em></h1>
         <p class="intro">Good racecraft is being clear and predictable when other cars are around. You can race hard while leaving room, making deliberate moves, and giving yourself time to react.</p>
         <div class="hero-actions"><a class="primary-link" href="#clean-racing">LEARN THE BASICS <span aria-hidden="true">↓</span></a></div>
       </div>
       <aside class="race-panel" aria-label="A simple racecraft checklist">
+        <svg class="race-illustration" viewBox="0 0 420 110" role="img" aria-label="Two cars approach a corner with space left between them">
+          <rect x="1" y="1" width="418" height="108" rx="8" fill="#0b080e" stroke="#36273f"/>
+          <path d="M20 39h215c40 0 58 13 58 36v18" fill="none" stroke="#514d56" stroke-width="48" stroke-linecap="round"/>
+          <path d="M20 39h215c40 0 58 13 58 36v18" fill="none" stroke="#a39ba9" stroke-width="2" stroke-dasharray="7 8" opacity=".65"/>
+          <rect x="28" y="29" width="79" height="20" rx="6" fill="#A020F0"/>
+          <rect x="132" y="29" width="79" height="20" rx="6" fill="#8b8290"/>
+          <path d="M44 39h18m34 0h18m34 0h18m34 0h18" stroke="#fff" stroke-width="2" opacity=".75"/>
+          <text x="30" y="85" fill="#c7bfcc" font-family="monospace" font-size="10">HOLD A PREDICTABLE LINE</text>
+        </svg>
         <div class="panel-top"><strong>THE CLEAN-RACING LOOP</strong><span>SCAN · DECIDE · FOLLOW THROUGH</span></div>
         <div class="race-step"><span class="step-mark">01</span><div><h2>Scan ahead</h2><p>Look beyond the next corner. Notice nearby cars, braking points, and trouble early.</p></div></div>
         <div class="race-step"><span class="step-mark">02</span><div><h2>Make one clear move</h2><p>Choose where you’ll go, then avoid sudden swerves or changing direction repeatedly.</p></div></div>
@@ -173,7 +183,7 @@
     <section class="practice" aria-labelledby="practice-title">
       <div><h2 id="practice-title">A confidence-building session</h2><p>Try a short race against easy AI or in a practice lobby. Focus on clean starts and predictable lines, then review one moment where you had to react. Pick one thing to improve next time.</p></div><span class="lap-count">CLEAN FIRST · THEN FASTER</span>
     </section>
-    <section class="next-guide" aria-labelledby="next-guide-title"><div><p class="eyebrow">READY TO MOVE ON?</p><h2 id="next-guide-title">Make your setup yours.</h2><p>Now that your driving and racecraft have a foundation, make your controls comfortable and choose settings you can repeat.</p></div><a class="primary-link" href="make-your-setup-yours.html">NEXT GUIDE <span aria-hidden="true">→</span></a></section>
+    <section class="next-guide" aria-labelledby="next-guide-title"><div><p class="eyebrow">READY TO MOVE ON?</p><h2 id="next-guide-title">Read the racing line.</h2><p>Learn how braking points, turn-in, apexes, and exits work together to make a smoother corner.</p></div><a class="primary-link" href="racing-line.html">NEXT GUIDE <span aria-hidden="true">→</span></a></section>
     <p class="all-guides-link"><a href="all-guides.html">ALL DRIVING GUIDES <span aria-hidden="true">→</span></a></p>
   </main>
   <footer class="site-footer shell"><span>Made for the next generation of racers.</span><a href="index.html">BACK TO PURPLELAP</a><button type="button" id="back-to-top" class="back-top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4M5 11l7-7 7 7"/></svg><span>BACK TO TOP</span></button></footer>

@@ -109,13 +109,13 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
 </style></head>
 <body>
 <header class="site-header shell">
-<a class="brand" href="all-guides.html" aria-label="PurpleLap, all guides"><img class="brand-logo" src="purplelap-logo.png" alt="PurpleLap — Learn to Sim Race"></a>
-<a class="back-link" href="all-guides.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7"/></svg> ALL GUIDES</a>
+<a class="brand" href="index.html#top" aria-label="PurpleLap home"><img class="brand-logo" src="purplelap-logo.png" alt="PurpleLap — Learn to Sim Race"></a>
+<a class="back-link" id="context-back" href="all-guides.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7"/></svg> BACK TO GUIDES</a>
 </header>
 <main class="shell">
 <section class="hero gear-hero" aria-labelledby="page-title">
   <div>
-    <p class="eyebrow">04 / YOUR EQUIPMENT</p>
+    <p class="eyebrow">BUYER'S GUIDE / THE GARAGE</p>
     <h1 id="page-title">Choose gear that <em>fits you.</em></h1>
     <p class="intro">A wheel can make sim racing feel more involving, but buying the wrong version is an expensive mistake. Start with your platform, then compare the wheel type, bundle, space, and total cost that suit you. You can learn the fundamentals with a controller first.</p>
     <p class="intro buyer-disclosure"><strong>Buyer’s guide only:</strong> This page’s only purpose is to help you decide what to get. Nothing is purchased through PurpleLap, and every product link goes to the manufacturer’s official website.</p>
@@ -487,5 +487,12 @@ setPlatform("xbox");
 const backTopButton=document.querySelector('#back-to-top'),pageFooter=document.querySelector('.site-footer');
 const updateBackToTop=()=>{const visible=window.scrollY>320,footerTop=pageFooter.getBoundingClientRect().top,shouldDock=visible&&footerTop<window.innerHeight-80;backTopButton.classList.toggle('is-visible',visible);const isDocked=backTopButton.classList.contains('is-docked');if(shouldDock!==isDocked){const before=backTopButton.getBoundingClientRect();backTopButton.classList.toggle('is-docked',shouldDock);const after=backTopButton.getBoundingClientRect();const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(visible&&!reducedMotion&&typeof backTopButton.animate==='function')backTopButton.animate([{transform:'translate('+(before.left-after.left)+'px,'+(before.top-after.top)+'px)'},{transform:'translate(0,0)'}],{duration:360,easing:'cubic-bezier(.22,.7,.2,1)'});}};
 window.addEventListener('scroll',updateBackToTop,{passive:true});window.addEventListener('resize',updateBackToTop);backTopButton.addEventListener('click',()=>window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}));updateBackToTop();
+</script>
+<script>
+const contextBackLink=document.querySelector('#context-back');
+const source=new URLSearchParams(window.location.search).get('from');
+const previousPage=document.referrer?new URL(document.referrer):null;
+const cameFromHome=source==='home'||(!source&&previousPage?.origin===window.location.origin&&(previousPage.pathname.endsWith('/index.html')||previousPage.pathname.endsWith('/')));
+if(cameFromHome){contextBackLink.href='index.html#page-footer';contextBackLink.lastChild.textContent=' BACK TO HOME';}
 </script>
 </body></html>
