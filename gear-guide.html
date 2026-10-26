@@ -43,6 +43,11 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
 .product-search-wrap{display:grid;gap:7px;min-width:min(300px,100%);color:var(--subtle);font:9px var(--mono);letter-spacing:.08em}
 .product-search{width:100%;height:44px;padding:0 13px;border:1px solid var(--line);background:#0b080e;color:var(--ink);font:12px var(--sans)}
 .product-search::placeholder{color:var(--subtle)}
+.catalog-tool-group{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.currency-wrap{display:grid;gap:7px;color:var(--subtle);font:9px var(--mono);letter-spacing:.08em}
+.currency-select{height:44px;min-width:100px;padding:0 12px;border:1px solid var(--line);background:#0b080e;color:var(--ink);font:12px var(--sans)}
+.currency-select:focus-visible{outline:2px solid #C77DFF;outline-offset:3px}
+.price-note{margin:-3px 0 16px;color:var(--subtle);font:9px var(--mono);line-height:1.7}
 .brand-filters{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 17px}
 .brand-filter-button{min-height:35px;padding:0 12px;font-size:9px}
 .catalog-status{margin:0 0 15px;color:var(--muted);font:10px var(--mono);letter-spacing:.04em}
@@ -63,6 +68,13 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
 .product-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}
 .product-card .product-fit{margin-top:12px;padding-top:11px;border-top:1px solid rgba(154,128,174,.18);color:#c5bacd;font-size:11px}
 .product-card .product-fit strong{color:var(--ink)}
+.product-card .product-price{margin-top:10px;color:#e3d8e8;font-size:11px}
+.product-card .product-price strong{color:var(--ink)}
+.product-card .product-price.is-variable{color:var(--muted)}
+.pedal-indicator{display:flex;align-items:center;gap:8px;margin-top:10px;color:#c5bacd;font:9px var(--mono);letter-spacing:.02em}
+.pedal-icon{width:36px;height:16px;flex:none;fill:none;stroke:#8c7898;stroke-width:1.5;stroke-linejoin:round}
+.pedal-icon .included{fill:#A020F0;stroke:#C77DFF}
+.pedal-icon .none-mark{stroke:#C77DFF}
 .product-link{display:inline-flex;align-items:center;gap:7px;margin-top:auto;padding-top:15px;color:var(--purple);font:9px var(--mono);letter-spacing:.05em}
 .product-link:hover{color:#C77DFF}
 .empty-results{padding:24px;border:1px dashed var(--line);color:var(--muted);font-size:13px}
@@ -106,6 +118,7 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
     <p class="eyebrow">04 / YOUR EQUIPMENT</p>
     <h1 id="page-title">Choose gear that <em>fits you.</em></h1>
     <p class="intro">A wheel can make sim racing feel more involving, but buying the wrong version is an expensive mistake. Start with your platform, then compare the wheel type, bundle, space, and total cost that suit you. You can learn the fundamentals with a controller first.</p>
+    <p class="intro buyer-disclosure"><strong>Buyer’s guide only:</strong> This page’s only purpose is to help you decide what to get. Nothing is purchased through PurpleLap, and every product link goes to the manufacturer’s official website.</p>
     <div class="hero-actions"><a class="primary-link" href="#compatible-models">FIND COMPATIBLE MODELS <span aria-hidden="true">↓</span></a><a class="secondary-link" href="#buying-checklist">CHECK BEFORE YOU BUY</a></div>
   </div>
   <aside class="platform-panel" id="platform-picker" aria-labelledby="platform-title">
@@ -123,17 +136,28 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
 <section class="section catalog-section" id="compatible-models" aria-labelledby="catalog-title">
   <div class="section-head">
     <div><p class="eyebrow">PLATFORM-MATCHED SHORTLIST</p><h2 id="catalog-title">Wheels that work with your platform.</h2></div>
-    <p id="catalog-intro">The Xbox list includes current products and common older models from the brands covered below. Each listing calls out the console-specific part you need.</p>
+    <p id="catalog-intro">All Xbox-compatible models in this guide’s covered-brand catalog are shown here; this is not a directory of every wheel on the market. Each listing calls out the console-specific part you need.</p>
   </div>
   <div class="catalog-tools">
-    <div id="pc-view-group" class="pc-view-group" role="group" aria-label="PC wheel lists" hidden>
-      <button class="pc-view-button" type="button" data-pc-view="all" aria-pressed="true">15 PC PICKS</button>
-      <button class="pc-view-button" type="button" data-pc-view="budget" aria-pressed="false">5 BUDGET PICKS</button>
+    <div class="catalog-tool-group">
+      <div id="pc-view-group" class="pc-view-group" role="group" aria-label="PC wheel lists" hidden>
+        <button class="pc-view-button" type="button" data-pc-view="all" aria-pressed="true">15 PC PICKS</button>
+        <button class="pc-view-button" type="button" data-pc-view="budget" aria-pressed="false">5 BUDGET PICKS</button>
+      </div>
+      <label class="currency-wrap" for="currency-select">SHOW PRICES IN
+        <select class="currency-select" id="currency-select">
+          <option value="USD">USD — US dollar</option>
+          <option value="CAD">CAD — Canadian dollar</option>
+          <option value="EUR">EUR — euro</option>
+          <option value="GBP">GBP — pound sterling</option>
+        </select>
+      </label>
     </div>
     <label class="product-search-wrap">SEARCH THESE RESULTS
       <input class="product-search" id="product-search" type="search" placeholder="Try MOZA, direct drive, G29…" autocomplete="off">
     </label>
   </div>
+  <p class="price-note">Prices shown are manufacturer US-store prices where available, checked October 26, 2026. Currency conversions use approximate USD exchange rates from October 26, 2026 and are not live; tax, shipping, regional offers, and bundle contents can change the total. If no fixed current price is published, check the official product page.</p>
   <div id="brand-filters" class="brand-filters" role="group" aria-label="Filter compatible models by brand"></div>
   <p class="catalog-status" id="catalog-status" aria-live="polite"></p>
   <div class="product-grid" id="product-grid" aria-live="polite"></div>
@@ -142,7 +166,7 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
     <h3 id="platform-note-title">A compatible wheel still needs a compatible game.</h3>
     <p>Console support depends on the exact wheel, base, licensed component, and game. A Windows PC connection does not guarantee every racing title supports every button or force-feedback feature. Check the game’s wheel list and the manufacturer’s page for the exact model before buying.</p>
   </aside>
-  <p class="update-note">These are verified examples from Logitech, Thrustmaster, MOZA, Fanatec, and HORI. Older products may be discontinued or used only. Regional versions and bundles can differ.</p>
+  <p class="update-note">Xbox and PlayStation show every verified model currently included for the brands covered in this guide; they do not represent every wheel sold by every manufacturer. PC is a curated 15-model shortlist, not all available PC wheels. Older products may be discontinued or used only. Regional versions and bundles can differ.</p>
 </section>
 
 <section class="guide-section" aria-labelledby="drive-types-title">
@@ -190,7 +214,7 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
     <li><a href="https://hori.jp/products/xsx/rw_overdrive/" target="_blank" rel="noopener noreferrer">HORI Racing Wheel Overdrive ↗</a></li>
   </ul>
 </details>
-<p class="update-note">Compatibility checked October 2026. Product availability, regional SKUs, and prices change; verify the exact model and your game’s compatibility page before checkout.</p>
+<p class="update-note">Compatibility checked October 2026. Product availability, regional SKUs, and prices change; verify the exact model and your game’s compatibility page before checkout. This page is for research only: nothing is purchased through PurpleLap, and product links go to official manufacturer websites.</p>
 
 <section class="closing" aria-labelledby="closing-title"><h2 id="closing-title">You can learn before you buy.</h2><p>Try a few sessions with a controller first. Notice what feels limiting, then decide if a wheel would make sim racing more fun. A particular brand or price level is not required to begin.</p></section>
 </main>
@@ -222,11 +246,11 @@ const MODEL_DATA = {
 "t80":{brand:"Thrustmaster",name:"T80 / T80 Ferrari 488 GTB",kind:"Bungee resistance · no true FFB",description:"An older, simple PlayStation wheel with bungee resistance. It can be cheap used, but it does not provide motor-driven force feedback.",fit:"PlayStation 5 / 4 and Windows PC for supported titles. Check the exact T80 model.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
 "ferrari458":{brand:"Thrustmaster",name:"Ferrari 458 Spider Racing Wheel",kind:"Spring resistance · Xbox only",description:"An older basic Xbox wheel with spring resistance rather than motor-driven force feedback. Verify supported games and condition before considering a used one.",fit:"Xbox One / Series X|S. Thrustmaster does not list this model for PC or PlayStation.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
 "moza-r3-x":{brand:"MOZA",name:"R3 Racing Bundle — Xbox & PC",kind:"Direct drive · 3.9 Nm",description:"MOZA’s Xbox-licensed entry direct-drive bundle includes the base, ESX Xbox wheel, SR-P Lite pedals, and table clamp.",fit:"Xbox One / Series X|S and Windows PC. Choose the Xbox & PC bundle; the separate PC-only R3 does not work on Xbox.",url:"https://us.mozaracing.com/products/r3-racing-bundle-xbox",link:"Official R3 Xbox bundle ↗"},
-"moza-r3-pc":{brand:"MOZA",name:"R3 Racing Bundle — PC edition",kind:"Direct drive · 3.9 Nm",description:"An entry direct-drive bundle with a table clamp, wheel, and pedals. It is a PC choice at the lower end of MOZA’s direct-drive range.",fit:"Windows PC only for this PC edition. Do not select it for Xbox.",url:"https://us.mozaracing.com/products/r3-racing-bundle-xbox",link:"Check R3 bundle versions ↗"},
-"moza-r5":{brand:"MOZA",name:"R5 Racing Bundle",kind:"Direct drive · 5.5 Nm",description:"A compact PC bundle that includes a 5.5 Nm base, wheel, pedals, and desk clamp. A step up from a gear-driven starter, with more force and detail.",fit:"Windows PC. MOZA lists the R5 as PC-only; it is not an Xbox or PlayStation wheel.",url:"https://us.mozaracing.com/pages/r5-racing-bundle",link:"Official R5 bundle ↗"},
-"moza-r9":{brand:"MOZA",name:"R9 V3 wheel base",kind:"Direct drive · 9 Nm",description:"A 9 Nm PC wheelbase for someone ready to build around a separate base, steering wheel, pedals, and rigid mount.",fit:"Windows PC. Include compatible MOZA components and check the bundle details.",url:"https://us.mozaracing.com/collections/wheel-bases",link:"MOZA wheel-base range ↗"},
+"moza-r3-pc":{brand:"MOZA",name:"R3 Racing Bundle — PC edition",kind:"Direct drive · 3.9 Nm",description:"An entry direct-drive bundle with a table clamp, wheel, and pedals. It is a PC choice at the lower end of MOZA’s direct-drive range.",fit:"Windows PC only for this PC edition. Do not select it for Xbox.",url:"https://us.mozaracing.com/products/r3-racing-bundle-pc",link:"Official R3 PC bundle ↗"},
+"moza-r5":{brand:"MOZA",name:"R5 Racing Bundle",kind:"Direct drive · 5.5 Nm",description:"A compact PC bundle that includes a 5.5 Nm base, wheel, pedals, and desk clamp. A step up from a gear-driven starter, with more force and detail.",fit:"Windows PC. MOZA lists the R5 as PC-only; it is not an Xbox or PlayStation wheel.",url:"https://us.mozaracing.com/products/r5-racing-bundle",link:"Official R5 bundle ↗"},
+"moza-r9":{brand:"MOZA",name:"R9 V3 wheel base",kind:"Direct drive · 9 Nm",description:"A 9 Nm PC wheelbase for someone ready to build around a separate base, steering wheel, pedals, and rigid mount.",fit:"Windows PC. Include compatible MOZA components and check the bundle details.",url:"https://us.mozaracing.com/products/r9-wheelbase",link:"Official R9 wheelbase ↗"},
 "moza-r12-x":{brand:"MOZA",name:"R12 V1/V2 + ESX wheel",kind:"Direct drive · 12 Nm",description:"MOZA’s support page lists Xbox use for the R12 V1/V2 when paired with the Xbox-licensed ESX steering wheel. The base alone is not enough.",fit:"Xbox One / Series X|S and Windows PC with the ESX wheel; not PlayStation.",url:"https://support.mozaracing.com/en/support/solutions/articles/70000668789-moza-r12-wheel-base-support",link:"Official R12 compatibility ↗"},
-"moza-r12":{brand:"MOZA",name:"R12 V2 wheel base",kind:"Direct drive · 12 Nm",description:"A higher-torque PC direct-drive base for a sim rig and compatible MOZA wheel, pedals, and accessories. It is not an entry bundle.",fit:"Windows PC. MOZA’s R12 Xbox route requires the ESX licensed wheel; no PlayStation support.",url:"https://support.mozaracing.com/en/support/solutions/articles/70000668789-moza-r12-wheel-base-support",link:"Official R12 support ↗"},
+"moza-r12":{brand:"MOZA",name:"R12 V2 wheel base",kind:"Direct drive · 12 Nm",description:"A higher-torque PC direct-drive base for a sim rig and compatible MOZA wheel, pedals, and accessories. It is not an entry bundle.",fit:"Windows PC. MOZA’s R12 Xbox route requires the ESX licensed wheel; no PlayStation support.",url:"https://us.mozaracing.com/products/r12-wheelbase",link:"Official R12 wheelbase ↗"},
 "fanatec-csl":{brand:"Fanatec",name:"CSL DD — 5 Nm or 8 Nm",kind:"Direct drive · 5/8 Nm",description:"Fanatec’s direct-drive entry base. Compare the 5 Nm and 8 Nm bundle, included wheel, pedals, and table clamp before deciding.",fit:"Windows PC; Xbox when paired with an Xbox-licensed steering wheel. Not PlayStation-compatible as a base.",url:"https://www.fanatec.com/us/en/c/wheel-bases",link:"Fanatec wheel-base range ↗"},
 "fanatec-gtdd":{brand:"Fanatec",name:"Gran Turismo DD Pro",kind:"Direct drive · 5/8 Nm options",description:"A PlayStation-licensed direct-drive base, also compatible with PC. The exact bundle and power supply change its torque rating.",fit:"PlayStation 5 / 4 and Windows PC. Xbox needs an Xbox-licensed wheel attached.",url:"https://www.fanatec.com/us/en/p/wheel-bases/crd-9020006-us/gran-turismo-dd-pro-wheel-base-qr2-us",link:"Official GT DD Pro ↗"},
 "fanatec-csl-elite":{brand:"Fanatec",name:"CSL Elite Wheel Base + — PS4 version",kind:"Direct drive · older model",description:"A discontinued PlayStation-licensed direct-drive base that may appear used. The official manual notes that PS4 game compatibility can vary; inspect the exact bundle and do not assume every PS5 title supports it.",fit:"Windows PC and PlayStation 4; PlayStation 5 use depends on supported PS4 games and the exact wheel setup.",url:"https://www.fanatec.com/us/en/explorer/products/racing-wheels-wheel-bases/csl-elite-wheel-base/",link:"Official CSL Elite manual ↗"},
@@ -256,6 +280,30 @@ MODEL_DATA["pc-t248"]={brand:"Thrustmaster",name:"T248 — PC-compatible version
 MODEL_DATA["pc-t300"]={brand:"Thrustmaster",name:"T300 RS / RS GT",kind:"Belt-driven force feedback",description:"A detachable-rim belt-driven wheel for someone who wants a smoother step beyond entry gear-driven hardware.",fit:"Windows PC; the licensed console version is PlayStation. Not Xbox.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"};
 MODEL_DATA["pc-t598"]={brand:"Thrustmaster",name:"T598 — PC-compatible versions",kind:"Direct drive",description:"A current direct-drive option sold in separate Xbox and PlayStation console versions; both variants also work with a Windows PC.",fit:"Windows PC. Select the console license only if you plan to plug it into Xbox or PlayStation.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"};
 MODEL_DATA["pc-tmx-t150"]={brand:"Thrustmaster",name:"TMX / T150 — older models",kind:"Used-market force feedback",description:"Two older platform-specific entry FFB wheels: TMX is the Xbox model and T150 the PlayStation model. Used units can be a value choice if complete and in good condition.",fit:"Windows PC with the correct drivers; TMX is Xbox-licensed and T150 is PlayStation-licensed.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"};
+const PEDAL_COUNTS = {
+"g920":3,"g29":3,"g923-x":3,"g923-ps":3,"pro-x":0,"pro-ps":0,
+"t128-x":2,"t128-ps":2,"t248-x":3,"t248-ps":3,"tmx":"2-3","t150":"2-3",
+"tx":"2-3","tsxw":3,"t300":"2-3","t500":3,"tgt":3,"t248r":3,"t598-x":2,"t598-ps":2,
+"t818":0,"t98-x":2,"t98-ps":2,"t80":2,"ferrari458":2,
+"moza-r3-x":2,"moza-r3-pc":2,"moza-r5":2,"moza-r9":0,"moza-r12-x":0,"moza-r12":0,
+"fanatec-csl":0,"fanatec-gtdd":0,"fanatec-csl-elite":0,"fanatec-csdd":0,"fanatec-csddplus":0,
+"fanatec-podium":0,"fanatec-dd1":0,"fanatec-dd2":0,
+"hori-overdrive":2,"hori-apex":2,"hori-wireless":2,"hori-ffb":3,"hori-wireless-overdrive":2,"hori-apex-formula":2,
+"pc-g29":3,"pc-g923":3,"pc-pro":0,"pc-t128":2,"pc-t248":3,"pc-t300":"2-3","pc-t598":2,"pc-tmx-t150":"2-3"
+};
+const USD_PRICES = {
+"g920":[299.99],"g29":[299.99],"g923-x":[349.99],"g923-ps":[349.99],
+"pro-x":[999.99,1199.99],"pro-ps":[999.99,1199.99],
+"moza-r3-x":[339,399],"moza-r3-pc":[279,299],"moza-r5":[379,599],"moza-r9":[299,349],"moza-r12":[399,469],
+"hori-apex":[129.99],"hori-ffb":[299.99],
+"pc-g29":[299.99],"pc-g923":[349.99],"pc-pro":[999.99,1199.99]
+};
+const PRICE_LABELS = {
+"pro-x":"Official store range","pro-ps":"Official store range","pc-pro":"Official store range",
+"moza-r3-x":"Sale / regular price","moza-r3-pc":"Sale / regular price","moza-r5":"Sale / regular price",
+"moza-r9":"Sale / regular price","moza-r12":"Wheelbase sale / regular price"
+};
+const CURRENCY_RATES = {USD:1,CAD:1.401312,EUR:0.89213,GBP:0.747783};
 const PRODUCT_PHOTOS = {
 "g920":["assets/wheels/g920-0.png"],
 "g29":["assets/wheels/g29-0.png"],
@@ -322,11 +370,47 @@ const catalogStatus=document.querySelector("#catalog-status");
 const catalogIntro=document.querySelector("#catalog-intro");
 const productSearch=document.querySelector("#product-search");
 const emptyResults=document.querySelector("#empty-results");
+const currencySelect=document.querySelector("#currency-select");
 let selectedPlatform="xbox";
 let selectedPCView="all";
 let selectedBrand="All brands";
 function escapeText(value){return String(value).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function currentIds(){return selectedPlatform==="pc"?(selectedPCView==="budget"?CATALOG.budget:CATALOG.pc):CATALOG[selectedPlatform]}
+function formatCurrency(value,currency){
+ return new Intl.NumberFormat("en-US",{style:"currency",currency:currency}).format(value*CURRENCY_RATES[currency]);
+}
+function productPrice(id,item){
+ const prices=USD_PRICES[id];
+ if(!prices||prices.length===0){
+  const isOlder=/older|legacy|used-market/i.test(item.kind+" "+item.description);
+  const note=isOlder?"Used, discontinued, or older-model prices vary.":"Price varies by exact bundle, region, or availability.";
+  return '<p class="product-price is-variable"><strong>Price:</strong> '+note+' Check the manufacturer’s site for current pricing.</p>';
+ }
+ const currency=currencySelect.value;
+ const amounts=prices.map(function(price){return formatCurrency(price,currency)});
+ let display=amounts.length===1?amounts[0]:amounts[0]+"–"+amounts[1];
+ if(PRICE_LABELS[id]==="Sale / regular price")display="Sale "+amounts[0]+" / regular "+amounts[1];
+ if(PRICE_LABELS[id]==="Wheelbase sale / regular price")display="Wheelbase sale "+amounts[0]+" / regular "+amounts[1];
+ const label=PRICE_LABELS[id]||"US manufacturer price";
+ return '<p class="product-price"><strong>Price:</strong> '+display+' <span>('+label+')</span></p>';
+}
+function pedalIndicator(id){
+ const count=PEDAL_COUNTS[id];
+ let icon,label;
+ if(count===0){
+  icon='<svg class="pedal-icon" viewBox="0 0 36 16" aria-hidden="true"><path class="none-mark" d="M5 8h26M12 2l12 12M24 2 12 14"/></svg>';
+  label="Pedals sold separately";
+ }else{
+  const included=count===3?3:2;
+  const pedals=[0,1,2].map(function(index){
+   if(count!=="2-3"&&index>=included)return "";
+   return '<rect'+(index<included?' class="included"':'')+' x="'+(index*11+1)+'" y="2" width="7" height="12" rx="1"/>';
+  }).join("");
+  icon='<svg class="pedal-icon" viewBox="0 0 36 16" aria-hidden="true">'+pedals+'</svg>';
+  label=count==="2-3"?"2 or 3 pedals · bundle varies":count+" pedals · "+(count===3?"clutch included":"throttle + brake");
+ }
+ return '<div class="pedal-indicator">'+icon+'<span>'+label+'</span></div>';
+}
 function productPhoto(entry){
  const item=entry.item,photos=PRODUCT_PHOTOS[entry.id];
  if(!photos){console.error("Missing product photo for "+entry.id);return ""}
@@ -342,11 +426,11 @@ function setPlatform(name){
  platformButtons.forEach(function(button){button.setAttribute("aria-pressed",String(button.dataset.platform===name))});
  pcViewGroup.hidden=name!=="pc";
  if(name==="pc"){
-  catalogIntro.textContent=selectedPCView==="budget"?"Five budget-minded PC choices, from basic steering practice to an entry direct-drive bundle. They are not a price ranking; compare the current full bundle cost.":"A 15-model PC shortlist across entry, midrange, and premium choices. It is a curated comparison list, not a claim that one wheel is fastest.";
+  catalogIntro.textContent=selectedPCView==="budget"?"Five selected budget-minded PC choices. This is not a complete list of available PC wheels or a price ranking; compare the current full bundle cost.":"A curated 15-model PC shortlist across entry, midrange, and premium choices—not every PC wheel available. Compare the exact product and bundle before buying.";
  }else if(name==="xbox"){
-  catalogIntro.textContent="Verified Xbox options, including current models and common older products from Logitech, Thrustmaster, MOZA, Fanatec, and HORI. Exact licensed versions and required components are called out.";
+  catalogIntro.textContent="All Xbox-compatible models currently included for the brands covered in this guide are shown here. This is not every wheel on the market; exact licensed versions and required components are called out.";
  }else{
-  catalogIntro.textContent="Verified PlayStation options, including current models and common older products from Logitech, Thrustmaster, Fanatec, and HORI. Exact licensed versions are called out.";
+  catalogIntro.textContent="All PlayStation-compatible models currently included for the brands covered in this guide are shown here. This is not every wheel on the market; exact licensed versions and required components are called out.";
  }
  renderCatalog();
 }
@@ -385,7 +469,7 @@ function renderCatalog(){
   const card=document.createElement("article");
   card.className="product-card"+(selectedPlatform==="pc"&&selectedPCView==="budget"?" budget-card":"");
   card.id="wheel-"+entry.id;
-  card.innerHTML=productPhoto(entry)+'<div class="product-card-head"><span class="product-brand">'+escapeText(item.brand)+'</span><span class="product-kind">'+escapeText(item.kind)+'</span></div><h3>'+escapeText(item.name)+'</h3><p>'+escapeText(item.description)+'</p><p class="product-fit"><strong>Compatibility:</strong> '+escapeText(item.fit)+'</p><a class="product-link" href="'+escapeText(item.url)+'" target="_blank" rel="noopener noreferrer">'+escapeText(item.link)+'</a>';
+  card.innerHTML=productPhoto(entry)+'<div class="product-card-head"><span class="product-brand">'+escapeText(item.brand)+'</span><span class="product-kind">'+escapeText(item.kind)+'</span></div><h3>'+escapeText(item.name)+'</h3><p>'+escapeText(item.description)+'</p><p class="product-fit"><strong>Compatibility:</strong> '+escapeText(item.fit)+'</p>'+productPrice(entry.id,item)+pedalIndicator(entry.id)+'<a class="product-link" href="'+escapeText(item.url)+'" target="_blank" rel="noopener noreferrer">'+escapeText(item.link)+'</a>';
   productGrid.appendChild(card);
  });
  const label=selectedPlatform==="pc"?(selectedPCView==="budget"?"budget PC picks":"PC picks"):selectedPlatform==="xbox"?"Xbox options":"PlayStation options";
@@ -395,6 +479,7 @@ function renderCatalog(){
 platformButtons.forEach(function(button){button.addEventListener("click",function(){setPlatform(button.dataset.platform)})});
 pcViewButtons.forEach(function(button){button.addEventListener("click",function(){setPCView(button.dataset.pcView)})});
 productSearch.addEventListener("input",renderCatalog);
+currencySelect.addEventListener("change",renderCatalog);
 setPlatform("xbox");
 </script>
 <footer class="site-footer shell"><span>Made for the next generation of racers.</span><a href="all-guides.html">ALL GUIDES</a><button type="button" id="back-to-top" class="back-top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4M5 11l7-7 7 7"/></svg><span>BACK TO TOP</span></button></footer>
