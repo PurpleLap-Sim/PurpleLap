@@ -50,8 +50,11 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
 .product-card{display:flex;flex-direction:column;min-height:245px;padding:20px;border:1px solid var(--line);background:linear-gradient(145deg,#14101a,#0d0a10);transition:border-color .2s,transform .2s}
 .product-card:hover{border-color:#704084;transform:translateY(-2px)}
 .product-card.budget-card{border-color:#563364}
-.product-illustration{display:block;width:calc(100% + 40px);height:auto;aspect-ratio:2.4/1;margin:-20px -20px 18px;border-bottom:1px solid var(--line);background:#0b080e}
-.product-illustration text{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.product-photo-link{display:block;width:calc(100% + 40px);height:196px;margin:-20px -20px 18px;padding:9px;border-bottom:1px solid var(--line);background:#0b080e}
+.product-photo-list{display:grid;width:100%;height:100%;grid-template-columns:1fr;gap:8px}
+.product-photo-list.is-pair{grid-template-columns:repeat(2,minmax(0,1fr))}
+.product-photo{display:block;width:100%;height:100%;min-width:0;object-fit:contain}
+.product-photo-credit{display:block;margin:-11px 0 15px;color:var(--subtle);font:8px var(--mono);letter-spacing:.07em}
 .product-card-head{display:flex;justify-content:space-between;align-items:start;gap:10px;margin-bottom:17px}
 .product-brand,.product-kind,.product-fit-label{font:9px var(--mono);letter-spacing:.08em;text-transform:uppercase}
 .product-brand{color:var(--purple)}
@@ -253,6 +256,61 @@ MODEL_DATA["pc-t248"]={brand:"Thrustmaster",name:"T248 — PC-compatible version
 MODEL_DATA["pc-t300"]={brand:"Thrustmaster",name:"T300 RS / RS GT",kind:"Belt-driven force feedback",description:"A detachable-rim belt-driven wheel for someone who wants a smoother step beyond entry gear-driven hardware.",fit:"Windows PC; the licensed console version is PlayStation. Not Xbox.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"};
 MODEL_DATA["pc-t598"]={brand:"Thrustmaster",name:"T598 — PC-compatible versions",kind:"Direct drive",description:"A current direct-drive option sold in separate Xbox and PlayStation console versions; both variants also work with a Windows PC.",fit:"Windows PC. Select the console license only if you plan to plug it into Xbox or PlayStation.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"};
 MODEL_DATA["pc-tmx-t150"]={brand:"Thrustmaster",name:"TMX / T150 — older models",kind:"Used-market force feedback",description:"Two older platform-specific entry FFB wheels: TMX is the Xbox model and T150 the PlayStation model. Used units can be a value choice if complete and in good condition.",fit:"Windows PC with the correct drivers; TMX is Xbox-licensed and T150 is PlayStation-licensed.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"};
+const PRODUCT_PHOTOS = {
+"g920":["https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/drivingforce/2025/gallery/g920-xbox-3qtr-angle-gallery-1.png"],
+"g29":["https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/drivingforce/2025/gallery/g29-playstation-3qtr-angle-gallery-1.png"],
+"g923-x":["https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/g923-and-trueforce/g923-gallery/g923-xbox-gallery-1.png"],
+"g923-ps":["https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/g923-and-trueforce/g923-gallery/g923-ps4-gallery-1-new-image.png"],
+"pro-x":["https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-racing/pro-racing-wheel/2025-updates/gallery/for-xbox/pro-racing-wheel-xbox-front-angle-gallery-1.png"],
+"pro-ps":["https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-racing/pro-racing-wheel/2025-updates/gallery/for-playstation/pro-racing-wheel-playstation-front-angle-gallery-1.png"],
+"t128-x":["https://www.thrustmaster.com/wp-content/uploads/2022/11/T128X_800x800-pichi-768x768-1.webp"],
+"t128-ps":["https://www.thrustmaster.com/wp-content/uploads/2022/11/T128PS_800x800-pichi-768x768-1.webp"],
+"t248-x":["https://www.thrustmaster.com/wp-content/uploads/2022/01/T248_XB_800x800-768x768-1.webp"],
+"t248-ps":["https://www.thrustmaster.com/wp-content/uploads/2023/03/T248-800x800-1-768x768-1.webp"],
+"tmx":["https://www.thrustmaster.com/wp-content/uploads/2022/05/TMX-800x800-1-768x768-1.webp"],
+"t150":["https://www.thrustmaster.com/wp-content/uploads/2023/03/T150-800x800-1-768x768-1.webp"],
+"tx":["https://www.thrustmaster.com/wp-content/uploads/2021/09/SF_Gallery-TX-racing-wheel-leather-1-1-pichi.webp"],
+"tsxw":["https://www.thrustmaster.com/wp-content/uploads/2021/09/TS-XWP310SparcoMod-800x800-1-768x768-1.webp"],
+"t300":["https://www.thrustmaster.com/wp-content/uploads/2023/03/T300RSGT-800x800-1-768x768-1.webp"],
+"t500":["https://www.thrustmaster.com/wp-content/uploads/2026/09/T500RS-G.png"],
+"tgt":["https://www.thrustmaster.com/wp-content/uploads/2023/03/T-GT-2-ps4-ps5-pc-768x768-1.webp"],
+"t248r":["https://www.thrustmaster.com/wp-content/uploads/2025/09/Website_ProductPageListing-T248R-800x800-12.webp"],
+"t598-x":["https://www.thrustmaster.com/wp-content/uploads/2025/08/Website_ProductPageListing-T598X-800x800-1.webp"],
+"t598-ps":["https://www.thrustmaster.com/wp-content/uploads/2024/10/Website_ProductPageListing-T598-800x800-1-768x768-18.webp"],
+"t818":["https://www.thrustmaster.com/wp-content/uploads/2025/12/T818-Black-Edition-list.png"],
+"t98-x":["https://www.thrustmaster.com/wp-content/uploads/2025/08/website_PageProduit_Galerie-T98Ferrari296GTS-1920x1080-1.png"],
+"t98-ps":["https://www.thrustmaster.com/wp-content/uploads/2025/08/website_PageProduit_Galerie-T98Ferrari296GTB-1920x1080-1.png"],
+"t80":["https://www.thrustmaster.com/wp-content/uploads/2022/09/T80Ferrari488-800x800-1.png"],
+"ferrari458":["https://www.thrustmaster.com/wp-content/uploads/2022/09/F458spider-800x800-1.png"],
+"moza-r3-x":["https://cdn.shopify.com/s/files/1/0942/7134/0846/files/R3_Xbox_PC-1_0803.png?v=1785733115"],
+"moza-r3-pc":["https://cdn.shopify.com/s/files/1/0942/7134/0846/files/r3_bundle_pc_0803.png?v=1785733099"],
+"moza-r5":["https://cdn.shopify.com/s/files/1/0942/7134/0846/files/r5_racing_bundle_pc_0803.png?v=1785733065"],
+"moza-r9":["https://cdn.shopify.com/s/files/1/0942/7134/0846/files/R9_V3-1.webp?v=1767606124"],
+"moza-r12-x":["https://cdn.shopify.com/s/files/1/0942/7134/0846/files/R12-V2-b_ff9a35d2-c217-4b48-9b56-bc626278d618.png?v=1752820346"],
+"moza-r12":["https://cdn.shopify.com/s/files/1/0942/7134/0846/files/R12_V2-1.webp?v=1767606148"],
+"fanatec-csl":["https://assets.fanatec.com/image/upload/c_fill,q_auto,h_1024,w_1024,f_auto/products/Wheel-Bases/CSL_DD_QR2L_90/CSL_DD_QR2L_90-01.webp"],
+"fanatec-gtdd":["https://assets.fanatec.com/image/upload/c_fill,q_auto,h_1024,w_1024,f_auto/products/Wheel-Bases/CRD-9020006/CRD-9020006_01.webp"],
+"fanatec-csl-elite":["https://d1nzm2nlurbj16.cloudfront.net/images/CSL_Elite_Wheel_Base_.width-1500.format-webp.webp"],
+"fanatec-csdd":["https://assets.fanatec.com/image/upload/c_fill,q_auto,h_1024,w_1024,f_auto/products/Wheel-Bases/CS_DD/cs_dd-01.webp"],
+"fanatec-csddplus":["https://assets.fanatec.com/image/upload/c_fill,q_auto,h_1024,w_1024,f_auto/products/Wheel-Bases/CS_DD-P/CS_DD-P-01.webp"],
+"fanatec-podium":["https://d1nzm2nlurbj16.cloudfront.net/images/Podium_Wheel_Base_DD2.width-1500.format-webp.webp"],
+"fanatec-dd1":["https://d1nzm2nlurbj16.cloudfront.net/images/Podium_Wheel_Base_DD1.width-1500.format-webp.webp"],
+"fanatec-dd2":["https://d1nzm2nlurbj16.cloudfront.net/images/Podium_Wheel_Base_DD2.width-1500.format-webp.webp"],
+"hori-overdrive":["https://hori.jp/image/2020/10/14e931b0c29a2c203645e7fba042e960.jpg"],
+"hori-apex":["https://cdn11.bigcommerce.com/s-bsuqqx/images/stencil/1280x1280/products/857/2653/SPF-004_01_211104__15356.1641492885.png?c=2"],
+"hori-wireless":["https://cdn11.bigcommerce.com/s-bsuqqx/images/stencil/1280x1280/products/915/3086/SPF-022_Image_Revised__94856.1731360102.png?c=2"],
+"hori-ffb":["https://cdn11.bigcommerce.com/s-bsuqqx/images/stencil/1280x1280/products/809/2379/AB05-001_product_image_04__31522.1601134871.png?c=2"],
+"hori-wireless-overdrive":["https://cdn11.bigcommerce.com/s-bsuqqx/images/stencil/1280x1280/products/969/3259/MBS-016U_productimage_01_20230904_1__03729.1760052336.png?c=2"],
+"hori-apex-formula":["https://cdn11.bigcommerce.com/s-bsuqqx/images/stencil/1280x1280/products/1009/3599/03_SPF-079_ProductImage__67439.1788971181.png?c=2"],
+"pc-g29":["https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/drivingforce/2025/gallery/g29-playstation-3qtr-angle-gallery-1.png","https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/drivingforce/2025/gallery/g920-xbox-3qtr-angle-gallery-1.png"],
+"pc-g923":["https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/g923-and-trueforce/g923-gallery/g923-ps4-gallery-1-new-image.png","https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/g923-and-trueforce/g923-gallery/g923-xbox-gallery-1.png"],
+"pc-pro":["https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-racing/pro-racing-wheel/2025-updates/gallery/for-pc/pro-racing-wheel-pc-front-angle-gallery-1.png"],
+"pc-t128":["https://www.thrustmaster.com/wp-content/uploads/2022/11/T128PS_800x800-pichi-768x768-1.webp","https://www.thrustmaster.com/wp-content/uploads/2022/11/T128X_800x800-pichi-768x768-1.webp"],
+"pc-t248":["https://www.thrustmaster.com/wp-content/uploads/2023/03/T248-800x800-1-768x768-1.webp","https://www.thrustmaster.com/wp-content/uploads/2022/01/T248_XB_800x800-768x768-1.webp"],
+"pc-t300":["https://www.thrustmaster.com/wp-content/uploads/2023/03/T300RSGT-800x800-1-768x768-1.webp"],
+"pc-t598":["https://www.thrustmaster.com/wp-content/uploads/2024/10/Website_ProductPageListing-T598-800x800-1-768x768-18.webp","https://www.thrustmaster.com/wp-content/uploads/2025/08/Website_ProductPageListing-T598X-800x800-1.webp"],
+"pc-tmx-t150":["https://www.thrustmaster.com/wp-content/uploads/2022/05/TMX-800x800-1-768x768-1.webp","https://www.thrustmaster.com/wp-content/uploads/2023/03/T150-800x800-1-768x768-1.webp"]
+};
 </script>
 <script>
 const platformButtons=Array.from(document.querySelectorAll("[data-platform]"));
@@ -269,14 +327,14 @@ let selectedPCView="all";
 let selectedBrand="All brands";
 function escapeText(value){return String(value).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function currentIds(){return selectedPlatform==="pc"?(selectedPCView==="budget"?CATALOG.budget:CATALOG.pc):CATALOG[selectedPlatform]}
-function wheelIllustration(item){
- const kind=item.kind.toLowerCase();
- const directDrive=kind.indexOf("direct drive")!==-1;
- const noForceFeedback=kind.indexOf("no true ffb")!==-1||kind.indexOf("spring")!==-1||kind.indexOf("bungee")!==-1||kind.indexOf("entry level")!==-1||kind.indexOf("budget")!==-1||kind.indexOf("upcoming")!==-1||kind.indexOf("no true")!==-1;
- const ring=noForceFeedback?"#a39ba9":directDrive?"#c77dff":"#A020F0";
- const center=item.brand.slice(0,1).toUpperCase();
- const nameSize=item.name.length>31?10:item.name.length>24?11:14;
- return '<svg class="product-illustration" viewBox="0 0 480 200" role="img" aria-label="'+escapeText(item.brand+" "+item.name+" illustrative wheel diagram")+'" xmlns="http://www.w3.org/2000/svg"><rect width="480" height="200" fill="#0b080e"/><path d="M0 40H480M0 100H480M0 160H480M60 0V200M120 0V200M180 0V200M240 0V200M300 0V200M360 0V200M420 0V200" stroke="#36273f" stroke-width="1" opacity=".38"/><circle cx="105" cy="91" r="59" fill="#100d13" stroke="'+ring+'" stroke-width="8"/><circle cx="105" cy="91" r="17" fill="#A020F0"/><path d="M105 74V42M92 100 65 121M118 100 145 121" fill="none" stroke="#e7e0eb" stroke-width="7" stroke-linecap="round"/><text x="105" y="96" fill="#08070a" font-size="13" font-weight="700" text-anchor="middle">'+escapeText(center)+'</text><path d="M75 151h60l12 10H63zM80 164h16l-3 13H78zM118 164h16l3 13h-15z" fill="#514d56" stroke="#89818f"/><text x="190" y="77" fill="#A020F0" font-size="10" letter-spacing="1.5">'+escapeText(item.brand.toUpperCase())+'</text><text x="190" y="104" fill="#f5f1f7" font-size="'+nameSize+'">'+escapeText(item.name)+'</text><text x="190" y="130" fill="#a39ba9" font-size="9" letter-spacing="1">ILLUSTRATIVE WHEEL · NOT TO SCALE</text><text x="190" y="157" fill="#89818f" font-size="9">'+(noForceFeedback?"SPRING / BASIC STEERING":directDrive?"DIRECT-DRIVE CLASS":"FORCE-FEEDBACK CLASS")+'</text></svg>';
+function productPhoto(entry){
+ const item=entry.item,photos=PRODUCT_PHOTOS[entry.id];
+ if(!photos){console.error("Missing product photo for "+entry.id);return ""}
+ const images=photos.map(function(url,index){
+  const subject=entry.id==="pc-tmx-t150"?(index===0?"Thrustmaster TMX":"Thrustmaster T150"):entry.id==="pc-g29"?(index===0?"Logitech G29":"Logitech G920"):entry.id==="pc-g923"?(index===0?"Logitech G923 PlayStation version":"Logitech G923 Xbox version"):entry.id==="pc-t128"?(index===0?"Thrustmaster T128 PlayStation version":"Thrustmaster T128 Xbox version"):entry.id==="pc-t248"?(index===0?"Thrustmaster T248 PlayStation version":"Thrustmaster T248 Xbox version"):entry.id==="pc-t598"?(index===0?"Thrustmaster T598 PlayStation version":"Thrustmaster T598 Xbox version"):entry.id==="fanatec-podium"?"Fanatec Podium series wheelbase":item.brand+" "+item.name;
+  return '<img class="product-photo" src="'+escapeText(url)+'" alt="'+escapeText(subject+" product photo")+'" loading="lazy" decoding="async">';
+ }).join("");
+ return '<a class="product-photo-link" href="'+escapeText(item.url)+'" target="_blank" rel="noopener noreferrer" aria-label="View the manufacturer details for '+escapeText(item.brand+" "+item.name)+'"><span class="product-photo-list'+(photos.length>1?" is-pair":"")+'">'+images+'</span></a><span class="product-photo-credit">MANUFACTURER PRODUCT PHOTO</span>';
 }
 function setPlatform(name){
  selectedPlatform=name;
@@ -327,7 +385,7 @@ function renderCatalog(){
   const card=document.createElement("article");
   card.className="product-card"+(selectedPlatform==="pc"&&selectedPCView==="budget"?" budget-card":"");
   card.id="wheel-"+entry.id;
-  card.innerHTML=wheelIllustration(item)+'<div class="product-card-head"><span class="product-brand">'+escapeText(item.brand)+'</span><span class="product-kind">'+escapeText(item.kind)+'</span></div><h3>'+escapeText(item.name)+'</h3><p>'+escapeText(item.description)+'</p><p class="product-fit"><strong>Compatibility:</strong> '+escapeText(item.fit)+'</p><a class="product-link" href="'+escapeText(item.url)+'" target="_blank" rel="noopener noreferrer">'+escapeText(item.link)+'</a>';
+  card.innerHTML=productPhoto(entry)+'<div class="product-card-head"><span class="product-brand">'+escapeText(item.brand)+'</span><span class="product-kind">'+escapeText(item.kind)+'</span></div><h3>'+escapeText(item.name)+'</h3><p>'+escapeText(item.description)+'</p><p class="product-fit"><strong>Compatibility:</strong> '+escapeText(item.fit)+'</p><a class="product-link" href="'+escapeText(item.url)+'" target="_blank" rel="noopener noreferrer">'+escapeText(item.link)+'</a>';
   productGrid.appendChild(card);
  });
  const label=selectedPlatform==="pc"?(selectedPCView==="budget"?"budget PC picks":"PC picks"):selectedPlatform==="xbox"?"Xbox options":"PlayStation options";
