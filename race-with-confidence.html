@@ -38,7 +38,6 @@
     .secondary-link:hover { border-color:var(--purple); color:var(--purple); }
     .race-panel { position:relative; overflow:hidden; padding:27px; border:1px solid var(--line); background:linear-gradient(145deg,#18121d,#0c090e); }
     .race-illustration { display:block; width:100%; height:auto; margin:0 0 18px; }
-    .race-line-note { margin:-2px 0 18px; color:var(--muted); font-size:11px; line-height:1.7; }
     .panel-top { display:flex; justify-content:space-between; align-items:center; gap:14px; padding-bottom:19px; border-bottom:1px solid var(--line); color:var(--subtle); font:9px var(--mono); letter-spacing:.12em; }
     .panel-top strong { color:var(--purple); font-weight:500; }
     .race-step { display:grid; grid-template-columns:40px 1fr; gap:15px; align-items:start; padding:20px 0; border-bottom:1px solid var(--line); }
@@ -143,30 +142,16 @@
         <div class="hero-actions"><a class="primary-link" href="#clean-racing">LEARN THE BASICS <span aria-hidden="true">↓</span></a></div>
       </div>
       <aside class="race-panel" aria-label="A simple racecraft checklist">
-        <svg class="race-illustration" viewBox="0 0 500 270" role="img" aria-label="Top-down diagram of a left-hand corner showing the preferred outside-apex-outside racing line and a tighter inside passing variation">
-          <rect x="1" y="1" width="498" height="268" rx="8" fill="#0b080e" stroke="#36273f"/>
-          <path d="M-20 174H250C318 174 374 119 374 50V-10" fill="none" stroke="#514d56" stroke-width="126" stroke-linecap="round"/>
-          <path d="M-20 174H250C318 174 374 119 374 50V-10" fill="none" stroke="#aaa2ad" stroke-width="2" stroke-dasharray="9 12" opacity=".6"/>
-          <path d="M-4 205H170C250 205 280 180 317 151C347 126 372 121 392 91C404 73 411 50 411-2" fill="none" stroke="#A020F0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M-4 143H230C276 143 301 126 318 110C332 97 337 77 337-2" fill="none" stroke="#c4bcc9" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M167 205h24m-8-8 8 8-8 8" fill="none" stroke="#A020F0" stroke-width="3"/>
-          <path d="M207 143h24m-8-8 8 8-8 8" fill="none" stroke="#e5dfea" stroke-width="3"/>
-          <g transform="translate(118 205)">
-            <rect x="-18" y="-10" width="36" height="20" rx="6" fill="#A020F0" stroke="#f5f1f7" stroke-width="2"/>
-            <rect x="-5" y="-7" width="15" height="14" rx="3" fill="#21192a"/>
-          </g>
-          <g transform="translate(151 143)">
-            <rect x="-18" y="-10" width="36" height="20" rx="6" fill="#8b8290" stroke="#f5f1f7" stroke-width="2"/>
-            <rect x="-5" y="-7" width="15" height="14" rx="3" fill="#21192a"/>
-          </g>
-          <circle cx="358" cy="123" r="7" fill="#fff" stroke="#A020F0" stroke-width="3"/>
-          <text x="17" y="230" fill="#e4d7ec" font-family="monospace" font-size="10">OUTSIDE ENTRY</text>
-          <text x="17" y="119" fill="#c9c1ce" font-family="monospace" font-size="10">INSIDE PASS</text>
-          <text x="276" y="83" fill="#e4d7ec" font-family="monospace" font-size="10">APEX</text>
-          <text x="416" y="35" fill="#e4d7ec" font-family="monospace" font-size="8">OUTSIDE EXIT</text>
+        <svg class="race-illustration" viewBox="0 0 420 110" role="img" aria-label="Two cars approach a corner with space left between them">
+          <rect x="1" y="1" width="418" height="108" rx="8" fill="#0b080e" stroke="#36273f"/>
+          <path d="M20 39h215c40 0 58 13 58 36v18" fill="none" stroke="#514d56" stroke-width="48" stroke-linecap="round"/>
+          <path d="M20 39h215c40 0 58 13 58 36v18" fill="none" stroke="#a39ba9" stroke-width="2" stroke-dasharray="7 8" opacity=".65"/>
+          <rect x="28" y="29" width="79" height="20" rx="6" fill="#A020F0"/>
+          <rect x="132" y="29" width="79" height="20" rx="6" fill="#8b8290"/>
+          <path d="M44 39h18m34 0h18m34 0h18m34 0h18" stroke="#fff" stroke-width="2" opacity=".75"/>
+          <text x="30" y="85" fill="#c7bfcc" font-family="monospace" font-size="10">HOLD A PREDICTABLE LINE</text>
         </svg>
-        <p class="race-line-note">The purple route follows outside–inside–outside: start wide, clip the apex, then unwind to the outside. The gray route shows a tighter inside pass, which can sacrifice exit speed. Leave room and do not move across a car alongside.</p>
-        <div class="panel-top"><strong>ONE RACING LINE · ONE PASSING OPTION</strong><span>OUTSIDE · APEX · OUTSIDE</span></div>
+        <div class="panel-top"><strong>THE CLEAN-RACING LOOP</strong><span>SCAN · DECIDE · FOLLOW THROUGH</span></div>
         <div class="race-step"><span class="step-mark">01</span><div><h2>Scan ahead</h2><p>Look beyond the next corner. Notice nearby cars, braking points, and trouble early.</p></div></div>
         <div class="race-step"><span class="step-mark">02</span><div><h2>Make one clear move</h2><p>Choose where you’ll go, then avoid sudden swerves or changing direction repeatedly.</p></div></div>
         <div class="race-step"><span class="step-mark">03</span><div><h2>Leave room</h2><p>If a car is alongside, give it space through the corner and focus on a clean exit.</p></div></div>
