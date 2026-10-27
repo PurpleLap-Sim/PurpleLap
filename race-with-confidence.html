@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#0e0a11">
   <meta name="description" content="Beginner-friendly sim racing tips for clean starts, predictable driving, safe passes, and calmer races.">
   <link rel="icon" type="image/svg+xml" href="purplelap-favicon.svg">
+  <link rel="stylesheet" href="guide-media.css">
   <title>Race with Confidence — PurpleLap</title>
   <style>
     :root { color-scheme:dark; --bg:#08070a; --panel:#100d13; --ink:#f5f1f7; --muted:#a39ba9; --subtle:#89818f; --line:#36273f; --purple:#A020F0; --mono:ui-monospace,SFMono-Regular,Menlo,monospace; --sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
@@ -37,6 +38,7 @@
     .secondary-link:hover { border-color:var(--purple); color:var(--purple); }
     .race-panel { position:relative; overflow:hidden; padding:27px; border:1px solid var(--line); background:linear-gradient(145deg,#18121d,#0c090e); }
     .race-illustration { display:block; width:100%; height:auto; margin:0 0 18px; }
+    .race-line-note { margin:-2px 0 18px; color:var(--muted); font-size:11px; line-height:1.7; }
     .panel-top { display:flex; justify-content:space-between; align-items:center; gap:14px; padding-bottom:19px; border-bottom:1px solid var(--line); color:var(--subtle); font:9px var(--mono); letter-spacing:.12em; }
     .panel-top strong { color:var(--purple); font-weight:500; }
     .race-step { display:grid; grid-template-columns:40px 1fr; gap:15px; align-items:start; padding:20px 0; border-bottom:1px solid var(--line); }
@@ -141,21 +143,39 @@
         <div class="hero-actions"><a class="primary-link" href="#clean-racing">LEARN THE BASICS <span aria-hidden="true">↓</span></a></div>
       </div>
       <aside class="race-panel" aria-label="A simple racecraft checklist">
-        <svg class="race-illustration" viewBox="0 0 420 110" role="img" aria-label="Two cars approach a corner with space left between them">
-          <rect x="1" y="1" width="418" height="108" rx="8" fill="#0b080e" stroke="#36273f"/>
-          <path d="M20 39h215c40 0 58 13 58 36v18" fill="none" stroke="#514d56" stroke-width="48" stroke-linecap="round"/>
-          <path d="M20 39h215c40 0 58 13 58 36v18" fill="none" stroke="#a39ba9" stroke-width="2" stroke-dasharray="7 8" opacity=".65"/>
-          <rect x="28" y="29" width="79" height="20" rx="6" fill="#A020F0"/>
-          <rect x="132" y="29" width="79" height="20" rx="6" fill="#8b8290"/>
-          <path d="M44 39h18m34 0h18m34 0h18m34 0h18" stroke="#fff" stroke-width="2" opacity=".75"/>
-          <text x="30" y="85" fill="#c7bfcc" font-family="monospace" font-size="10">HOLD A PREDICTABLE LINE</text>
+        <svg class="race-illustration" viewBox="0 0 500 270" role="img" aria-label="Top-down diagram of a left-hand corner showing the preferred outside-apex-outside racing line and a tighter inside passing variation">
+          <rect x="1" y="1" width="498" height="268" rx="8" fill="#0b080e" stroke="#36273f"/>
+          <path d="M-20 174H250C318 174 374 119 374 50V-10" fill="none" stroke="#514d56" stroke-width="126" stroke-linecap="round"/>
+          <path d="M-20 174H250C318 174 374 119 374 50V-10" fill="none" stroke="#aaa2ad" stroke-width="2" stroke-dasharray="9 12" opacity=".6"/>
+          <path d="M-4 205H170C250 205 280 180 317 151C347 126 372 121 392 91C404 73 411 50 411-2" fill="none" stroke="#A020F0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M-4 143H230C276 143 301 126 318 110C332 97 337 77 337-2" fill="none" stroke="#c4bcc9" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M167 205h24m-8-8 8 8-8 8" fill="none" stroke="#A020F0" stroke-width="3"/>
+          <path d="M207 143h24m-8-8 8 8-8 8" fill="none" stroke="#e5dfea" stroke-width="3"/>
+          <g transform="translate(118 205)">
+            <rect x="-18" y="-10" width="36" height="20" rx="6" fill="#A020F0" stroke="#f5f1f7" stroke-width="2"/>
+            <rect x="-5" y="-7" width="15" height="14" rx="3" fill="#21192a"/>
+          </g>
+          <g transform="translate(151 143)">
+            <rect x="-18" y="-10" width="36" height="20" rx="6" fill="#8b8290" stroke="#f5f1f7" stroke-width="2"/>
+            <rect x="-5" y="-7" width="15" height="14" rx="3" fill="#21192a"/>
+          </g>
+          <circle cx="358" cy="123" r="7" fill="#fff" stroke="#A020F0" stroke-width="3"/>
+          <text x="17" y="230" fill="#e4d7ec" font-family="monospace" font-size="10">OUTSIDE ENTRY</text>
+          <text x="17" y="119" fill="#c9c1ce" font-family="monospace" font-size="10">INSIDE PASS</text>
+          <text x="276" y="83" fill="#e4d7ec" font-family="monospace" font-size="10">APEX</text>
+          <text x="416" y="35" fill="#e4d7ec" font-family="monospace" font-size="8">OUTSIDE EXIT</text>
         </svg>
-        <div class="panel-top"><strong>THE CLEAN-RACING LOOP</strong><span>SCAN · DECIDE · FOLLOW THROUGH</span></div>
+        <p class="race-line-note">The purple route follows outside–inside–outside: start wide, clip the apex, then unwind to the outside. The gray route shows a tighter inside pass, which can sacrifice exit speed. Leave room and do not move across a car alongside.</p>
+        <div class="panel-top"><strong>ONE RACING LINE · ONE PASSING OPTION</strong><span>OUTSIDE · APEX · OUTSIDE</span></div>
         <div class="race-step"><span class="step-mark">01</span><div><h2>Scan ahead</h2><p>Look beyond the next corner. Notice nearby cars, braking points, and trouble early.</p></div></div>
         <div class="race-step"><span class="step-mark">02</span><div><h2>Make one clear move</h2><p>Choose where you’ll go, then avoid sudden swerves or changing direction repeatedly.</p></div></div>
         <div class="race-step"><span class="step-mark">03</span><div><h2>Leave room</h2><p>If a car is alongside, give it space through the corner and focus on a clean exit.</p></div></div>
       </aside>
     </section>
+    <figure class="support-photo">
+      <img src="images/racecraft.jpg" alt="Two race cars leave space for each other while driving through a corner" loading="lazy">
+      <figcaption><strong>SPACE MAKES THE PASS POSSIBLE</strong><span>Both drivers should be able to predict the other's path. Stay on your side of the corner while overlap remains; do not squeeze the other car toward the edge.</span></figcaption>
+    </figure>
 
     <section class="guide" id="clean-racing" aria-labelledby="guide-title">
       <div class="section-head"><h2 id="guide-title">Make the race predictable.</h2><p>Other drivers can react to a move they can read. Smooth, steady choices make close racing easier for everyone.</p></div>
@@ -163,6 +183,14 @@
         <article class="guide-card"><span class="card-label">01 / THE START</span><h3>Give the first corner room</h3><p>Hold a steady direction off the line. The pack is close and tyres may be cold, so leave extra space and expect to brake earlier than you do alone.</p></article>
         <article class="guide-card"><span class="card-label">02 / YOUR LINE</span><h3>Be easy to read</h3><p>When defending, pick your position early and keep it. Avoid weaving or moving across another car’s path as they approach the braking zone.</p></article>
         <article class="guide-card"><span class="card-label">03 / SIDE BY SIDE</span><h3>Share the corner</h3><p>If another car is alongside as you turn, leave enough track for both cars. A slightly slower, clean exit is better than contact.</p></article>
+      </div>
+    </section>
+    <section class="pass-section" aria-labelledby="awareness-title">
+      <div class="section-head"><h2 id="awareness-title">Read the whole pack.</h2><p>Racecraft begins before the braking zone. Keep enough attention and space in reserve to react.</p></div>
+      <div class="pass-grid">
+        <article class="pass-step"><span>LOOK FARTHER AHEAD</span><h3>Leave time to decide</h3><p>Scan through the corner and along the next straight, not just at the rear bumper ahead. Notice cars slowing, rejoining, or moving into a passing lane before they are right beside you.</p></article>
+        <article class="pass-step"><span>USE YOUR TOOLS</span><h3>Check mirrors and spotter calls</h3><p>Relative-position displays and spotters can help with blind spots, but they may be delayed or simplified by the game. Keep a steady line and verify there is room before moving across the track.</p></article>
+        <article class="pass-step"><span>RESET AFTER CONTACT</span><h3>Rejoin only when clear</h3><p>If you spin or leave the track, brake if needed and look both ways before returning. Rejoin parallel to the racing direction, away from the fast line when possible, and let approaching cars pass.</p></article>
       </div>
     </section>
 

@@ -1,0 +1,57 @@
+.support-photo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(230px, .7fr);
+  align-items: stretch;
+  margin: 34px 0 0;
+  overflow: hidden;
+  border: 1px solid #36273f;
+  background: #100d13;
+}
+
+.support-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+  max-height: 430px;
+  object-fit: cover;
+}
+
+.support-photo figcaption {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  padding: clamp(22px, 4vw, 38px);
+  color: #a39ba9;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.support-photo figcaption strong {
+  color: #f5f1f7;
+  font: 10px ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: .1em;
+}
+
+.guide-card-photo {
+  display: block;
+  width: calc(100% + 46px);
+  aspect-ratio: 16 / 9;
+  margin: -23px -23px 18px;
+  object-fit: cover;
+}
+
+@media (max-width: 720px) {
+  .support-photo {
+    grid-template-columns: 1fr;
+  }
+
+  .support-photo img {
+    max-height: 300px;
+  }
+
+  .support-photo figcaption {
+    padding: 20px;
+  }
+}
