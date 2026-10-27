@@ -146,7 +146,7 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
   <div class="catalog-tools">
     <div class="catalog-tool-group">
       <div id="pc-view-group" class="pc-view-group" role="group" aria-label="PC wheel lists" hidden>
-        <button class="pc-view-button" type="button" data-pc-view="all" aria-pressed="true">15 PC PICKS</button>
+        <button class="pc-view-button" type="button" data-pc-view="all" aria-pressed="true">20 PC PICKS</button>
         <button class="pc-view-button" type="button" data-pc-view="budget" aria-pressed="false">5 BUDGET PICKS</button>
       </div>
       <label class="currency-wrap" for="currency-select">SHOW PRICES IN
@@ -171,7 +171,7 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
     <h3 id="platform-note-title">A compatible wheel still needs a compatible game.</h3>
     <p>Console support depends on the exact wheel, base, licensed component, and game. A Windows PC connection does not guarantee every racing title supports every button or force-feedback feature. Check the game’s wheel list and the manufacturer’s page for the exact model before buying.</p>
   </aside>
-  <p class="update-note">Xbox and PlayStation show every verified model currently included for the brands covered in this guide; they do not represent every wheel sold by every manufacturer. PC is a curated 15-model shortlist, not all available PC wheels. Older products may be discontinued or used only. Regional versions and bundles can differ.</p>
+  <p class="update-note">Xbox and PlayStation show every verified model currently included for the brands covered in this guide; they do not represent every wheel sold by every manufacturer. PC is a curated 20-model shortlist, not all available PC wheels. Older products may be discontinued or used only. Regional versions and bundles can differ.</p>
 </section>
 
 <section class="guide-section" aria-labelledby="drive-types-title">
@@ -278,7 +278,7 @@ const MODEL_DATA = {
 const CATALOG = {
 xbox:["g920","g923-x","pro-x","t598-x","t128-x","t248-x","tmx","tx","tsxw","t98-x","ferrari458","moza-r3-x","moza-r12-x","fanatec-csl","fanatec-gtdd","fanatec-csdd","fanatec-csddplus","fanatec-podium","fanatec-dd1","fanatec-dd2","hori-ffb","hori-overdrive","hori-wireless-overdrive"],
 playstation:["g29","g923-ps","pro-ps","t598-ps","t128-ps","t248-ps","t150","t300","t500","tgt","t248r","t98-ps","t80","fanatec-gtdd","fanatec-csl-elite","fanatec-csddplus","hori-apex","hori-wireless","hori-apex-formula"],
-pc:["pc-g29","pc-g923","pc-pro","pc-t128","pc-t248","pc-t300","pc-t598","t818","moza-r3-pc","moza-r5","moza-r9","moza-r12","fanatec-csl","fanatec-gtdd","fanatec-csdd"],
+pc:["pc-g29","pc-g923","pc-pro","pc-t128","pc-t248","pc-t300","pc-t598","t818","moza-r3-pc","moza-r5","moza-r9","moza-r12","fanatec-csl","fanatec-gtdd","fanatec-csdd","simucube-2-sport","simucube-2-pro","simagic-alpha-mini","simagic-alpha","simagic-alpha-u"],
 budget:["hori-apex","pc-t128","pc-g29","pc-tmx-t150","moza-r3-pc"]
 };
 MODEL_DATA["pc-g29"]={brand:"Logitech",name:"G29 / G920 Driving Force",kind:"Gear-driven force feedback · 2.3 Nm",description:"A familiar and widely supported first FFB wheel. The two model names describe separate licensed versions, not one universal console model.",fit:"Windows PC. For consoles choose the G920 for Xbox or G29 for PlayStation.",url:"https://www.logitechg.com/en-us/products/driving/driving-force-racing-wheel.html",link:"Official G29 / G920 details ↗"};
@@ -289,6 +289,11 @@ MODEL_DATA["pc-t248"]={brand:"Thrustmaster",name:"T248 — PC-compatible version
 MODEL_DATA["pc-t300"]={brand:"Thrustmaster",name:"T300 RS / RS GT",kind:"Belt-driven force feedback",description:"A detachable-rim belt-driven wheel for someone who wants a smoother step beyond entry gear-driven hardware.",fit:"Windows PC; the licensed console version is PlayStation. Not Xbox.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"};
 MODEL_DATA["pc-t598"]={brand:"Thrustmaster",name:"T598 — PC-compatible versions",kind:"Direct drive",description:"A current direct-drive option sold in separate Xbox and PlayStation console versions; both variants also work with a Windows PC.",fit:"Windows PC. Select the console license only if you plan to plug it into Xbox or PlayStation.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"};
 MODEL_DATA["pc-tmx-t150"]={brand:"Thrustmaster",name:"TMX / T150 — older models",kind:"Used-market force feedback",description:"Two older platform-specific entry FFB wheels: TMX is the Xbox model and T150 the PlayStation model. Used units can be a value choice if complete and in good condition.",fit:"Windows PC with the correct drivers; TMX is Xbox-licensed and T150 is PlayStation-licensed.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"};
+MODEL_DATA["simucube-2-sport"]={brand:"Simucube",name:"Simucube 2 Sport",kind:"Direct drive · 17 Nm",description:"A premium direct-drive wheelbase with 17 Nm of torque and Simucube Tuner profiles. This is a wheelbase only; budget separately for a compatible steering wheel and quick-release parts, pedals, and a rigid cockpit.",fit:"Windows PC. High torque needs a sturdy mount and conservative settings while learning.",url:"https://simucube.com/products/simucube-2-sport",link:"Official Simucube 2 Sport ↗"};
+MODEL_DATA["simucube-2-pro"]={brand:"Simucube",name:"Simucube 2 Pro",kind:"Direct drive · 25 Nm",description:"A high-torque direct-drive wheelbase with 25 Nm of torque. It is sold as a base, so account for a compatible steering wheel and quick-release parts, pedals, and a rigid cockpit as separate components.",fit:"Windows PC. This level of torque requires a robust mount; use low force settings if new to direct drive.",url:"https://simucube.com/products/simucube-2-pro",link:"Official Simucube 2 Pro ↗"};
+MODEL_DATA["simagic-alpha-mini"]={brand:"Simagic",name:"Alpha Mini",kind:"Direct drive · 10 Nm",description:"A compact direct-drive wheelbase with 10 Nm of torque. The base is sold separately; select a compatible Simagic wheel, pedals, and a suitable mount for a complete setup.",fit:"Windows PC. Buy a compatible wheel and pedals separately.",url:"https://simagic.com/products/alpha-mini",link:"Official Simagic Alpha Mini ↗"};
+MODEL_DATA["simagic-alpha"]={brand:"Simagic",name:"Alpha",kind:"Direct drive · 15 Nm",description:"A 15 Nm direct-drive wheelbase for a dedicated sim rig. It is a standalone base, not an all-in-one wheel-and-pedal bundle.",fit:"Windows PC. Buy a compatible wheel, pedals, and a rigid mount separately.",url:"https://simagic.com/products/alpha",link:"Official Simagic Alpha ↗"};
+MODEL_DATA["simagic-alpha-u"]={brand:"Simagic",name:"Alpha U",kind:"Direct drive · 23 Nm",description:"A high-torque 23 Nm direct-drive base for a rigid cockpit and carefully configured force feedback. The wheel, pedals, and mount are separate parts of the full setup.",fit:"Windows PC. Requires a sturdy rig and compatible separately purchased peripherals.",url:"https://simagic.com/products/alpha-u",link:"Official Simagic Alpha U ↗"};
 const PEDAL_COUNTS = {
 "g920":3,"g29":3,"g923-x":3,"g923-ps":3,"pro-x":0,"pro-ps":0,
 "t128-x":2,"t128-ps":2,"t248-x":3,"t248-ps":3,"tmx":"2-3","t150":"2-3",
@@ -298,14 +303,16 @@ const PEDAL_COUNTS = {
 "fanatec-csl":0,"fanatec-gtdd":0,"fanatec-csl-elite":0,"fanatec-csdd":0,"fanatec-csddplus":0,
 "fanatec-podium":0,"fanatec-dd1":0,"fanatec-dd2":0,
 "hori-overdrive":2,"hori-apex":2,"hori-wireless":2,"hori-ffb":3,"hori-wireless-overdrive":2,"hori-apex-formula":2,
-"pc-g29":3,"pc-g923":3,"pc-pro":0,"pc-t128":2,"pc-t248":3,"pc-t300":"2-3","pc-t598":2,"pc-tmx-t150":"2-3"
+"pc-g29":3,"pc-g923":3,"pc-pro":0,"pc-t128":2,"pc-t248":3,"pc-t300":"2-3","pc-t598":2,"pc-tmx-t150":"2-3",
+"simucube-2-sport":0,"simucube-2-pro":0,"simagic-alpha-mini":0,"simagic-alpha":0,"simagic-alpha-u":0
 };
 const USD_PRICES = {
 "g920":[299.99],"g29":[299.99],"g923-x":[349.99],"g923-ps":[349.99],
 "pro-x":[999.99,1199.99],"pro-ps":[999.99,1199.99],
 "moza-r3-x":[339,399],"moza-r3-pc":[279,299],"moza-r5":[379,599],"moza-r9":[299,349],"moza-r12":[399,469],
 "hori-apex":[129.99],"hori-ffb":[299.99],
-"pc-g29":[299.99],"pc-g923":[349.99],"pc-pro":[999.99,1199.99]
+"pc-g29":[299.99],"pc-g923":[349.99],"pc-pro":[999.99,1199.99],
+"simagic-alpha-mini":[399],"simagic-alpha":[649],"simagic-alpha-u":[899]
 };
 const PRICE_LABELS = {
 "pro-x":"Official store range","pro-ps":"Official store range","pc-pro":"Official store range",
@@ -366,7 +373,12 @@ const PRODUCT_PHOTOS = {
 "pc-t248":["assets/wheels/pc-t248-0.png","assets/wheels/pc-t248-1.png"],
 "pc-t300":["assets/wheels/pc-t300-0.png"],
 "pc-t598":["assets/wheels/pc-t598-0.png","assets/wheels/pc-t598-1.png"],
-"pc-tmx-t150":["assets/wheels/pc-tmx-t150-0.png","assets/wheels/pc-tmx-t150-1.png"]
+"pc-tmx-t150":["assets/wheels/pc-tmx-t150-0.png","assets/wheels/pc-tmx-t150-1.png"],
+"simucube-2-sport":["assets/wheels/simucube-2-sport.png"],
+"simucube-2-pro":["assets/wheels/simucube-2-pro.png"],
+"simagic-alpha-mini":["assets/wheels/simagic-alpha-mini.png"],
+"simagic-alpha":["assets/wheels/simagic-alpha.png"],
+"simagic-alpha-u":["assets/wheels/simagic-alpha-u.png"]
 };
 </script>
 <script>
@@ -435,7 +447,7 @@ function setPlatform(name){
  platformButtons.forEach(function(button){button.setAttribute("aria-pressed",String(button.dataset.platform===name))});
  pcViewGroup.hidden=name!=="pc";
  if(name==="pc"){
-  catalogIntro.textContent=selectedPCView==="budget"?"Five selected budget-minded PC choices. This is not a complete list of available PC wheels or a price ranking; compare the current full bundle cost.":"A curated 15-model PC shortlist across entry, midrange, and premium choices—not every PC wheel available. Compare the exact product and bundle before buying.";
+  catalogIntro.textContent=selectedPCView==="budget"?"Five selected budget-minded PC choices. This is not a complete list of available PC wheels or a price ranking; compare the current full bundle cost.":"A curated 20-model PC shortlist across entry, midrange, and premium choices—not every PC wheel available. Compare the exact product and bundle before buying.";
  }else if(name==="xbox"){
   catalogIntro.textContent="All Xbox-compatible models currently included for the brands covered in this guide are shown here. This is not every wheel on the market; exact licensed versions and required components are called out.";
  }else{
