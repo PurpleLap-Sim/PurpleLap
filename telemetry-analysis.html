@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e0a11">
+  <meta name="description" content="Use sim racing telemetry and lap replay to compare clean laps, find lost time, and test one change at a time.">
+  <link rel="icon" type="image/svg+xml" href="purplelap-favicon.svg">
+  <link rel="stylesheet" href="guide-media.css">
+  <title>Learn from Telemetry — PurpleLap</title>
+  <style>
+    :root{color-scheme:dark;--bg:#08070a;--panel:#100d13;--ink:#f5f1f7;--muted:#a39ba9;--subtle:#89818f;--line:#36273f;--purple:#A020F0;--mono:ui-monospace,SFMono-Regular,Menlo,monospace;--sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans)}a{color:inherit;text-decoration:none}.shell{width:min(1080px,calc(100% - 48px));margin-inline:auto}.site-header{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand-logo{width:220px;max-height:70px;object-fit:contain}.back-link{color:var(--muted);font:10px var(--mono);letter-spacing:.08em}.back-link:hover{color:var(--purple)}main{padding:68px 0 90px}.eyebrow{display:flex;align-items:center;gap:10px;color:var(--muted);font:10px var(--mono);letter-spacing:.12em}.eyebrow:before{width:8px;height:8px;border-radius:50%;background:var(--purple);content:""}h1{margin:18px 0;font-size:clamp(48px,7vw,78px);line-height:.98;letter-spacing:-.075em}h1 em{color:var(--purple);font-family:Georgia,serif;font-weight:400}.intro{max-width:780px;color:var(--muted);font-size:14px;line-height:1.85}.hero{padding-bottom:42px;border-bottom:1px solid var(--line)}.lesson{padding-top:46px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:19px}.section-head h2{margin:0;font-size:clamp(30px,4vw,42px);letter-spacing:-.06em}.section-head p{max-width:390px;margin:0;color:var(--muted);font-size:12px;line-height:1.75}.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.card{padding:21px;border:1px solid var(--line);background:var(--panel)}.card span{color:var(--purple);font:9px var(--mono);letter-spacing:.08em}.card h3{margin:13px 0 8px;font-size:17px}.card p{margin:0;color:var(--muted);font-size:11px;line-height:1.8}.diagram,.note,.practice{margin-top:22px;padding:20px;border:1px solid var(--line);background:#0c0911}.diagram svg{display:block;width:100%;height:auto}.caption{margin:11px 0 0;color:var(--subtle);font:9px var(--mono);letter-spacing:.08em}.note,.practice{padding:22px 24px;border-left:2px solid var(--purple)}.note h2,.practice h2{margin:0 0 8px;font-size:20px}.note p,.practice p{margin:0;color:var(--muted);font-size:11px;line-height:1.8}.practice{border:1px solid #4a2a5c;background:#120c17}.footer{display:flex;justify-content:space-between;gap:18px;padding:22px 0;border-top:1px solid var(--line);color:var(--subtle);font-size:10px}.footer a{font:9px var(--mono);letter-spacing:.08em}.footer a:hover{color:var(--purple)}@media(max-width:720px){.shell{width:calc(100% - 32px)}.site-header{height:72px}.brand-logo{width:180px;max-height:58px}main{padding:48px 0 68px}.section-head{display:block}.section-head p{margin-top:12px}.cards{grid-template-columns:1fr}.footer{flex-direction:column}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <header class="site-header shell"><a href="index.html" aria-label="PurpleLap home"><img class="brand-logo" src="purplelap-logo.png" alt="PurpleLap — Learn to Sim Race"></a><a class="back-link" href="all-guides.html">ALL GUIDES</a></header>
+  <main class="shell">
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">08 / LAP ANALYSIS</p>
+      <h1 id="page-title">Turn laps into <em>evidence.</em></h1>
+      <p class="intro">Telemetry tools vary by simulator: some provide detailed traces, while others offer a lap delta, replay, or only basic timing. Whatever is available, compare clean laps in the same car and conditions. Data helps you ask a better question; it does not tell you to copy another driver’s inputs blindly.</p>
+    </section>
+    <figure class="support-photo">
+      <img src="images/racing-dashboard-analysis.jpg" alt="The steering wheel and analog instruments inside a historic Honda race car" loading="lazy">
+      <figcaption><strong>START WITH WHAT THE CAR TELLS YOU</strong><span>Use your simulator’s replay, dashboard, or data view to connect an input with what the car did next. This historic cockpit is illustrative; it is not a telemetry display.</span><small class="photo-credit">Photo: Zytonits / <a href="https://commons.wikimedia.org/wiki/File:1964_Honda_Race_Car_dashboard_(20849400968).jpg">Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a> (resized).</small></figcaption>
+    </figure>
+    <section class="lesson" aria-labelledby="read-title">
+      <div class="section-head"><h2 id="read-title">Read one corner at a time.</h2><p>Line up your laps and focus on one section. Whole-lap totals can hide where a change helped or hurt.</p></div>
+      <div class="cards">
+        <article class="card"><span>01 / PICK A PAIR</span><h3>Compare valid, similar laps</h3><p>Use laps with the same car, setup, fuel load, weather, and track state when possible. Exclude laps with traffic, a missed apex, a cut, or a major correction so the comparison answers a useful question.</p></article>
+        <article class="card"><span>02 / FIND THE GAP</span><h3>Use the delta to locate time</h3><p>Check where the time difference begins growing, not just which lap is faster overall. A loss that starts at corner entry points to a different question than one that appears on the following straight.</p></article>
+        <article class="card"><span>03 / CHECK THE INPUT</span><h3>Compare speed and controls</h3><p>If your sim shows traces, look at brake release, minimum speed, throttle pickup, and steering through the same corner. A later brake point is not automatically better if it produces a slower exit or extra corrections.</p></article>
+        <article class="card"><span>04 / TEST A HYPOTHESIS</span><h3>Change one thing</h3><p>Choose one small adjustment based on the trace—such as releasing the brake more smoothly or beginning throttle a little later. Keep the rest of the run stable so you can tell what caused the difference.</p></article>
+      </div>
+      <div class="diagram"><svg viewBox="0 0 680 230" role="img" aria-label="Illustrative overlay comparing two speed traces and their brake and throttle inputs through one corner"><rect width="680" height="230" rx="10" fill="#0b080e"/><path d="M52 24v166h592M52 76h592M52 132h592" fill="none" stroke="#514d56" stroke-width="1"/><path d="M58 48C142 48 160 55 194 74S245 130 300 139S390 122 421 86S498 55 638 51" fill="none" stroke="#A020F0" stroke-width="4"/><path d="M58 48C132 48 162 58 194 84S254 139 310 142S392 126 424 94S505 58 638 53" fill="none" stroke="#f5f1f7" stroke-width="3" stroke-dasharray="8 7" opacity=".8"/><text x="60" y="215" fill="#a39ba9" font-family="monospace" font-size="11">APPROACH</text><text x="252" y="215" fill="#a39ba9" font-family="monospace" font-size="11">CORNER</text><text x="493" y="215" fill="#a39ba9" font-family="monospace" font-size="11">EXIT</text><text x="560" y="34" fill="#A020F0" font-family="monospace" font-size="10">LAP A</text><text x="560" y="48" fill="#f5f1f7" font-family="monospace" font-size="10">LAP B</text></svg><p class="caption">ILLUSTRATIVE SPEED OVERLAY · REAL TRACES WILL VARY BY SIMULATOR AND CORNER</p></div>
+      <aside class="note"><h2>Data needs context.</h2><p>A trace can show what happened, but not always why. Check the replay, track position, tire state, and traffic before deciding what to change. Some sims smooth or estimate displayed values, so avoid treating every small difference as meaningful.</p></aside>
+      <aside class="practice"><h2>Practice: find one repeatable gain</h2><p>Save a clean reference lap, then drive a short set of laps with the same setup and conditions. Compare a single corner in replay or telemetry. Write down one observation, make one change, and compare another clean lap. Keep it only if the result repeats and the car remains controllable.</p></aside>
+    </section>
+    <nav class="guide-navigation" aria-label="Guide navigation">
+      <a class="guide-nav-card" href="tire-management.html"><span class="guide-nav-copy"><span class="guide-nav-label">PREVIOUS GUIDE · 07 / 09</span><span class="guide-nav-title">Manage tire wear and temperature</span></span><span class="guide-nav-arrow" aria-hidden="true">←</span></a>
+      <a class="guide-nav-card guide-nav-card--next" href="race-strategy.html"><span class="guide-nav-copy"><span class="guide-nav-label">NEXT GUIDE · 09 / 09</span><span class="guide-nav-title">Plan fuel and pit strategy</span></span><span class="guide-nav-arrow" aria-hidden="true">→</span></a>
+    </nav>
+  </main>
+  <footer class="footer shell"><span>Made for the next generation of racers.</span><a href="all-guides.html">ALL GUIDES</a></footer>
+</body>
+</html>

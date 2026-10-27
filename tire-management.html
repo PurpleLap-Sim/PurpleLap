@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e0a11">
+  <meta name="description" content="Learn to manage tire temperature and wear over a sim racing stint with smoother inputs and repeatable comparisons.">
+  <link rel="icon" type="image/svg+xml" href="purplelap-favicon.svg">
+  <link rel="stylesheet" href="guide-media.css">
+  <title>Manage Tire Wear and Temperature — PurpleLap</title>
+  <style>
+    :root{color-scheme:dark;--bg:#08070a;--panel:#100d13;--ink:#f5f1f7;--muted:#a39ba9;--subtle:#89818f;--line:#36273f;--purple:#A020F0;--mono:ui-monospace,SFMono-Regular,Menlo,monospace;--sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans)}a{color:inherit;text-decoration:none}.shell{width:min(1080px,calc(100% - 48px));margin-inline:auto}.site-header{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand-logo{width:220px;max-height:70px;object-fit:contain}.back-link{color:var(--muted);font:10px var(--mono);letter-spacing:.08em}.back-link:hover{color:var(--purple)}main{padding:68px 0 90px}.eyebrow{display:flex;align-items:center;gap:10px;color:var(--muted);font:10px var(--mono);letter-spacing:.12em}.eyebrow:before{width:8px;height:8px;border-radius:50%;background:var(--purple);content:""}h1{margin:18px 0;font-size:clamp(48px,7vw,78px);line-height:.98;letter-spacing:-.075em}h1 em{color:var(--purple);font-family:Georgia,serif;font-weight:400}.intro{max-width:780px;color:var(--muted);font-size:14px;line-height:1.85}.hero{padding-bottom:42px;border-bottom:1px solid var(--line)}.lesson{padding-top:46px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:19px}.section-head h2{margin:0;font-size:clamp(30px,4vw,42px);letter-spacing:-.06em}.section-head p{max-width:390px;margin:0;color:var(--muted);font-size:12px;line-height:1.75}.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.card{padding:21px;border:1px solid var(--line);background:var(--panel)}.card span{color:var(--purple);font:9px var(--mono);letter-spacing:.08em}.card h3{margin:13px 0 8px;font-size:17px}.card p{margin:0;color:var(--muted);font-size:11px;line-height:1.8}.diagram,.note,.practice{margin-top:22px;padding:20px;border:1px solid var(--line);background:#0c0911}.diagram svg{display:block;width:100%;height:auto}.caption{margin:11px 0 0;color:var(--subtle);font:9px var(--mono);letter-spacing:.08em}.note,.practice{padding:22px 24px;border-left:2px solid var(--purple)}.note h2,.practice h2{margin:0 0 8px;font-size:20px}.note p,.practice p{margin:0;color:var(--muted);font-size:11px;line-height:1.8}.practice{border:1px solid #4a2a5c;background:#120c17}.footer{display:flex;justify-content:space-between;gap:18px;padding:22px 0;border-top:1px solid var(--line);color:var(--subtle);font-size:10px}.footer a{font:9px var(--mono);letter-spacing:.08em}.footer a:hover{color:var(--purple)}@media(max-width:720px){.shell{width:calc(100% - 32px)}.site-header{height:72px}.brand-logo{width:180px;max-height:58px}main{padding:48px 0 68px}.section-head{display:block}.section-head p{margin-top:12px}.cards{grid-template-columns:1fr}.footer{flex-direction:column}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <header class="site-header shell"><a href="index.html" aria-label="PurpleLap home"><img class="brand-logo" src="purplelap-logo.png" alt="PurpleLap — Learn to Sim Race"></a><a class="back-link" href="all-guides.html">ALL GUIDES</a></header>
+  <main class="shell">
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">07 / LONG-RUN PACE</p>
+      <h1 id="page-title">Keep your tires <em>working.</em></h1>
+      <p class="intro">Tire management is about keeping grip consistent across a run, not driving slowly or avoiding every curb. Sliding, locking a tire, spinning the wheels, and repeated sharp inputs can add heat or wear in many simulators. The exact model differs by game, car, and event, so use the tire display and replay in your sim instead of relying on one universal temperature or pressure target.</p>
+    </section>
+    <figure class="support-photo">
+      <img src="images/racing-tire-management.jpg" alt="A slick Goodyear racing tire marked with chalk and used during a race weekend" loading="lazy">
+      <figcaption><strong>GRIP CHANGES OVER A STINT</strong><span>Use your simulator’s tire page to see how its model represents temperature, pressure, and wear. This racing slick is an example of the hardware, not a recommended setup target.</span><small class="photo-credit">Photo: TaurusEmerald / <a href="https://commons.wikimedia.org/wiki/File:Goodyear_Slick_Racing_Tire_Sonoma_2025.jpg">Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> (resized).</small></figcaption>
+    </figure>
+    <section class="lesson" aria-labelledby="habits-title">
+      <div class="section-head"><h2 id="habits-title">Protect grip with repeatable habits.</h2><p>Focus on what you can control first. Changing setup values before understanding the tire behavior makes comparisons harder.</p></div>
+      <div class="cards">
+        <article class="card"><span>INPUTS</span><h3>Reduce unnecessary sliding</h3><p>Large steering corrections, wheelspin, and locked tires scrub speed and can build heat. Aim for one smooth input at a time; if the car slides, recover calmly and avoid repeating the same aggressive correction.</p></article>
+        <article class="card"><span>STINTS</span><h3>Build pace gradually</h3><p>Cold tires may offer less grip at the start of a run in some games. Use a controlled out-lap and avoid assuming the first lap has the same braking and cornering limits as later laps.</p></article>
+        <article class="card"><span>MONITORING</span><h3>Look for trends, not one number</h3><p>Check whether the sim exposes inner, middle, and outer temperatures, pressures, or wear. A change that repeats over several laps is more useful than reacting to one spike after a slide or lockup.</p></article>
+        <article class="card"><span>SETUP</span><h3>Change one setting at a time</h3><p>If the sim models pressure, camber, or tire compounds, use the game’s setup guidance and event rules. Make a small adjustment, repeat the same run, and compare the result instead of copying a target from another car.</p></article>
+      </div>
+      <div class="diagram"><svg viewBox="0 0 650 190" role="img" aria-label="Illustrative tire grip curve showing reduced grip when too cold or overheated, with a broad working range between"><rect width="650" height="190" rx="10" fill="#0b080e"/><path d="M56 25v126h554" fill="none" stroke="#514d56" stroke-width="2"/><path d="M65 132C130 127 158 102 218 75C278 48 358 48 418 72C478 96 514 123 600 136" fill="none" stroke="#A020F0" stroke-width="5" stroke-linecap="round"/><path d="M65 24v127M600 24v127" stroke="#514d56" stroke-dasharray="5 7"/><text x="74" y="171" fill="#a39ba9" font-family="monospace" font-size="11">TOO COLD</text><text x="273" y="171" fill="#a39ba9" font-family="monospace" font-size="11">WORKING RANGE</text><text x="508" y="171" fill="#a39ba9" font-family="monospace" font-size="11">OVERHEATED</text><text x="18" y="22" fill="#a39ba9" font-family="monospace" font-size="10">GRIP</text><text x="555" y="148" fill="#a39ba9" font-family="monospace" font-size="10">HEAT</text></svg><p class="caption">CONCEPTUAL SHAPE ONLY · EACH SIMULATOR AND TIRE HAS ITS OWN MODEL</p></div>
+      <aside class="note"><h2>Do not chase a magic temperature.</h2><p>Different games report tire state differently, and some do not simulate every real-world detail. Learn what the tire page means in the sim you are using. If there is no useful tire data, compare lap consistency and handling over a full run.</p></aside>
+      <aside class="practice"><h2>Practice: compare two clean stints</h2><p>Run a short stint at a steady pace and record tire readings or lap times. Repeat with smoother steering and throttle, keeping the car, setup, track, and conditions unchanged. Compare the trends and how the car feels late in the run; keep the smoother approach only if it preserves control without sacrificing unnecessary pace.</p></aside>
+    </section>
+    <nav class="guide-navigation" aria-label="Guide navigation">
+      <a class="guide-nav-card" href="throttle-rotation.html"><span class="guide-nav-copy"><span class="guide-nav-label">PREVIOUS GUIDE · 06 / 09</span><span class="guide-nav-title">Use the throttle to shape a turn</span></span><span class="guide-nav-arrow" aria-hidden="true">←</span></a>
+      <a class="guide-nav-card guide-nav-card--next" href="telemetry-analysis.html"><span class="guide-nav-copy"><span class="guide-nav-label">NEXT GUIDE · 08 / 09</span><span class="guide-nav-title">Learn from telemetry</span></span><span class="guide-nav-arrow" aria-hidden="true">→</span></a>
+    </nav>
+  </main>
+  <footer class="footer shell"><span>Made for the next generation of racers.</span><a href="all-guides.html">ALL GUIDES</a></footer>
+</body>
+</html>

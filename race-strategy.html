@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e0a11">
+  <meta name="description" content="Plan sim racing fuel, pit windows, and race strategy using your event rules, real consumption, and changing conditions.">
+  <link rel="icon" type="image/svg+xml" href="purplelap-favicon.svg">
+  <link rel="stylesheet" href="guide-media.css">
+  <title>Plan Fuel and Pit Strategy — PurpleLap</title>
+  <style>
+    :root{color-scheme:dark;--bg:#08070a;--panel:#100d13;--ink:#f5f1f7;--muted:#a39ba9;--subtle:#89818f;--line:#36273f;--purple:#A020F0;--mono:ui-monospace,SFMono-Regular,Menlo,monospace;--sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans)}a{color:inherit;text-decoration:none}.shell{width:min(1080px,calc(100% - 48px));margin-inline:auto}.site-header{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand-logo{width:220px;max-height:70px;object-fit:contain}.back-link{color:var(--muted);font:10px var(--mono);letter-spacing:.08em}.back-link:hover{color:var(--purple)}main{padding:68px 0 90px}.eyebrow{display:flex;align-items:center;gap:10px;color:var(--muted);font:10px var(--mono);letter-spacing:.12em}.eyebrow:before{width:8px;height:8px;border-radius:50%;background:var(--purple);content:""}h1{margin:18px 0;font-size:clamp(48px,7vw,78px);line-height:.98;letter-spacing:-.075em}h1 em{color:var(--purple);font-family:Georgia,serif;font-weight:400}.intro{max-width:780px;color:var(--muted);font-size:14px;line-height:1.85}.hero{padding-bottom:42px;border-bottom:1px solid var(--line)}.lesson{padding-top:46px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:19px}.section-head h2{margin:0;font-size:clamp(30px,4vw,42px);letter-spacing:-.06em}.section-head p{max-width:390px;margin:0;color:var(--muted);font-size:12px;line-height:1.75}.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.card{padding:21px;border:1px solid var(--line);background:var(--panel)}.card span{color:var(--purple);font:9px var(--mono);letter-spacing:.08em}.card h3{margin:13px 0 8px;font-size:17px}.card p{margin:0;color:var(--muted);font-size:11px;line-height:1.8}.diagram,.note,.practice{margin-top:22px;padding:20px;border:1px solid var(--line);background:#0c0911}.diagram svg{display:block;width:100%;height:auto}.caption{margin:11px 0 0;color:var(--subtle);font:9px var(--mono);letter-spacing:.08em}.note,.practice{padding:22px 24px;border-left:2px solid var(--purple)}.note h2,.practice h2{margin:0 0 8px;font-size:20px}.note p,.practice p{margin:0;color:var(--muted);font-size:11px;line-height:1.8}.practice{border:1px solid #4a2a5c;background:#120c17}.footer{display:flex;justify-content:space-between;gap:18px;padding:22px 0;border-top:1px solid var(--line);color:var(--subtle);font-size:10px}.footer a{font:9px var(--mono);letter-spacing:.08em}.footer a:hover{color:var(--purple)}@media(max-width:720px){.shell{width:calc(100% - 32px)}.site-header{height:72px}.brand-logo{width:180px;max-height:58px}main{padding:48px 0 68px}.section-head{display:block}.section-head p{margin-top:12px}.cards{grid-template-columns:1fr}.footer{flex-direction:column}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <header class="site-header shell"><a href="index.html" aria-label="PurpleLap home"><img class="brand-logo" src="purplelap-logo.png" alt="PurpleLap — Learn to Sim Race"></a><a class="back-link" href="all-guides.html">ALL GUIDES</a></header>
+  <main class="shell">
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">09 / RACE PLANNING</p>
+      <h1 id="page-title">Make a plan. <em>Adapt it.</em></h1>
+      <p class="intro">Fuel and pit strategy are about balancing time lost in the pit lane against the benefit of fresh tires, repairs, or a lighter car. The right choice depends on the simulator’s rules, race length, fuel model, tire behavior, and traffic. Build a plan from your own practice data, then update it when the race changes.</p>
+    </section>
+    <figure class="support-photo">
+      <img src="images/race-strategy-pit-stop.jpg" alt="A stock car makes a pit stop while its crew services the car" loading="lazy">
+      <figcaption><strong>A PIT STOP IS A TIME TRADE-OFF</strong><span>In a sim race, use the pit menu and event rules to understand what a stop changes and how long it costs. A stop is useful only when its benefit outweighs the time and track position it gives up.</span><small class="photo-credit">Photo: Brandon Zeman / <a href="https://commons.wikimedia.org/wiki/File:Pit_Stop_Action_(3711847632).jpg">Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a> (resized).</small></figcaption>
+    </figure>
+    <section class="lesson" aria-labelledby="build-title">
+      <div class="section-head"><h2 id="build-title">Build the plan from evidence.</h2><p>Use practice or a private session to estimate real consumption and pit time for the event you are entering.</p></div>
+      <div class="cards">
+        <article class="card"><span>FUEL</span><h3>Measure consumption safely</h3><p>Run several representative laps and note fuel used per lap. Include the start, traffic, and any extra formation or cooldown laps required by the session. Add a sensible reserve instead of planning to finish at exactly zero.</p></article>
+        <article class="card"><span>PIT LOSS</span><h3>Know what a stop costs</h3><p>Check the pit-lane time, speed limit, service time, and whether refueling or tire changes happen together or separately. A short race may not justify a stop; a longer one may make a fresh set or repair worth the delay.</p></article>
+        <article class="card"><span>WINDOW</span><h3>Choose a flexible stop range</h3><p>Estimate when fuel, tire condition, or race rules make a stop necessary, but keep a window rather than a single lap. Traffic, a caution period, weather changes, or damage can shift the best time.</p></article>
+        <article class="card"><span>EXECUTION</span><h3>Prepare the pit entry</h3><p>Know where the speed limit begins, select the service you need, and avoid changing settings while approaching the pit lane. Follow the simulator’s pit procedure and do not cross a line or ignore a penalty to save time.</p></article>
+      </div>
+      <div class="diagram"><svg viewBox="0 0 680 190" role="img" aria-label="Illustrative fuel reserve declining through a stint, with a flexible pit window before the reserve is exhausted"><rect width="680" height="190" rx="10" fill="#0b080e"/><path d="M58 22v128h570" fill="none" stroke="#514d56" stroke-width="2"/><path d="M62 43 590 130" fill="none" stroke="#A020F0" stroke-width="5" stroke-linecap="round"/><path d="M350 24v126M455 24v126" stroke="#f5f1f7" stroke-width="1.5" stroke-dasharray="5 7"/><rect x="352" y="26" width="101" height="22" fill="#4a2a5c" opacity=".8"/><text x="72" y="171" fill="#a39ba9" font-family="monospace" font-size="11">STINT START</text><text x="330" y="171" fill="#a39ba9" font-family="monospace" font-size="11">PIT WINDOW</text><text x="550" y="171" fill="#a39ba9" font-family="monospace" font-size="11">RESERVE</text><text x="18" y="23" fill="#a39ba9" font-family="monospace" font-size="10">FUEL</text><text x="570" y="144" fill="#a39ba9" font-family="monospace" font-size="10">LAPS</text></svg><p class="caption">ILLUSTRATIVE STINT PLAN · ESTIMATE FROM YOUR SIM AND EVENT RULES</p></div>
+      <aside class="note"><h2>Rules come before strategy.</h2><p>Some events mandate stops, restrict refueling, or specify tire compounds and service. Check the session rules first. Do not assume real-world procedures or strategy advice applies to every game mode.</p></aside>
+      <aside class="practice"><h2>Practice: test one race-length plan</h2><p>In a private session, measure fuel use over several clean laps and confirm the pit-lane time with the same car and event rules. Estimate a reserve, then compare a no-stop run with a planned stop if both are legal. Record the assumptions so you can revise the plan when pace, traffic, or conditions change.</p></aside>
+    </section>
+    <nav class="guide-navigation" aria-label="Guide navigation">
+      <a class="guide-nav-card" href="telemetry-analysis.html"><span class="guide-nav-copy"><span class="guide-nav-label">PREVIOUS GUIDE · 08 / 09</span><span class="guide-nav-title">Learn from telemetry</span></span><span class="guide-nav-arrow" aria-hidden="true">←</span></a>
+      <a class="guide-nav-card guide-nav-card--next" href="all-guides.html"><span class="guide-nav-copy"><span class="guide-nav-label">END OF THE LEARNING PATH</span><span class="guide-nav-title">Explore all driving guides</span></span><span class="guide-nav-arrow" aria-hidden="true">→</span></a>
+    </nav>
+  </main>
+  <footer class="footer shell"><span>Made for the next generation of racers.</span><a href="all-guides.html">ALL GUIDES</a></footer>
+</body>
+</html>
