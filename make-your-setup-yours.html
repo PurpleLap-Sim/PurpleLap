@@ -6,6 +6,8 @@
   <meta name="theme-color" content="#0e0a11">
   <meta name="description" content="A beginner-friendly guide to making your sim racing setup comfortable, useful, and your own.">
   <link rel="icon" type="image/svg+xml" href="purplelap-favicon.svg">
+  <link rel="stylesheet" href="site-ui.css">
+  <script src="site-ui.js" defer></script>
   <link rel="stylesheet" href="guide-media.css">
   <title>Make Your Setup Yours — PurpleLap</title>
   <style>
@@ -64,8 +66,9 @@
     .card-label { color:var(--purple); font:9px var(--mono); letter-spacing:.1em; }
     .choice-card h3 { margin:25px 0 10px; font-size:19px; letter-spacing:-.035em; }
     .choice-card p { margin:0; color:var(--muted); font-size:11px; line-height:1.8; }
-    .tip-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
-    .tip { display:grid; grid-template-columns:34px 1fr; gap:13px; padding:16px 0; border:0; background:transparent; }
+    .tip-grid { display:grid; grid-template-columns:repeat(2,1fr); column-gap:26px; row-gap:0; }
+    .tip { display:grid; grid-template-columns:34px 1fr; gap:13px; padding:17px 0; border:0; border-bottom:1px solid var(--line); background:transparent; }
+    .tip:nth-last-child(-n+2) { border-bottom:0; }
     .tip-number { color:var(--purple); font:10px var(--mono); }
     .tip h3 { margin:0 0 7px; font-size:14px; }
     .tip p { margin:0; color:var(--muted); font-size:11px; line-height:1.75; }
@@ -142,7 +145,7 @@
         <p class="eyebrow">01 / YOUR EQUIPMENT</p>
         <h1 id="page-title">Make your <em>setup yours.</em></h1>
         <p class="intro">A good setup is one that lets you drive comfortably and consistently. You can learn a lot with a controller, and a wheel is an option when you’re ready. Start with what you own, then change one thing at a time.</p>
-        <div class="hero-actions"><a class="primary-link" href="#start-here">START WITH WHAT YOU HAVE <span aria-hidden="true">↓</span></a></div>
+        <div class="hero-actions"><a class="primary-link" href="#start-here" data-scroll-without-hash>START WITH WHAT YOU HAVE <span aria-hidden="true">↓</span></a></div>
       </div>
       <aside class="setup-visual" aria-label="A sim-racing setup and two ways to get started">
         <figure class="setup-photo">
@@ -172,19 +175,19 @@
     <section class="section" aria-labelledby="tips-title">
       <div class="section-head"><h2 id="tips-title">Small changes. <em>Better sessions.</em></h2><p>Make the setup feel predictable before chasing a perfect setting. Keep notes so you can undo a change that does not help.</p></div>
       <div class="tip-grid">
-        <article class="tip"><span class="tip-number">01</span><div><h3>Get comfortable first</h3><p>Sit so your shoulders stay relaxed and you can reach the wheel or controller without stretching.</p></div></article>
-        <article class="tip"><span class="tip-number">02</span><div><h3>Start with gentle settings</h3><p>Use a manageable steering sensitivity and force feedback level, then make one small adjustment at a time.</p></div></article>
-        <article class="tip"><span class="tip-number">03</span><div><h3>Calibrate before you tune</h3><p>Follow the game’s controller or wheel calibration steps. Check that steering and pedals reach their full range.</p></div></article>
-        <article class="tip"><span class="tip-number">04</span><div><h3>Save what works</h3><p>Keep a note or screenshot of settings that feel good. Change one value at a time so you know what made a difference.</p></div></article>
+        <article class="tip"><span class="tip-number">01</span><div><h3>Get comfortable first</h3><p>Sit with your back supported, shoulders relaxed, and elbows slightly bent when holding the wheel or controller. You should be able to reach every control without leaning forward or locking your arms; comfort makes it easier to repeat smooth inputs over a full session.</p></div></article>
+        <article class="tip"><span class="tip-number">02</span><div><h3>Start with gentle settings</h3><p>Begin with the game's recommended steering and force feedback settings, then lower anything that feels twitchy or tiring. Make one small adjustment at a time and drive a few familiar corners before deciding whether it helped.</p></div></article>
+        <article class="tip"><span class="tip-number">03</span><div><h3>Calibrate before you tune</h3><p>Follow the game's controller or wheel calibration steps before changing advanced settings. Check that steering and pedals respond across their full travel, return to zero when released, and do not register unwanted input while untouched.</p></div></article>
+        <article class="tip"><span class="tip-number">04</span><div><h3>Save what works</h3><p>Keep a note or screenshot of settings that feel predictable, including the game and car you tested. Change one value at a time and compare on the same short drive so you can keep a useful improvement or quickly restore your baseline.</p></div></article>
       </div>
     </section>
     <section class="section" aria-labelledby="calibration-title">
       <div class="section-head"><h2 id="calibration-title">Set a baseline before you tune.</h2><p>Start from the game's calibration instructions. Change only what you can feel and explain.</p></div>
       <div class="tip-grid">
-        <article class="tip"><span class="tip-number">01</span><div><h3>Check the full input range</h3><p>Turn the wheel lock to lock and press each pedal through its full travel. Make sure the game reaches both ends without flickering, sticking, or showing an input while your foot is off.</p></div></article>
-        <article class="tip"><span class="tip-number">02</span><div><h3>Keep steering predictable</h3><p>Use the game's suggested steering range as a starting point. If small hand movements make the car dart around, check calibration and sensitivity before trying to correct it with aggressive steering.</p></div></article>
-        <article class="tip"><span class="tip-number">03</span><div><h3>Use comfortable force feedback</h3><p>Set force feedback so you can feel the car without fighting the wheel. If the signal is constantly at its limit or the wheel shakes on straights, reduce the level and retest in a safe practice session.</p></div></article>
-        <article class="tip"><span class="tip-number">04</span><div><h3>Save a known-good profile</h3><p>Take a screenshot or note of settings that work. Adjust a single value, drive a few familiar laps, and revert if the change makes the car harder to control or the wheel less clear.</p></div></article>
+        <article class="tip"><span class="tip-number">01</span><div><h3>Check the full input range</h3><p>Turn the wheel lock to lock and press each pedal through its full travel in the game's input display. Make sure the game reaches both ends without flickering or sticking, and shows no input while the controls are released. Correct any calibration or hardware issue before tuning how the car feels.</p></div></article>
+        <article class="tip"><span class="tip-number">02</span><div><h3>Keep steering predictable</h3><p>Use the game's suggested steering range as a starting point, then check that the on-screen wheel follows your physical wheel smoothly. If small hand movements make the car dart around, revisit calibration and sensitivity rather than trying to compensate with abrupt steering.</p></div></article>
+        <article class="tip"><span class="tip-number">03</span><div><h3>Use comfortable force feedback</h3><p>Set force feedback so you can sense the car without fighting the wheel. If the signal is constantly at its limit, details disappear, or the wheel shakes on straights, reduce the level and retest in a safe practice session; stronger feedback is not automatically clearer feedback.</p></div></article>
+        <article class="tip"><span class="tip-number">04</span><div><h3>Save a known-good profile</h3><p>Take a screenshot or note of settings that work for your equipment and game. Adjust a single value, drive a few familiar laps, and revert if the car becomes harder to control or the wheel feels less informative. This gives you a dependable baseline to return to after future experiments.</p></div></article>
       </div>
     </section>
     <section class="quick-start" aria-labelledby="quick-title">
