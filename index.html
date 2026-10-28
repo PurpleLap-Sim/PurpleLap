@@ -145,10 +145,12 @@ h1 em, h2 em { color: var(--purple); font-family: Georgia, serif; font-weight: 4
 .card-image .image-placeholder { background: linear-gradient(145deg,#201728,#0c0911); color: #cdc3d4; }
 .card-image .image-placeholder small { color: #9b93a1; }
 .card-number { position: absolute; z-index: 4; left: 14px; top: 14px; padding: 8px 9px; background: var(--purple); color: var(--black); font: 10px var(--mono); }
-.card-copy { padding: 22px 20px 24px; }
+.card-copy { display: flex; flex-direction: column; padding: 22px 20px 24px; color: inherit; }
+.card-copy:focus-visible { outline: 2px solid var(--purple); outline-offset: -3px; }
 .card-label { color: var(--purple); font-size: 9px; }
 .card-copy h3 { margin: 11px 0 9px; font-size: 19px; letter-spacing: -.045em; }
 .card-copy p { min-height: 44px; margin-bottom: 19px; color: var(--muted); font-size: 11px; line-height: 1.8; }
+.card-copy .card-link { margin-top: auto; }
 .card-link { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid var(--line); font-size: 10px; font-weight: 800; }
 .card-link span { color: var(--purple); font-size: 15px; }
 
@@ -343,15 +345,15 @@ h1 em, h2 em { color: var(--purple); font-family: Georgia, serif; font-weight: 4
         <div class="learning-cards" id="learn">
           <article class="learn-card">
             <a class="card-image image-slot card-image-link" href="make-your-setup-yours.html" aria-label="Open Make your setup yours"><img loading="lazy" src="images/wheel-setup.jpg" alt="A steering wheel and pedals used for sim racing"><div class="image-placeholder"><span class="placeholder-icon">＋</span><strong>SIM SETUP PHOTO</strong><small>Replace images/wheel-setup.jpg</small></div><span class="card-number">01</span></a>
-            <div class="card-copy"><span class="card-label">YOUR EQUIPMENT</span><h3>Make your setup yours</h3><p>Understand controllers, wheels, and basic settings before deciding what you need.</p><a href="make-your-setup-yours.html" class="card-link">Explore setup guide <span class="icon-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 19 19 5M7 5h12v12"/></svg></span></a></div>
+            <a class="card-copy" href="make-your-setup-yours.html" aria-label="Open Make your setup yours guide"><span class="card-label">YOUR EQUIPMENT</span><h3>Make your setup yours</h3><p>Understand controllers, wheels, and basic settings before deciding what you need.</p><span class="card-link">Explore setup guide <span class="icon-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 19 19 5M7 5h12v12"/></svg></span></span></a>
           </article>
           <article class="learn-card">
             <a class="card-image image-slot card-image-link" href="find-your-rhythm.html" aria-label="Open Find your first rhythm"><img loading="lazy" src="images/first-laps.jpg" alt="A beginner practicing on a racing simulator"><div class="image-placeholder"><span class="placeholder-icon">＋</span><strong>FIRST LAPS PHOTO</strong><small>Replace images/first-laps.jpg</small></div><span class="card-number">02</span></a>
-            <div class="card-copy"><span class="card-label">THE FOUNDATION</span><h3>Find your first rhythm</h3><p>Learn the racing line, where to brake, and how to make each lap feel more controlled.</p><a href="find-your-rhythm.html" class="card-link">Explore the basics <span class="icon-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 19 19 5M7 5h12v12"/></svg></span></a></div>
+            <a class="card-copy" href="find-your-rhythm.html" aria-label="Open Find your first rhythm guide"><span class="card-label">THE FOUNDATION</span><h3>Find your first rhythm</h3><p>Learn the racing line, where to brake, and how to make each lap feel more controlled.</p><span class="card-link">Explore the basics <span class="icon-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 19 19 5M7 5h12v12"/></svg></span></span></a>
           </article>
           <article class="learn-card">
             <a class="card-image image-slot card-image-link" href="race-with-confidence.html" aria-label="Open Race with confidence"><img loading="lazy" src="images/racecraft.jpg" alt="Two race cars approaching a corner"><div class="image-placeholder"><span class="placeholder-icon">＋</span><strong>RACECRAFT PHOTO</strong><small>Replace images/racecraft.jpg</small></div><span class="card-number">03</span></a>
-            <div class="card-copy"><span class="card-label">ON THE TRACK</span><h3>Race with confidence</h3><p>Practice clean starts, predictable driving, and making space for other racers.</p><a href="race-with-confidence.html" class="card-link">Learn racecraft <span class="icon-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 19 19 5M7 5h12v12"/></svg></span></a></div>
+            <a class="card-copy" href="race-with-confidence.html" aria-label="Open Race with confidence guide"><span class="card-label">ON THE TRACK</span><h3>Race with confidence</h3><p>Practice clean starts, predictable driving, and making space for other racers.</p><span class="card-link">Learn racecraft <span class="icon-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 19 19 5M7 5h12v12"/></svg></span></span></a>
           </article>
         </div>
         <aside class="advanced-guides" aria-labelledby="advanced-guides-title">

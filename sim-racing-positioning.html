@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e0a11">
+  <meta name="description" content="A practical guide to sim-racing seat position, wheel reach, pedal distance, and making an office chair work.">
+  <link rel="icon" type="image/svg+xml" href="purplelap-favicon.svg">
+  <title>Sim Racing Position & Seating — PurpleLap</title>
+  <style>
+    :root { color-scheme:dark; --bg:#08070a; --panel:#100d13; --ink:#f5f1f7; --muted:#a39ba9; --subtle:#89818f; --line:#36273f; --purple:#A020F0; --mono:ui-monospace,SFMono-Regular,Menlo,monospace; --sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); }
+    a { color:inherit; text-decoration:none; }
+    .shell { width:min(1040px,calc(100% - 40px)); margin-inline:auto; }
+    .site-header { height:76px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); }
+    .brand { display:flex; align-items:center; font-size:13px; font-weight:800; letter-spacing:.11em; }
+    .brand img { display:block; width:205px; max-height:65px; object-fit:contain; }
+    .back-link,.button { display:inline-flex; align-items:center; justify-content:center; gap:9px; min-height:42px; padding:0 14px; border:1px solid var(--line); color:var(--muted); font:10px var(--mono); letter-spacing:.06em; }
+    .back-link:hover,.button:hover { border-color:var(--purple); color:var(--purple); }
+    main { padding:55px 0 80px; }
+    .eyebrow { margin:0 0 16px; color:var(--purple); font:10px var(--mono); letter-spacing:.12em; }
+    h1 { max-width:790px; margin:0; font-size:clamp(44px,7vw,76px); line-height:.98; letter-spacing:-.07em; }
+    h1 em,h2 em { color:var(--purple); font-family:Georgia,serif; font-weight:400; }
+    .intro { max-width:760px; margin:22px 0 0; color:var(--muted); font-size:15px; line-height:1.85; }
+    .position-figure { margin:42px 0 0; }
+    .position-figure img { display:block; width:100%; max-height:560px; object-fit:cover; object-position:center 42%; }
+    figcaption { max-width:760px; margin:14px auto 0; color:var(--muted); font-size:11px; line-height:1.75; }
+    figcaption a { color:var(--muted); text-decoration:underline; text-underline-offset:3px; }
+    figcaption a:hover { color:var(--purple); }
+    .guide-section { padding-top:50px; }
+    .guide-section h2 { margin:0 0 12px; font-size:clamp(28px,4vw,42px); letter-spacing:-.055em; }
+    .section-intro { max-width:720px; margin:0 0 20px; color:var(--muted); font-size:12px; line-height:1.8; }
+    .steps { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:32px; row-gap:0; }
+    .step { padding:20px 0; border:0; background:transparent; }
+    .step-number { color:var(--purple); font:10px var(--mono); }
+    .step h3 { margin:12px 0 8px; font-size:16px; }
+    .step p { margin:0; color:var(--muted); font-size:11px; line-height:1.8; }
+    .note { margin-top:18px; padding:0; border:0; background:transparent; color:var(--muted); font-size:11px; line-height:1.8; }
+    .note strong { color:var(--ink); }
+    .bottom-nav { display:flex; flex-wrap:wrap; gap:12px; margin-top:44px; padding-top:25px; border-top:1px solid var(--line); }
+    .button-primary { border-color:var(--purple); background:var(--purple); color:#100817; font-weight:800; }
+    .button-primary:hover { background:#c77dff; color:#100817; }
+    @media(max-width:640px) {
+      .shell { width:calc(100% - 32px); }
+      .site-header { height:68px; }
+      .brand img { width:165px; }
+      .back-link { min-height:38px; padding-inline:9px; font-size:9px; }
+      main { padding-top:42px; }
+      .intro { font-size:13px; }
+      .steps { grid-template-columns:1fr; }
+    }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+  </style>
+</head>
+<body>
+  <header class="site-header shell">
+    <a class="brand" href="index.html#top" aria-label="PurpleLap home"><img src="purplelap-logo.png" alt="PurpleLap — Learn to Sim Race"></a>
+    <a class="back-link" href="make-your-setup-yours.html#start-here">← BACK TO SETUP GUIDE</a>
+  </header>
+  <main class="shell">
+    <p class="eyebrow">COMFORT BEFORE UPGRADES</p>
+    <h1>Find your <em>driving position.</em></h1>
+    <p class="intro">A comfortable, repeatable position helps you steer and use the pedals smoothly. You do not need a racing seat or a fixed set of measurements: use these checks as a starting point, then adjust for your body, equipment, and any comfort needs.</p>
+    <figure class="position-figure">
+      <img src="images/guerrieri-sim-racing.jpg" alt="A sim racer seated at a racing wheel with his back supported, arms relaxed, and feet reaching the pedals" fetchpriority="high">
+      <figcaption>A real sim-racing seat and wheel setup. Use the position as an example, not a fixed measurement: your posture should stay comfortable, supported, and in control. Photo by <a href="https://www.flickr.com/photos/mroct/33887224883/">Krémer Krisztián</a> via <a href="https://commons.wikimedia.org/wiki/File:Guerrieri_sim_racing_(33887224883).jpg">Wikimedia Commons</a> · Public domain.</figcaption>
+    </figure>
+
+    <section class="guide-section" aria-labelledby="seat-title">
+      <h2 id="seat-title">Set the seat, wheel <em>and pedals.</em></h2>
+      <p class="section-intro">Set your sitting position first, then move the controls to meet you. Make one adjustment at a time and test it with a short, familiar session.</p>
+      <div class="steps">
+        <article class="step"><span class="step-number">01 / BACK AND SEAT</span><h3>Sit supported, not stiff</h3><p>Keep your hips settled in the seat and your back supported. A slight recline is fine if you can still see the screen clearly and reach the wheel without lifting your shoulders. Avoid a position that makes you slide forward or round your back.</p></article>
+        <article class="step"><span class="step-number">02 / WHEEL REACH</span><h3>Leave a little bend in your arms</h3><p>With your shoulders resting against the seat, reach toward the wheel at roughly the 9-and-3 hand positions. Adjust the seat or wheel so your elbows remain softly bent and your shoulders stay relaxed through turns. Do not lock your elbows or stretch your upper body forward.</p></article>
+        <article class="step"><span class="step-number">03 / PEDAL DISTANCE</span><h3>Keep your knees comfortably bent</h3><p>Place your feet on the pedals and press each one through its full travel. At full brake, your knee should still have a bend and your hips should stay against the seat. Move the pedals closer if your leg straightens, or farther away if your knee is cramped.</p></article>
+        <article class="step"><span class="step-number">04 / PEDAL ANGLE</span><h3>Use a natural ankle motion</h3><p>Set the pedals so you can press and release smoothly without pointing your toes hard, twisting your ankle, or lifting your heel uncomfortably. A slightly raised pedal face is a reasonable starting point, but comfort and full control matter more than an exact angle.</p></article>
+        <article class="step"><span class="step-number">05 / SCREEN AND CHECK</span><h3>Make the view easy to hold</h3><p>Place the screen where you can read the track and instruments while keeping your head and neck relaxed. Do a few laps, checking that you can steer, brake, and use the throttle without shifting in your seat. Reposition anything that slides.</p></article>
+        <article class="step"><span class="step-number">06 / ADJUST TO YOU</span><h3>Comfort wins over measurements</h3><p>Body proportions, mobility, and equipment differ. Treat any angle or distance in a setup photo as an example, not a rule. Stop and change the position if you feel pain, tingling, numbness, or persistent strain.</p></article>
+      </div>
+    </section>
+
+    <section class="guide-section" aria-labelledby="office-title">
+      <h2 id="office-title">Using a regular <em>office chair?</em></h2>
+      <p class="section-intro">You can get a steady starting position without buying a cockpit. Prioritize a chair and controls that stay put when you brake.</p>
+      <div class="steps">
+        <article class="step"><span class="step-number">01 / ANCHOR THE CHAIR</span><h3>Keep it from rolling</h3><p>Use a stable floor surface and, if the chair has casters, a suitable caster cup or chair mat designed to stop movement. Do not rely on loose objects wedged under the wheels. Check the chair stays still during a firm brake press.</p></article>
+        <article class="step"><span class="step-number">02 / SECURE PEDALS</span><h3>Stop the pedal set sliding</h3><p>Put pedals on a non-slip surface and against a solid stop if the manufacturer permits it. Avoid balancing the pedals on stacks or unstable furniture. Recheck that the pedal platform cannot tip or move.</p></article>
+        <article class="step"><span class="step-number">03 / SET THE REACH</span><h3>Move the chair before stretching</h3><p>Bring the chair close enough that your elbows and knees remain bent, then check your monitor and wheel position. Use a sturdy desk clamp or purpose-made stand for a wheel; follow its mounting instructions and check desk stability.</p></article>
+        <article class="step"><span class="step-number">04 / RETEST</span><h3>Practice a firm stop safely</h3><p>Before driving, press the brake firmly several times while stationary. If the chair, desk, or pedals shift, stop and secure them before continuing. Take breaks and change posture if discomfort builds.</p></article>
+      </div>
+      <p class="note"><strong>Simple test:</strong> you should be able to press the brake firmly while your back stays supported, your hips stay in place, and the chair and pedals do not move.</p>
+    </section>
+    <nav class="bottom-nav" aria-label="Related guides">
+      <a class="button" href="make-your-setup-yours.html#start-here">← SETUP GUIDE</a>
+      <a class="button button-primary" href="gear-guide.html?from=setup">COMPARE WHEELS</a>
+    </nav>
+  </main>
+</body>
+</html>

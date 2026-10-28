@@ -514,6 +514,8 @@ const contextBackLink=document.querySelector('#context-back');
 const source=new URLSearchParams(window.location.search).get('from');
 const previousPage=document.referrer?new URL(document.referrer):null;
 const cameFromHome=source==='home'||(!source&&previousPage?.origin===window.location.origin&&(previousPage.pathname.endsWith('/index.html')||previousPage.pathname.endsWith('/')));
+const cameFromSetup=source==='setup'||(!source&&previousPage?.origin===window.location.origin&&previousPage.pathname.endsWith('/make-your-setup-yours.html'));
 if(cameFromHome){contextBackLink.href='index.html#page-footer';contextBackLink.lastChild.textContent=' BACK TO HOME';}
+else if(cameFromSetup){contextBackLink.href='make-your-setup-yours.html#start-here';contextBackLink.lastChild.textContent=' BACK TO SETUP';}
 </script>
 </body></html>

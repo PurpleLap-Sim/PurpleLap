@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e0a11">
+  <meta name="description" content="Learn to tune sim-racing controller deadzones, steering response, and analog trigger inputs.">
+  <link rel="icon" type="image/svg+xml" href="purplelap-favicon.svg">
+  <title>Sim Racing with a Controller — PurpleLap</title>
+  <style>
+    :root { color-scheme:dark; --bg:#08070a; --panel:#100d13; --ink:#f5f1f7; --muted:#a39ba9; --line:#36273f; --purple:#A020F0; --mono:ui-monospace,SFMono-Regular,Menlo,monospace; --sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); }
+    a { color:inherit; text-decoration:none; }
+    .shell { width:min(1000px,calc(100% - 40px)); margin-inline:auto; }
+    .site-header { height:76px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); }
+    .brand img { display:block; width:205px; max-height:65px; object-fit:contain; }
+    .back-link,.button { display:inline-flex; align-items:center; justify-content:center; min-height:42px; padding:0 14px; border:1px solid var(--line); color:var(--muted); font:10px var(--mono); letter-spacing:.06em; }
+    .back-link:hover,.button:hover { border-color:var(--purple); color:var(--purple); }
+    main { padding:55px 0 80px; }
+    .eyebrow { margin:0 0 16px; color:var(--purple); font:10px var(--mono); letter-spacing:.12em; }
+    h1 { max-width:780px; margin:0; font-size:clamp(44px,7vw,76px); line-height:.98; letter-spacing:-.07em; }
+    h1 em,h2 em { color:var(--purple); font-family:Georgia,serif; font-weight:400; }
+    .intro { max-width:740px; margin:22px 0 0; color:var(--muted); font-size:15px; line-height:1.85; }
+    .controller-visual { margin:42px 0 0; padding:28px; border:1px solid var(--line); background:linear-gradient(145deg,#17111d,#0c090e); }
+    .controller-visual svg { display:block; width:min(100%,500px); height:auto; margin:auto; }
+    .guide-section { padding-top:50px; }
+    .guide-section h2 { margin:0 0 12px; font-size:clamp(28px,4vw,42px); letter-spacing:-.055em; }
+    .section-intro { max-width:720px; margin:0 0 20px; color:var(--muted); font-size:12px; line-height:1.8; }
+    .steps { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:32px; row-gap:0; }
+    .step { padding:20px 0; border:0; background:transparent; }
+    .step-number { color:var(--purple); font:10px var(--mono); }
+    .step h3 { margin:12px 0 8px; font-size:16px; }
+    .step p { margin:0; color:var(--muted); font-size:11px; line-height:1.8; }
+    .note { margin-top:18px; padding:0; border:0; background:transparent; color:var(--muted); font-size:11px; line-height:1.8; }
+    .note strong { color:var(--ink); }
+    .bottom-nav { display:flex; flex-wrap:wrap; gap:12px; margin-top:44px; padding-top:25px; border-top:1px solid var(--line); }
+    .button-primary { border-color:var(--purple); background:var(--purple); color:#100817; font-weight:800; }
+    .button-primary:hover { background:#c77dff; color:#100817; }
+    @media(max-width:640px) { .shell{width:calc(100% - 32px)}.site-header{height:68px}.brand img{width:165px}.back-link{min-height:38px;padding-inline:9px;font-size:9px}main{padding-top:42px}.intro{font-size:13px}.steps{grid-template-columns:1fr}.controller-visual{padding:18px} }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+  </style>
+</head>
+<body>
+  <header class="site-header shell">
+    <a class="brand" href="index.html#top" aria-label="PurpleLap home"><img src="purplelap-logo.png" alt="PurpleLap — Learn to Sim Race"></a>
+    <a class="back-link" href="make-your-setup-yours.html#start-here">← BACK TO SETUP GUIDE</a>
+  </header>
+  <main class="shell">
+    <p class="eyebrow">START WITH WHAT YOU HAVE</p>
+    <h1>Get smooth with a <em>controller.</em></h1>
+    <p class="intro">A controller is enough to learn braking points, steering, and racecraft. Tune only the controls that are hard to manage, and use a familiar car and track to tell whether each change actually helps.</p>
+    <figure class="controller-visual">
+      <svg viewBox="0 0 500 210" role="img" aria-labelledby="pad-title pad-desc">
+        <title id="pad-title">Controller steering and trigger controls</title>
+        <desc id="pad-desc">A game controller illustration highlights the analog steering stick and the gradual trigger range used for throttle and braking.</desc>
+        <path d="M113 48q-25 0-37 23L45 139q-12 28 16 37l40-29h298l40 29q28-9 16-37l-31-68q-12-23-37-23z" fill="#21192a" stroke="#8b8290" stroke-width="4"/>
+        <path d="M108 51l10-25q3-8 12-8h34q9 0 11 8l7 22m108 0 7-22q2-8 11-8h34q9 0 12 8l10 25" fill="none" stroke="#C77DFF" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="156" cy="101" r="27" fill="#100c15" stroke="#C77DFF" stroke-width="4"/>
+        <circle cx="156" cy="101" r="10" fill="#A020F0"/>
+        <path d="M91 125h48m-24-24v48" stroke="#8b8290" stroke-width="7" stroke-linecap="round"/>
+        <circle cx="344" cy="91" r="11" fill="#A020F0"/><circle cx="373" cy="111" r="11" fill="#C77DFF"/>
+        <circle cx="315" cy="111" r="11" fill="#8b8290"/><circle cx="344" cy="131" r="11" fill="#8b8290"/>
+        <path d="M154 163v15m158-15v15" stroke="#8b8290" stroke-width="8" stroke-linecap="round"/>
+        <text x="207" y="91" fill="#C77DFF" font-size="12" font-family="ui-monospace,monospace">STEER GENTLY</text>
+        <text x="203" y="119" fill="#C77DFF" font-size="12" font-family="ui-monospace,monospace">RAMP INPUTS</text>
+        <path d="M205 101h87m-87 27h87" stroke="#A020F0" stroke-width="2" stroke-dasharray="5 5"/>
+      </svg>
+    </figure>
+    <section class="guide-section" aria-labelledby="tune-title">
+      <h2 id="tune-title">Tune it <em>one step at a time.</em></h2>
+      <p class="section-intro">Settings are named differently across games. Look for steering sensitivity, inner deadzone, outer deadzone, and trigger calibration; change only the setting that matches what you feel.</p>
+      <div class="steps">
+        <article class="step"><span class="step-number">01 / CENTER INPUT</span><h3>Use the smallest useful deadzone</h3><p>If the car steers while the stick is untouched, increase the steering inner deadzone a little until the input rests at center. Too much deadzone creates a delay before the car responds, so keep it only large enough to prevent unwanted input.</p></article>
+        <article class="step"><span class="step-number">02 / FULL RANGE</span><h3>Check both ends of travel</h3><p>Move the stick fully left and right in the game's calibration screen. If it does not reach full steering before the stick hits its physical edge, check the outer deadzone or calibration. Avoid settings that make full lock arrive too abruptly.</p></article>
+        <article class="step"><span class="step-number">03 / ANALOG TRIGGERS</span><h3>Build throttle and brake gradually</h3><p>When the game supports analog triggers, feather them instead of squeezing immediately to the stop. Calibrate the released position and full press, then test whether you can hold a partial throttle or brake input consistently.</p></article>
+        <article class="step"><span class="step-number">04 / PROGRESSIVE FEEL</span><h3>Use the trigger curve if available</h3><p>Some games offer a trigger sensitivity or response curve. If small movements jump too quickly to high throttle or braking, try a gentler curve and test it. If the game has no curve option, use a controller with analog triggers and practice a smooth press.</p></article>
+        <article class="step"><span class="step-number">05 / AVOID THE SNAP</span><h3>Check for digital or very short travel</h3><p>A trigger that behaves like an on/off click, or has almost no controllable travel, is harder to modulate. Check the game’s input display while pressing slowly. If it jumps straight to full input, confirm the trigger is calibrated and that the game supports analog input.</p></article>
+        <article class="step"><span class="step-number">06 / TEST AND SAVE</span><h3>Compare with the same short drive</h3><p>Change one value, then repeat a few corners on a familiar track. Save settings that let you steer and brake smoothly; revert any change that makes the car twitchier or delays your response.</p></article>
+      </div>
+      <p class="note"><strong>Keep expectations realistic:</strong> trigger travel and adjustability depend on the controller and the game. A progressive feel is helpful, but it is not required to start learning or enjoying sim racing.</p>
+    </section>
+    <nav class="bottom-nav" aria-label="Related guides">
+      <a class="button" href="make-your-setup-yours.html#start-here">← SETUP GUIDE</a>
+      <a class="button button-primary" href="find-your-rhythm.html">PRACTICE THE BASICS →</a>
+    </nav>
+  </main>
+</body>
+</html>

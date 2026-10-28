@@ -42,6 +42,9 @@
     .visual-top strong { color:var(--purple); font-weight:500; }
     .setup-stack { display:grid; gap:10px; padding-top:15px; }
     .setup-row { display:grid; grid-template-columns:40px 1fr; gap:14px; align-items:center; min-height:66px; padding:12px 14px; border:1px solid #33253b; background:#0c0911; }
+    a.setup-row { transition:border-color .2s,background .2s; }
+    a.setup-row:hover { border-color:#493653; background:#100c15; }
+    a.setup-row:focus-visible,.choice-card:focus-visible { outline:2px solid var(--purple); outline-offset:3px; }
     .setup-row b { display:grid; place-items:center; width:30px; height:30px; border:1px solid #55296c; border-radius:50%; color:var(--purple); font:10px var(--mono); }
     .setup-row strong { display:block; margin-bottom:4px; font-size:12px; }
     .setup-row span { display:block; color:var(--muted); font-size:10px; line-height:1.6; }
@@ -52,13 +55,14 @@
     .section-head h2 { margin:0; font-size:clamp(32px,4vw,48px); letter-spacing:-.06em; }
     .section-head p { max-width:380px; margin:0; color:var(--muted); font-size:12px; line-height:1.75; }
     .choice-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
-    .choice-card { min-height:230px; padding:24px; border:1px solid var(--line); background:var(--panel); transition:border-color .2s,transform .2s; }
-    .choice-card:hover { border-color:#704084; transform:translateY(-3px); }
+    .choice-card { display:block; min-height:230px; padding:24px; border:1px solid var(--line); background:var(--panel); }
+    a.choice-card { transition:border-color .2s; }
+    a.choice-card:hover { border-color:#493653; }
     .card-label { color:var(--purple); font:9px var(--mono); letter-spacing:.1em; }
     .choice-card h3 { margin:25px 0 10px; font-size:19px; letter-spacing:-.035em; }
     .choice-card p { margin:0; color:var(--muted); font-size:11px; line-height:1.8; }
     .tip-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
-    .tip { display:grid; grid-template-columns:34px 1fr; gap:13px; padding:19px; border:1px solid var(--line); background:#0d0a10; }
+    .tip { display:grid; grid-template-columns:34px 1fr; gap:13px; padding:16px 0; border:0; background:transparent; }
     .tip-number { color:var(--purple); font:10px var(--mono); }
     .tip h3 { margin:0 0 7px; font-size:14px; }
     .tip p { margin:0; color:var(--muted); font-size:11px; line-height:1.75; }
@@ -138,24 +142,26 @@
         <div class="hero-actions"><a class="primary-link" href="#start-here">START WITH WHAT YOU HAVE <span aria-hidden="true">↓</span></a></div>
       </div>
       <aside class="setup-visual" aria-label="Three foundations for a comfortable sim racing setup">
-        <svg class="setup-illustration" viewBox="0 0 420 150" role="img" aria-label="A monitor, racing wheel, seat, and pedals arranged for a comfortable driving position">
-          <rect x="1" y="1" width="418" height="148" rx="8" fill="#0b080e" stroke="#36273f"/>
-          <path d="M37 118h346" stroke="#514d56" stroke-width="3"/>
-          <rect x="55" y="25" width="123" height="67" rx="4" fill="#17111d" stroke="#A020F0" stroke-width="2"/>
-          <path d="M68 73h96M83 56l19-14 16 11 22-18 17 10" fill="none" stroke="#C77DFF" stroke-width="3"/>
-          <path d="M116 93v17m-18 0h36" stroke="#8b8290" stroke-width="3"/>
-          <circle cx="232" cy="73" r="25" fill="none" stroke="#C77DFF" stroke-width="5"/>
-          <circle cx="232" cy="73" r="5" fill="#A020F0"/>
-          <path d="M232 78v17m-20-13 20 7 20-7" fill="none" stroke="#C77DFF" stroke-width="3"/>
-          <path d="M293 61h47l18 13v12h-17l-10-10h-28l-8 10h-14V71z" fill="#21192a" stroke="#8b8290" stroke-width="3"/>
-          <path d="M303 61V45h26v16m13 38 14 9m-29-9 10 9" fill="none" stroke="#8b8290" stroke-width="3"/>
-          <rect x="365" y="101" width="9" height="16" rx="2" fill="#A020F0"/>
-          <rect x="380" y="101" width="9" height="16" rx="2" fill="#8b8290"/>
+        <svg class="setup-illustration" viewBox="0 0 420 180" role="img" aria-label="Side view of a sim-racing setup with a screen, detailed steering wheel, seated driver, and a pair of pedals">
+          <rect x="1" y="1" width="418" height="178" rx="8" fill="#0b080e" stroke="#36273f"/>
+          <path d="M30 143h358" stroke="#514d56" stroke-width="3"/>
+          <rect x="41" y="20" width="111" height="65" rx="4" fill="#17111d" stroke="#A020F0" stroke-width="2"/>
+          <path d="M52 67h89M65 53l17-14 15 11 21-19 14 9" fill="none" stroke="#C77DFF" stroke-width="2.5"/>
+          <path d="M96 86v28m-19 0h38" stroke="#8b8290" stroke-width="3"/>
+          <path d="M178 101v20h66" fill="none" stroke="#8b8290" stroke-width="4"/>
+          <circle cx="186" cy="79" r="24" fill="#100c15" stroke="#C77DFF" stroke-width="5"/>
+          <circle cx="186" cy="79" r="9" fill="#21152a" stroke="#A020F0" stroke-width="2"/>
+          <path d="M165 66l8 6m26-6-8 6m-5 15 4 14m-8-14-4 14" fill="none" stroke="#C77DFF" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M185 103v18m-14-2h52" stroke="#8b8290" stroke-width="3"/>
+          <path d="M279 80h37l15 11v17h-19l-13-13h-20v17h-14V92z" fill="#21192a" stroke="#8b8290" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M284 79V61h25v19m20 23 14 9m-35-9 10 9" fill="none" stroke="#8b8290" stroke-width="3" stroke-linecap="round"/>
+          <path d="M337 117l24-12 8 4-24 13zm22 9 23-12 7 5-23 13z" fill="#21192a" stroke="#C77DFF" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M341 117v8m26-14v8m-4 6v8m24-13v8" stroke="#8b8290" stroke-width="2"/>
         </svg>
         <div class="visual-top"><strong>THE GARAGE</strong><span>COMFORT · CONTROL · CONSISTENCY</span></div>
         <div class="setup-stack">
-          <div class="setup-row"><b>01</b><div><strong>Where you sit</strong><span>Stable seat, relaxed shoulders, easy reach to controls.</span></div></div>
-          <div class="setup-row"><b>02</b><div><strong>What you drive with</strong><span>Controller or wheel—choose what you already have.</span></div></div>
+          <a class="setup-row" href="sim-racing-positioning.html"><b>01</b><div><strong>Where you sit</strong><span>Seat angle, wheel reach, and pedal distance.</span></div></a>
+          <a class="setup-row" href="controller-setup.html"><b>02</b><div><strong>What you drive with</strong><span>Controller or wheel—choose what you already have.</span></div></a>
           <div class="setup-row"><b>03</b><div><strong>How it feels</strong><span>Comfortable controls and settings you can repeat.</span></div></div>
         </div>
         <p class="no-pressure"><i></i> NO EXPENSIVE RIG REQUIRED</p>
@@ -168,9 +174,9 @@
     <section class="section" id="start-here" aria-labelledby="choices-title">
       <div class="section-head"><h2 id="choices-title">Choose your <em>starting point.</em></h2><p>There’s no required shopping list. Each option can work; the best one is the one that fits your space, budget, and what you enjoy.</p></div>
       <div class="choice-grid">
-        <article class="choice-card"><span class="card-label">01 / ALREADY OWN ONE?</span><h3>Controller</h3><p>A controller is enough to learn braking, steering, racing lines, and racecraft. Use small, smooth inputs and adjust sensitivity if the game feels twitchy.</p></article>
-        <article class="choice-card"><span class="card-label">02 / WHEN YOU’RE READY</span><h3>Wheel</h3><p>A wheel can make steering feel more direct and immersive. Check that the exact model works with your console or computer and the game you play before buying anything.</p></article>
-        <article class="choice-card"><span class="card-label">03 / KEEP IT STEADY</span><h3>Seat, desk & pedals</h3><p>A stable seat and a comfortable reach matter more than a fancy cockpit. Keep pedals from sliding, and set your screen where you can see it without leaning forward.</p></article>
+        <a class="choice-card" href="controller-setup.html"><span class="card-label">01 / ALREADY OWN ONE?</span><h3>Controller</h3><p>A controller is enough to learn braking, steering, racing lines, and racecraft. Use small, smooth inputs and adjust sensitivity if the game feels twitchy.</p></a>
+        <a class="choice-card" href="gear-guide.html?from=setup"><span class="card-label">02 / WHEN YOU’RE READY</span><h3>Wheel</h3><p>A wheel can make steering feel more direct and immersive. Check that the exact model works with your console or computer and the game you play before buying anything.</p></a>
+        <a class="choice-card" href="sim-racing-positioning.html"><span class="card-label">03 / KEEP IT STEADY</span><h3>Seat, desk & pedals</h3><p>Learn a comfortable driving position, keep pedals stable, and make an ordinary office chair work better.</p></a>
       </div>
     </section>
     <section class="section" aria-labelledby="tips-title">
