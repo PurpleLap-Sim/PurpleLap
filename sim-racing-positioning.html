@@ -57,7 +57,7 @@
 <body>
   <header class="site-header shell">
     <a class="brand" href="index.html#top" aria-label="PurpleLap home"><img src="purplelap-logo.png" alt="PurpleLap — Learn to Sim Race"></a>
-    <a class="back-link" href="make-your-setup-yours.html#start-here">← BACK TO SETUP GUIDE</a>
+    <a class="back-link setup-return-link" href="make-your-setup-yours.html">← BACK TO SETUP GUIDE</a>
   </header>
   <main class="shell">
     <p class="eyebrow">COMFORT BEFORE UPGRADES</p>
@@ -93,9 +93,17 @@
       <p class="note"><strong>Simple test:</strong> you should be able to press the brake firmly while your back stays supported, your hips stay in place, and the chair and pedals do not move.</p>
     </section>
     <nav class="bottom-nav" aria-label="Related guides">
-      <a class="button" href="make-your-setup-yours.html#start-here">← SETUP GUIDE</a>
+      <a class="button setup-return-link" href="make-your-setup-yours.html">← SETUP GUIDE</a>
       <a class="button button-primary" href="gear-guide.html?from=setup">COMPARE WHEELS</a>
     </nav>
   </main>
+  <script>
+    const setupReturnTarget = new URLSearchParams(window.location.search).get('return') === 'start-here'
+      ? 'make-your-setup-yours.html#start-here'
+      : 'make-your-setup-yours.html';
+    document.querySelectorAll('.setup-return-link').forEach((link) => {
+      link.href = setupReturnTarget;
+    });
+  </script>
 </body>
 </html>
