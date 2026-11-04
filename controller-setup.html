@@ -49,7 +49,7 @@
 <body>
   <header class="site-header shell">
     <a class="brand" href="index.html#top" aria-label="PurpleLap home"><img src="purplelap-logo.png" alt="PurpleLap — Learn to Sim Race"></a>
-    <a class="back-link" href="make-your-setup-yours.html#start-here">← BACK TO SETUP GUIDE</a>
+    <a class="back-link setup-return-link" href="make-your-setup-yours.html#start-here">← BACK TO SETUP GUIDE</a>
   </header>
   <main class="shell">
     <p class="eyebrow">START WITH WHAT YOU HAVE</p>
@@ -73,9 +73,21 @@
       <p class="note"><strong>Keep expectations realistic:</strong> trigger travel and adjustability depend on the controller and the game. A progressive feel is helpful, but it is not required to start learning or enjoying sim racing.</p>
     </section>
     <nav class="bottom-nav" aria-label="Related guides">
-      <a class="button" href="make-your-setup-yours.html#start-here">← SETUP GUIDE</a>
+      <a class="button setup-return-link" href="make-your-setup-yours.html#start-here">← SETUP GUIDE</a>
       <a class="button button-primary" href="find-your-rhythm.html">PRACTICE THE BASICS →</a>
     </nav>
   </main>
+  <script>
+    const setupReturnTarget = new URLSearchParams(window.location.search).get('return');
+    const setupReturnAnchor = setupReturnTarget === 'setup-row'
+      ? 'controller-setup-row'
+      : setupReturnTarget === 'choice-card'
+        ? 'controller-choice-card'
+        : 'start-here';
+
+    document.querySelectorAll('.setup-return-link').forEach((link) => {
+      link.href = `make-your-setup-yours.html#${setupReturnAnchor}`;
+    });
+  </script>
 </body>
 </html>
