@@ -84,6 +84,10 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
 .platform-note{margin-top:22px;padding:20px 22px;border:1px solid #4a3556;background:#120c17}
 .platform-note h3{margin:0 0 8px;font-size:16px}
 .platform-note p{margin:0;color:var(--muted);font-size:12px;line-height:1.8}
+.buyer-reminder{display:grid;grid-template-columns:minmax(180px,.45fr) 1fr;gap:24px;align-items:start;margin:34px 0 0}
+.buyer-reminder-label{margin:0;color:var(--purple);font:9px var(--mono);letter-spacing:.1em}
+.buyer-reminder h2{margin:8px 0 0;font-size:17px;letter-spacing:-.03em}
+.buyer-reminder p{max-width:680px;margin:0;color:var(--muted);font-size:12px;line-height:1.8}
 .guide-section{padding:58px 0 0}
 .guide-section .section-head{margin-bottom:20px}
 .guide-section .section-head h2{margin:0}
@@ -106,7 +110,7 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
 .closing{margin-top:58px}
 #pc-view-group[hidden],#empty-results[hidden]{display:none}
 @media(max-width:900px){.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.explain-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:700px){.gear-hero{grid-template-columns:1fr;gap:20px}.platform-panel{padding:22px}.catalog-tools{align-items:stretch;flex-direction:column}.product-search-wrap{min-width:0}.product-grid{grid-template-columns:1fr}.product-card{min-height:0}.explain-grid,.buyer-grid{grid-template-columns:1fr}.guide-section{padding-top:44px}.catalog-section{padding-top:40px}}
+@media(max-width:700px){.gear-hero{grid-template-columns:1fr;gap:20px}.platform-panel{padding:22px}.catalog-tools{align-items:stretch;flex-direction:column}.product-search-wrap{min-width:0}.product-grid{grid-template-columns:1fr}.product-card{min-height:0}.explain-grid,.buyer-grid{grid-template-columns:1fr}.buyer-reminder{grid-template-columns:1fr;gap:10px}.guide-section{padding-top:44px}.catalog-section{padding-top:40px}}
 @media(max-width:380px){.platform-buttons{grid-template-columns:1fr}.platform-button{min-height:42px}}
 @media(prefers-reduced-motion:reduce){.platform-button,.pc-view-button,.brand-filter-button,.product-card{transition:none}}
 </style></head>
@@ -135,10 +139,10 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
     <p>Choose a button to see the models and exact variants we’ve matched to that platform. Xbox and PlayStation versions often look alike but are not interchangeable.</p>
   </aside>
 </section>
-<figure class="support-photo">
-  <img src="images/logitech-g25-racing-set.jpg" alt="A Logitech racing wheel, gear shifter, and three-pedal set" loading="lazy">
-  <figcaption><strong>BUY FOR YOUR ACTUAL SETUP</strong><span>A wheel is one way to play, not a requirement. Check exact console or PC compatibility and bundle contents before choosing any model.</span><small class="photo-credit">Photo: Airmanj / <a href="https://commons.wikimedia.org/wiki/File:Logitech_G25_Racing_set.jpg">Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> (resized).</small></figcaption>
-</figure>
+<section class="buyer-reminder" aria-labelledby="buyer-reminder-title">
+  <div><p class="buyer-reminder-label">BUY FOR YOUR ACTUAL SETUP</p><h2 id="buyer-reminder-title">Compatibility comes first.</h2></div>
+  <p>A wheel is one way to play, not a requirement. Check exact console or PC compatibility and bundle contents before choosing a model.</p>
+</section>
 
 <section class="section catalog-section" id="compatible-models" aria-labelledby="catalog-title">
   <div class="section-head">
@@ -164,7 +168,7 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
       <input class="product-search" id="product-search" type="search" placeholder="Try MOZA, direct drive, G29…" autocomplete="off">
     </label>
   </div>
-  <p class="price-note">Prices shown are manufacturer US-store prices where available, checked October 26, 2026. Currency conversions use approximate USD exchange rates from October 26, 2026 and are not live; tax, shipping, regional offers, and bundle contents can change the total. If no fixed current price is published, check the official product page.</p>
+  <p class="price-note">Prices shown are manufacturer US-store prices where available, checked October 26, 2026. Currency conversions use approximate USD exchange rates from October 26, 2026 and are not live; tax, shipping, regional offers, and bundle contents can change the total. Product links follow the selected region where an official localized storefront is available; compatibility and support links may remain global.</p>
   <div id="brand-filters" class="brand-filters" role="group" aria-label="Filter compatible models by brand"></div>
   <p class="catalog-status" id="catalog-status" aria-live="polite"></p>
   <div class="product-grid" id="product-grid" aria-live="polite"></div>
@@ -397,8 +401,26 @@ const currencySelect=document.querySelector("#currency-select");
 let selectedPlatform="xbox";
 let selectedPCView="all";
 let selectedBrand="All brands";
+const STORE_REGIONS={USD:{logitech:"en-us",fanatec:"us",moza:"us"},CAD:{logitech:"en-ca",fanatec:"ca",moza:"ca"},EUR:{logitech:"en-eu",fanatec:"eu",moza:"eu"},GBP:{logitech:"en-gb",fanatec:"uk",moza:"uk"}};
 function escapeText(value){return String(value).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function currentIds(){return selectedPlatform==="pc"?(selectedPCView==="budget"?CATALOG.budget:CATALOG.pc):CATALOG[selectedPlatform]}
+function regionalProductUrl(item){
+ const region=STORE_REGIONS[currencySelect.value];
+ const url=new URL(item.url);
+ if(url.hostname==="www.logitechg.com"&&/^\/en-(us|ca|eu|gb)(?=\/)/.test(url.pathname)){
+  url.pathname=url.pathname.replace(/^\/en-(us|ca|eu|gb)(?=\/)/,"/"+region.logitech);
+ }else if(url.hostname==="www.fanatec.com"){
+  const pathMatch=url.pathname.match(/^\/(us|ca|eu|uk)\/en\/(.*)$/);
+  if(pathMatch&&(pathMatch[2].startsWith("c/")||pathMatch[2].startsWith("p/"))){
+   url.pathname=pathMatch[2].startsWith("p/")&&region.fanatec!=="us"&&region.fanatec!=="ca"
+    ?"/"+region.fanatec+"/en/c/wheel-bases"
+    :url.pathname.replace(/^\/(us|ca|eu|uk)(?=\/)/,"/"+region.fanatec);
+  }
+ }else if(url.hostname==="us.mozaracing.com"){
+  url.hostname=region.moza+".mozaracing.com";
+ }
+ return url.href;
+}
 function formatCurrency(value,currency){
  return new Intl.NumberFormat("en-US",{style:"currency",currency:currency}).format(value*CURRENCY_RATES[currency]);
 }
@@ -441,7 +463,7 @@ function productPhoto(entry){
   const subject=entry.id==="pc-tmx-t150"?(index===0?"Thrustmaster TMX":"Thrustmaster T150"):entry.id==="pc-g29"?(index===0?"Logitech G29":"Logitech G920"):entry.id==="pc-g923"?(index===0?"Logitech G923 PlayStation version":"Logitech G923 Xbox version"):entry.id==="pc-t128"?(index===0?"Thrustmaster T128 PlayStation version":"Thrustmaster T128 Xbox version"):entry.id==="pc-t248"?(index===0?"Thrustmaster T248 PlayStation version":"Thrustmaster T248 Xbox version"):entry.id==="pc-t598"?(index===0?"Thrustmaster T598 PlayStation version":"Thrustmaster T598 Xbox version"):entry.id==="fanatec-podium"?"Fanatec Podium series wheelbase":item.brand+" "+item.name;
   return '<img class="product-photo" src="'+escapeText(url)+'" alt="'+escapeText(subject+" product photo")+'" loading="lazy" decoding="async">';
  }).join("");
- return '<a class="product-photo-link" href="'+escapeText(item.url)+'" target="_blank" rel="noopener noreferrer" aria-label="View the manufacturer details for '+escapeText(item.brand+" "+item.name)+'"><span class="product-photo-list'+(photos.length>1?" is-pair":"")+'">'+images+'</span></a><span class="product-photo-credit">MANUFACTURER PRODUCT PHOTO</span>';
+ return '<a class="product-photo-link" href="'+escapeText(regionalProductUrl(item))+'" target="_blank" rel="noopener noreferrer" aria-label="View the manufacturer details for '+escapeText(item.brand+" "+item.name)+'"><span class="product-photo-list'+(photos.length>1?" is-pair":"")+'">'+images+'</span></a><span class="product-photo-credit">MANUFACTURER PRODUCT PHOTO</span>';
 }
 function setPlatform(name){
  selectedPlatform=name;
@@ -492,7 +514,7 @@ function renderCatalog(){
   const card=document.createElement("article");
   card.className="product-card"+(selectedPlatform==="pc"&&selectedPCView==="budget"?" budget-card":"");
   card.id="wheel-"+entry.id;
-  card.innerHTML=productPhoto(entry)+'<div class="product-card-head"><span class="product-brand">'+escapeText(item.brand)+'</span><span class="product-kind">'+escapeText(item.kind)+'</span></div><h3>'+escapeText(item.name)+'</h3><p>'+escapeText(item.description)+'</p><p class="product-fit"><strong>Compatibility:</strong> '+escapeText(item.fit)+'</p>'+productPrice(entry.id,item)+pedalIndicator(entry.id)+'<a class="product-link" href="'+escapeText(item.url)+'" target="_blank" rel="noopener noreferrer">'+escapeText(item.link)+'</a>';
+  card.innerHTML=productPhoto(entry)+'<div class="product-card-head"><span class="product-brand">'+escapeText(item.brand)+'</span><span class="product-kind">'+escapeText(item.kind)+'</span></div><h3>'+escapeText(item.name)+'</h3><p>'+escapeText(item.description)+'</p><p class="product-fit"><strong>Compatibility:</strong> '+escapeText(item.fit)+'</p>'+productPrice(entry.id,item)+pedalIndicator(entry.id)+'<a class="product-link" href="'+escapeText(regionalProductUrl(item))+'" target="_blank" rel="noopener noreferrer">'+escapeText(item.link)+'</a>';
   productGrid.appendChild(card);
  });
  const label=selectedPlatform==="pc"?(selectedPCView==="budget"?"budget PC picks":"PC picks"):selectedPlatform==="xbox"?"Xbox options":"PlayStation options";
