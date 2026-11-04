@@ -21,9 +21,23 @@
   if (setupStartLink) {
     window.history.scrollRestoration = 'manual';
     const navigation = window.performance.getEntriesByType('navigation')[0];
-    if (navigation?.type === 'reload') {
-      window.addEventListener('load', () => window.scrollTo({ top: 0, behavior: 'auto' }), { once: true });
-    }
+    window.addEventListener('pageshow', (event) => {
+      if (navigation?.type === 'reload' && !event.persisted) {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+        return;
+      }
+
+      window.setTimeout(() => {
+        if (!window.location.hash) return;
+        const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+        if (target) {
+          window.scrollTo({
+            top: target.getBoundingClientRect().top + window.scrollY,
+            behavior: 'instant'
+          });
+        }
+      }, 0);
+    });
 
     setupStartLink.addEventListener('click', (event) => {
       const target = document.querySelector(setupStartLink.getAttribute('href'));
