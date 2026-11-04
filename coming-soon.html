@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e0a11">
+  <meta name="description" content="This PurpleLap sim-racing lesson is coming soon.">
+  <link rel="icon" type="image/svg+xml" href="purplelap-favicon.svg">
+  <link rel="stylesheet" href="site-ui.css">
+  <script src="site-ui.js" defer></script>
+  <title>Coming Soon — PurpleLap</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #08070a;
+      --ink: #f5f1f7;
+      --muted: #a39ba9;
+      --line: #36273f;
+      --purple: #A020F0;
+      --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+      --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body { min-height: 100vh; display: flex; flex-direction: column; margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); }
+    a { color: inherit; text-decoration: none; }
+    .shell { width: min(1040px, calc(100% - 40px)); margin-inline: auto; }
+    .site-header { height: 76px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+    .brand img { display: block; width: 205px; max-height: 65px; object-fit: contain; }
+    .back-link { padding: 12px 15px; border: 1px solid var(--line); color: var(--muted); font: 10px var(--mono); letter-spacing: .08em; }
+    .back-link:hover, .back-link:focus-visible { border-color: var(--purple); color: var(--purple); }
+    main { flex: 1; display: grid; align-content: center; padding-block: 72px; }
+    .message { max-width: 720px; margin: 0 auto; }
+    .eyebrow { margin: 0 0 18px; color: var(--purple); font: 10px var(--mono); letter-spacing: .12em; }
+    h1 { margin: 0; font-size: clamp(48px, 8vw, 82px); line-height: .98; letter-spacing: -.075em; }
+    h1 em { color: var(--purple); font-family: Georgia, serif; font-weight: 400; }
+    .message p:not(.eyebrow) { max-width: 570px; margin: 22px 0 0; color: var(--muted); font-size: 14px; line-height: 1.85; }
+    .return-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 28px; padding: 0 16px; background: var(--purple); color: #100817; font: 10px var(--mono); font-weight: 800; letter-spacing: .06em; }
+    .return-link:hover, .return-link:focus-visible { background: #C77DFF; }
+    @media (max-width: 640px) {
+      .shell { width: calc(100% - 32px); }
+      .site-header { height: 68px; }
+      .brand img { width: 165px; }
+      .back-link { padding: 10px 11px; font-size: 9px; }
+      main { padding-block: 48px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header shell">
+    <a class="brand" href="index.html" aria-label="PurpleLap home"><img src="purplelap-logo.png" alt="PurpleLap — Learn to Sim Race"></a>
+    <a class="back-link" href="find-your-rhythm.html">BACK TO GUIDE</a>
+  </header>
+  <main class="shell">
+    <section class="message" aria-labelledby="page-title">
+      <p class="eyebrow">MORE PRACTICE, ON THE WAY</p>
+      <h1 id="page-title">Coming <em>soon.</em></h1>
+      <p>We’re working on a deeper lesson for this part of your sim-racing journey. For now, keep practising at a comfortable pace and focus on making each lap a little more consistent.</p>
+      <a class="return-link" href="find-your-rhythm.html">BACK TO FIND YOUR RHYTHM <span aria-hidden="true">&nbsp;←</span></a>
+    </section>
+  </main>
+</body>
+</html>

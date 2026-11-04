@@ -40,15 +40,17 @@
     .section-head h2 { margin:0; font-size:clamp(32px,4vw,48px); letter-spacing:-.06em; }
     .section-head p { max-width:360px; margin:0; color:var(--muted); font-size:12px; line-height:1.7; }
     .step-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
-    .step { min-height:210px; padding:23px; border:1px solid var(--line); background:var(--panel); }
+    .step { display:block; min-height:210px; padding:23px; border:1px solid var(--line); background:var(--panel); transition:border-color .2s,transform .2s; }
+    .step:hover { border-color:#704084; transform:translateY(-2px); }
+    .step:focus-visible { outline:2px solid #C77DFF; outline-offset:3px; }
     .step-number { color:var(--purple); font:10px var(--mono); letter-spacing:.1em; }
     .step h3 { margin:25px 0 10px; font-size:19px; letter-spacing:-.03em; }
     .step p { margin:0; color:var(--muted); font-size:12px; line-height:1.75; }
-    .corner-note { display:grid; grid-template-columns:.75fr 1.25fr; gap:32px; align-items:start; margin-top:38px; padding:27px 30px; border-left:2px solid var(--purple); background:#0c0911; }
+    .corner-note { display:grid; grid-template-columns:.75fr 1.25fr; gap:32px; align-items:start; margin-top:38px; padding:0; border:0; background:transparent; }
     .corner-note .eyebrow { margin-bottom:13px; }
     .corner-note h2 { margin:0; font-size:clamp(25px,3vw,34px); letter-spacing:-.05em; }
     .corner-note > p { margin:0; color:var(--muted); font-size:12px; line-height:1.85; }
-    .practice { display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center; margin-top:24px; padding:30px; border:1px solid #4a2a5c; background:#120c17; }
+    .practice { display:grid; grid-template-columns:1fr auto; gap:32px; align-items:center; margin-top:24px; padding:0; border:0; background:transparent; }
     .practice h2 { margin:0 0 10px; font-size:25px; letter-spacing:-.04em; }
     .practice p { max-width:670px; margin:0; color:var(--muted); font-size:12px; line-height:1.8; }
     .practice-actions { display:flex; flex-direction:column; align-items:flex-end; gap:14px; }
@@ -87,8 +89,8 @@
       .step-grid { grid-template-columns:1fr; }
       .step { min-height:0; }
       .step h3 { margin-top:16px; }
-      .corner-note { grid-template-columns:1fr; gap:13px; margin-top:28px; padding:22px; }
-      .practice { grid-template-columns:1fr; gap:18px; margin-top:18px; padding:22px; }
+      .corner-note { grid-template-columns:1fr; gap:13px; margin-top:28px; padding:0; }
+      .practice { grid-template-columns:1fr; gap:18px; margin-top:18px; padding:0; }
       .practice-actions { align-items:flex-start; }
       .site-footer { min-height:100px; grid-template-columns:1fr auto; gap:15px; padding-block:20px; }
       .site-footer > span { grid-column:1/-1; grid-row:1; }
@@ -142,9 +144,9 @@
     <section class="steps" aria-labelledby="steps-title">
       <div class="section-head"><h2 id="steps-title">Three things to focus on.</h2><p>Pick one track and one car. Keep the same settings while you practise so it’s easier to notice what you’re improving.</p></div>
       <div class="step-grid">
-        <article class="step"><span class="step-number">01 / LOOK AHEAD</span><h3>Look where you want to go</h3><p>Try to look toward the next part of the track instead of staring right in front of the car. This gives you more time to react.</p></article>
-        <article class="step"><span class="step-number">02 / BRAKE IN A STRAIGHT LINE</span><h3>Slow down before the turn</h3><p>Choose a clear marker, like a board or a change in the barrier. Brake before the corner, then ease off as you turn in.</p></article>
-        <article class="step"><span class="step-number">03 / BE SMOOTH</span><h3>Make one clean turn</h3><p>A useful starting point is to begin wide, move toward the inside near the middle, then let the car run back out. The best line can change with the corners around it.</p></article>
+        <a class="step" href="coming-soon.html"><span class="step-number">01 / LOOK AHEAD</span><h3>Look where you want to go</h3><p>Try to look toward the next part of the track instead of staring right in front of the car. This gives you more time to react.</p></a>
+        <a class="step" href="coming-soon.html"><span class="step-number">02 / BRAKE IN A STRAIGHT LINE</span><h3>Slow down before the turn</h3><p>Choose a clear marker, like a board or a change in the barrier. Brake before the corner, then ease off as you turn in.</p></a>
+        <a class="step" href="coming-soon.html"><span class="step-number">03 / BE SMOOTH</span><h3>Make one clean turn</h3><p>A useful starting point is to begin wide, move toward the inside near the middle, then let the car run back out. The best line can change with the corners around it.</p></a>
       </div>
       <aside class="corner-note" aria-labelledby="corner-note-title"><div><p class="eyebrow">READ THE WHOLE SECTION</p><h2 id="corner-note-title">Corners work together.</h2></div><p>The same turn can need a different line depending on what comes just before and after it. A previous corner may affect the side of the track you arrive from. If this turn leads onto a long straight, a later apex can help you get on the power sooner. If another turn follows quickly, you may need to give up a little space here to set up the next one. Look at the sequence, not just one corner at a time.</p></aside>
       <aside class="corner-note" aria-labelledby="mistake-title"><div><p class="eyebrow">WHEN A LAP GOES WRONG</p><h2 id="mistake-title">Change one thing at a time.</h2></div><p>If you miss the apex, do not immediately brake later and turn harder on the next lap. First decide what happened: did you arrive too fast, brake too late, or turn in too early? Pick one small adjustment and keep the rest of the lap the same. If you run wide on exit, lift smoothly, stay within the track limits, and use the next lap to test a slightly earlier slowdown or later apex.</p></aside>
