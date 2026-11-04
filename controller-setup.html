@@ -87,6 +87,16 @@
 
     document.querySelectorAll('.setup-return-link').forEach((link) => {
       link.href = `make-your-setup-yours.html#${setupReturnAnchor}`;
+      const previousPage = document.referrer ? new URL(document.referrer) : null;
+      const cameFromSetup = previousPage?.origin === window.location.origin
+        && previousPage.pathname.endsWith('/make-your-setup-yours.html');
+
+      if (cameFromSetup) {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          window.history.back();
+        });
+      }
     });
   </script>
 </body>
