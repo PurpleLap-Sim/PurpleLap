@@ -79,6 +79,9 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
 .comparison-card h5{margin:18px 0 7px;color:var(--purple);font:9px var(--mono);letter-spacing:.1em;text-transform:uppercase}
 .comparison-card ul{display:grid;gap:6px;margin:0;padding-left:17px;color:var(--muted);font-size:11px;line-height:1.65}
 .comparison-card .product-link{width:auto;max-width:100%;margin-top:14px;padding-top:0;white-space:normal;overflow-wrap:anywhere}
+.comparison-verdict{margin-top:14px;padding:18px 20px;border-left:2px solid var(--purple);background:#120c17}
+.comparison-verdict h4{margin:0 0 7px;color:var(--purple);font:10px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.comparison-verdict p{margin:0;color:var(--muted);font-size:12px;line-height:1.75}
 .price-note{margin:-3px 0 16px;color:var(--subtle);font:9px var(--mono);line-height:1.7}
 .brand-filters{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 17px}
 .brand-filter-button{min-height:35px;padding:0 12px;font-size:9px}
@@ -212,6 +215,10 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
   <section class="comparison-results" id="comparison-results" aria-labelledby="comparison-title" aria-live="polite" hidden>
     <h3 id="comparison-title">Your comparison</h3>
     <div class="comparison-grid" id="comparison-grid"></div>
+    <aside class="comparison-verdict" aria-labelledby="comparison-verdict-title">
+      <h4 id="comparison-verdict-title">Final verdict</h4>
+      <p id="comparison-verdict-text"></p>
+    </aside>
   </section>
   <p class="price-note">Prices shown are manufacturer US-store prices where available, checked October 26, 2026. Currency conversions use approximate USD exchange rates from October 26, 2026 and are not live; tax, shipping, regional offers, and bundle contents can change the total. Product links follow the selected region where an official localized storefront is available; compatibility and support links may remain global.</p>
   <div id="brand-filters" class="brand-filters" role="group" aria-label="Filter compatible models by brand"></div>
@@ -449,6 +456,7 @@ const compareModelsButton=document.querySelector("#compare-models-button");
 const comparisonMessage=document.querySelector("#comparison-message");
 const comparisonResults=document.querySelector("#comparison-results");
 const comparisonGrid=document.querySelector("#comparison-grid");
+const comparisonVerdictText=document.querySelector("#comparison-verdict-text");
 let selectedPlatform="xbox";
 let selectedPCView="all";
 let selectedBrand="All brands";
@@ -490,30 +498,81 @@ function productPrice(id,item){
  const label=PRICE_LABELS[id]||"US manufacturer price";
  return '<p class="product-price"><strong>Price:</strong> '+display+' <span>('+label+')</span></p>';
 }
-function comparisonPros(entry){
- const item=entry.item,description=item.description.split(/(?<=[.!?])\s+/)[0],pros=[description];
- const pedals=PEDAL_COUNTS[entry.id];
- if(pedals===0)pros.push("A wheelbase-focused setup lets you choose compatible pedals separately.");
- else if(pedals==="2-3")pros.push("The bundle includes a throttle and brake; some bundles also include a clutch.");
- else if(pedals)pros.push("Pedals are included, so the wheel is not a base-only purchase.");
- if(/direct drive/i.test(item.kind))pros.push("Direct drive connects the wheel directly to the motor for detailed force feedback.");
- else if(/belt-driven/i.test(item.kind))pros.push("Belt-driven force feedback offers a smoother feel than entry gear-driven wheels.");
- else if(/force feedback|hybrid-drive|gear-driven/i.test(item.kind))pros.push("Provides motor-driven force feedback.");
- return Array.from(new Set(pros)).slice(0,3);
+function comparisonDriveType(entry){return entry.item.kind.split("·")[0].trim()}
+function comparisonTorque(entry){
+ const match=entry.item.kind.match(/(\d+(?:\.\d+)?(?:\s*\/\s*\d+(?:\.\d+)?)?)\s*Nm/i);
+ if(!match)return null;
+ const values=match[1].split("/").map(function(value){return Number(value.trim())});
+ return {label:match[1].replace(/\s*\/\s*/g," / ")+" Nm",value:values.length===1?values[0]:null};
 }
-function comparisonCons(entry){
- const item=entry.item,description=item.description,cons=[];
- if(PEDAL_COUNTS[entry.id]===0)cons.push("Pedals are sold separately, so budget for a compatible set.");
- else if(PEDAL_COUNTS[entry.id]==="2-3")cons.push("Pedal count and bundle contents vary; check the exact package.");
- if(/gear-driven/i.test(item.kind))cons.push("Gear-driven feedback can be audible and less smooth than belt-driven or direct-drive wheels.");
- if(/direct drive/i.test(item.kind)&&/\b(?:10|11|12|15|17|18|23|25)\s*Nm\b/i.test(item.kind+" "+description))cons.push("Needs a sturdy mount; high torque may call for a dedicated rig.");
- if(/older|legacy|discontinued|used only|used unit|may appear used|used stock/i.test(item.kind+" "+description))cons.push("Older or discontinued hardware may only be available used; condition and support can vary.");
- if(/no true FFB|not (?:offer|motor-driven|a force-feedback)|does not provide motor-driven force feedback|no vibration or force feedback/i.test(item.kind+" "+description))cons.push("Does not provide motor-driven force feedback.");
- if(/^(?:Windows )?PC only\b/i.test(item.fit))cons.push("This version is PC-only and will not work as a console wheel.");
- const caveat=description.split(/(?<=[.!?])\s+/).slice(1).join(" ");
- if(caveat&&/but|not|does not|sold separately|require|need|vary|check|confirm|rather than|only|although|while/i.test(caveat)&&cons.length<3)cons.push(caveat);
- if(!cons.length)cons.push("Check current regional pricing, the exact bundle contents, and game support before buying.");
- return Array.from(new Set(cons)).slice(0,3);
+function comparisonPedals(entry){
+ const count=PEDAL_COUNTS[entry.id];
+ return count===0?"Sold separately":count==="2-3"?"2–3; bundle varies":count?count+" included":"Not listed";
+}
+function comparisonStartingPrice(entry){
+ const prices=USD_PRICES[entry.id];
+ return prices&&prices.length?prices[0]:null;
+}
+function comparisonPros(entry,other){
+ const pros=[],torque=comparisonTorque(entry),otherTorque=comparisonTorque(other);
+ if(torque&&otherTorque&&torque.value!==null&&otherTorque.value!==null&&torque.value>otherTorque.value){
+  pros.push("Higher listed torque: "+torque.label+" vs "+otherTorque.label+".");
+ }
+ const pedals=PEDAL_COUNTS[entry.id],otherPedals=PEDAL_COUNTS[other.id];
+ if(typeof pedals==="number"&&typeof otherPedals==="number"&&pedals>otherPedals)pros.push("Includes "+pedals+" pedals vs "+otherPedals+" on the other model.");
+ else if(typeof pedals==="number"&&otherPedals===0)pros.push("Includes "+pedals+" pedals; the other model sells pedals separately.");
+ else if(typeof pedals==="number"&&otherPedals==="2-3"&&pedals===3)pros.push("Includes 3 pedals; the other model's count varies by bundle.");
+ const price=comparisonStartingPrice(entry),otherPrice=comparisonStartingPrice(other);
+ if(price!==null&&otherPrice!==null&&price<otherPrice)pros.push("Lower listed starting price: "+formatCurrency(price,currencySelect.value)+" vs "+formatCurrency(otherPrice,currencySelect.value)+".");
+ if(!pros.length)pros.push("No listed advantage on torque, pedal count, or starting price.");
+ return pros;
+}
+function comparisonCons(entry,other){
+ const cons=[],torque=comparisonTorque(entry),otherTorque=comparisonTorque(other);
+ if(torque&&otherTorque&&torque.value!==null&&otherTorque.value!==null&&torque.value<otherTorque.value){
+  cons.push("Lower listed torque: "+torque.label+" vs "+otherTorque.label+".");
+ }else if(!torque){
+  cons.push("Manufacturer torque is not listed here, so Nm output cannot be compared.");
+ }
+ const pedals=PEDAL_COUNTS[entry.id],otherPedals=PEDAL_COUNTS[other.id];
+ if(typeof pedals==="number"&&typeof otherPedals==="number"&&pedals<otherPedals)cons.push("Includes "+pedals+" pedals vs "+otherPedals+" on the other model.");
+ else if(pedals===0&&typeof otherPedals==="number")cons.push("Pedals are sold separately; the other model includes "+otherPedals+" pedals.");
+ else if(pedals==="2-3"&&typeof otherPedals==="number"&&otherPedals===3)cons.push("Pedal count varies by bundle; the other listing specifies 3 pedals.");
+ const price=comparisonStartingPrice(entry),otherPrice=comparisonStartingPrice(other);
+ if(price!==null&&otherPrice!==null&&price>otherPrice)cons.push("Higher listed starting price: "+formatCurrency(price,currencySelect.value)+" vs "+formatCurrency(otherPrice,currencySelect.value)+".");
+ if(!cons.length)cons.push("No lower listed figure identified; verify bundle contents and compatibility before buying.");
+ return cons.slice(0,3);
+}
+function comparisonVerdict(entries){
+ const first=entries[0],second=entries[1],firstTorque=comparisonTorque(first),secondTorque=comparisonTorque(second);
+ const firstPrice=comparisonStartingPrice(first),secondPrice=comparisonStartingPrice(second);
+ if(firstTorque&&secondTorque&&firstTorque.value!==null&&secondTorque.value!==null&&firstTorque.value!==secondTorque.value){
+  const stronger=firstTorque.value>secondTorque.value?first:second;
+  const lighter=stronger===first?second:first;
+  const strongTorque=stronger===first?firstTorque:secondTorque;
+  const lightTorque=lighter===first?firstTorque:secondTorque;
+  let verdict="For the higher listed torque, choose "+stronger.item.name+" ("+strongTorque.label+" vs "+lightTorque.label+").";
+  if(firstPrice!==null&&secondPrice!==null&&firstPrice!==secondPrice){
+   const cheaper=firstPrice<secondPrice?first:second;
+   verdict+=" For the lower listed starting price, choose "+cheaper.item.name+" ("+formatCurrency(Math.min(firstPrice,secondPrice),currencySelect.value)+" vs "+formatCurrency(Math.max(firstPrice,secondPrice),currencySelect.value)+").";
+  }
+  const lighterPedals=PEDAL_COUNTS[lighter.id],strongerPedals=PEDAL_COUNTS[stronger.id];
+  if(lighterPedals>strongerPedals)verdict+=" "+lighter.item.name+" also lists more included pedals.";
+  verdict+=" Torque is a hardware rating, not a lap-time prediction; match the wheel to your budget, platform, and mount.";
+  return verdict;
+ }
+ if(firstPrice!==null&&secondPrice!==null&&firstPrice!==secondPrice){
+  const cheaper=firstPrice<secondPrice?first:second,pricier=cheaper===first?second:first;
+  const torqueNote=firstTorque&&secondTorque&&firstTorque.value!==null&&secondTorque.value!==null
+   ?firstTorque.value===secondTorque.value?" Both list "+firstTorque.label+". "
+   :" "
+   :" The torque figures are not both listed as single values. ";
+  return "The listed starting price favors "+cheaper.item.name+" ("+formatCurrency(Math.min(firstPrice,secondPrice),currencySelect.value)+" vs "+formatCurrency(Math.max(firstPrice,secondPrice),currencySelect.value)+")."+torqueNote+"Check pedal inclusion and platform licensing before deciding.";
+ }
+ const torqueNote=firstTorque&&secondTorque
+  ?firstTorque.label===secondTorque.label?"Both list the same torque: "+firstTorque.label+". ":""
+  :"A matching torque figure is not listed for both models. ";
+ return torqueNote+"There is no single spec-based winner from the listed data. Compare drive type, pedal inclusion, platform licensing, and current bundle price.";
 }
 function populateComparisonChoices(products){
  const selectedA=compareModelA.value,selectedB=compareModelB.value;
@@ -532,9 +591,9 @@ function populateComparisonChoices(products){
 }
 function comparisonCard(entry){
  const item=entry.item;
- const pedalCount=PEDAL_COUNTS[entry.id];
- const pedals=pedalCount===0?"Sold separately":pedalCount==="2-3"?"2–3; bundle varies":pedalCount?pedalCount+" included":"Check bundle";
- return '<article class="comparison-card">'+productPhoto(entry)+'<h4>'+escapeText(item.name)+'</h4><p class="comparison-brand">'+escapeText(item.brand)+'</p><div class="comparison-specs" aria-label="Model summary"><div class="comparison-spec"><span>Drive</span><strong>'+escapeText(item.kind)+'</strong></div><div class="comparison-spec"><span>Platform</span><strong>'+escapeText(item.fit)+'</strong></div><div class="comparison-spec"><span>Pedals</span><strong>'+escapeText(pedals)+'</strong></div></div><div class="comparison-price">'+productPrice(entry.id,item)+'</div><div class="comparison-points"><section><h5>Pros</h5><ul>'+comparisonPros(entry).map(function(pro){return "<li>"+escapeText(pro)+"</li>"}).join("")+'</ul></section><section><h5>Cons</h5><ul>'+comparisonCons(entry).map(function(con){return "<li>"+escapeText(con)+"</li>"}).join("")+'</ul></section></div><a class="product-link" href="'+escapeText(regionalProductUrl(item))+'" target="_blank" rel="noopener noreferrer">'+escapeText(item.link)+'</a></article>';
+ const torque=comparisonTorque(entry);
+ const other=entry.id===compareModelA.value?{id:compareModelB.value,item:MODEL_DATA[compareModelB.value]}:{id:compareModelA.value,item:MODEL_DATA[compareModelA.value]};
+ return '<article class="comparison-card">'+productPhoto(entry)+'<h4>'+escapeText(item.name)+'</h4><p class="comparison-brand">'+escapeText(item.brand)+'</p><div class="comparison-specs" aria-label="Model summary"><div class="comparison-spec"><span>Drive</span><strong>'+escapeText(comparisonDriveType(entry))+'</strong></div><div class="comparison-spec"><span>Torque</span><strong>'+escapeText(torque?torque.label:"Not listed")+'</strong></div><div class="comparison-spec"><span>Pedals</span><strong>'+escapeText(comparisonPedals(entry))+'</strong></div><div class="comparison-spec"><span>Platform</span><strong>'+escapeText(item.fit)+'</strong></div></div><div class="comparison-price">'+productPrice(entry.id,item)+'</div><div class="comparison-points"><section><h5>Pros</h5><ul>'+comparisonPros(entry,other).map(function(pro){return "<li>"+escapeText(pro)+"</li>"}).join("")+'</ul></section><section><h5>Trade-offs</h5><ul>'+comparisonCons(entry,other).map(function(con){return "<li>"+escapeText(con)+"</li>"}).join("")+'</ul></section></div><a class="product-link" href="'+escapeText(regionalProductUrl(item))+'" target="_blank" rel="noopener noreferrer">'+escapeText(item.link)+'</a></article>';
 }
 function showComparison(){
  const first=compareModelA.value,second=compareModelB.value;
@@ -549,6 +608,7 @@ function showComparison(){
   return;
  }
  comparisonGrid.innerHTML=entries.map(comparisonCard).join("");
+ comparisonVerdictText.textContent=comparisonVerdict(entries);
  comparisonResults.hidden=false;
  comparisonResults.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"nearest"});
 }
@@ -635,7 +695,9 @@ function renderCatalog(){
  catalogStatus.textContent="Showing "+shown.length+" of "+base.length+" "+label+(selectedBrand==="All brands"?"":" · "+selectedBrand);
  emptyResults.hidden=shown.length>0;
  if(!comparisonResults.hidden){
-  comparisonGrid.innerHTML=[compareModelA.value,compareModelB.value].map(function(id){return {id:id,item:MODEL_DATA[id]}}).map(comparisonCard).join("");
+  const entries=[compareModelA.value,compareModelB.value].map(function(id){return {id:id,item:MODEL_DATA[id]}});
+  comparisonGrid.innerHTML=entries.map(comparisonCard).join("");
+  comparisonVerdictText.textContent=comparisonVerdict(entries);
  }
 }
 platformButtons.forEach(function(button){button.addEventListener("click",function(){setPlatform(button.dataset.platform)})});
