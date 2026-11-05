@@ -62,23 +62,35 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
 .comparison-results{margin:18px 0 26px}
 .comparison-results[hidden]{display:none}
 .comparison-results h3{margin:0 0 12px;font-size:18px;letter-spacing:-.03em}
-.comparison-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.comparison-card{min-width:0;padding:18px;border:1px solid #4a3556;background:linear-gradient(145deg,#14101a,#0d0a10)}
+.comparison-grid{display:grid;gap:14px}
+.comparison-product-grid{display:grid;gap:12px}
+.comparison-panel{position:relative;isolation:isolate;padding:18px;border:1px solid #4a3556;background:linear-gradient(145deg,#14101a,#0d0a10)}
+.comparison-panel::after{position:absolute;z-index:1;top:0;bottom:0;left:50%;width:1px;background:var(--line);content:"";pointer-events:none}
+.comparison-product-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.comparison-card{min-width:0;padding:0 12px 16px}
+.comparison-card:first-child{padding-left:0}
+.comparison-card:last-child{padding-right:0}
 .comparison-card .product-photo-link{width:100%;height:174px;margin:0 0 8px;padding:8px;border:1px solid var(--line);background:#0b080e}
 .comparison-card .product-photo-credit{margin:0 0 12px;text-align:center}
 .comparison-card h4{margin:0;font-size:18px;letter-spacing:-.03em}
 .comparison-brand{margin:5px 0 0;color:var(--purple);font:9px var(--mono);letter-spacing:.08em;text-transform:uppercase}
 .comparison-kind{margin:8px 0 0;color:var(--muted);font-size:11px}
-.comparison-specs{display:grid;margin-top:16px;border-top:1px solid var(--line)}
-.comparison-spec{display:grid;grid-template-columns:74px minmax(0,1fr);gap:8px;padding:9px 0;border-bottom:1px solid var(--line);font-size:10px;line-height:1.55}
-.comparison-spec span{color:var(--subtle);font:8px var(--mono);letter-spacing:.05em;text-transform:uppercase}
-.comparison-spec strong{min-width:0;color:#e5dfea;font-weight:500;overflow-wrap:anywhere}
-.comparison-price{margin:12px 0 0;color:var(--ink);font-size:11px}
-.comparison-price .product-price{margin:0}
-.comparison-points{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.comparison-card h5{margin:18px 0 7px;color:var(--purple);font:9px var(--mono);letter-spacing:.1em;text-transform:uppercase}
-.comparison-card ul{display:grid;gap:6px;margin:0;padding-left:17px;color:var(--muted);font-size:11px;line-height:1.65}
 .comparison-card .product-link{width:auto;max-width:100%;margin-top:14px;padding-top:0;white-space:normal;overflow-wrap:anywhere}
+.comparison-detail{min-width:0;padding:18px 0 0;border-top:1px solid var(--line)}
+.comparison-detail>h4{margin:0 0 12px;text-align:left;font-size:15px;letter-spacing:-.02em}
+.comparison-specs{display:grid;border-top:1px solid var(--line)}
+.comparison-spec{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.comparison-spec>*{min-width:0;padding:10px 12px;border-bottom:1px solid var(--line);font-size:11px;line-height:1.6;overflow-wrap:anywhere}
+.comparison-spec:last-child>*{border-bottom:0}
+.comparison-spec>span{grid-column:1/-1;padding:10px 12px 4px;border-bottom:0;color:var(--subtle);font:8px var(--mono);letter-spacing:.05em;text-transform:uppercase}
+.comparison-spec>strong:nth-child(2),.comparison-spec>div:nth-child(2){border-right:0}
+.comparison-spec>div{color:#e5dfea;font-weight:500}
+.comparison-spec .product-price{margin:0}
+.comparison-spec .product-price strong{color:var(--ink)}
+.comparison-spec-head>*{color:var(--purple);font:9px var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.comparison-spec-head>span{padding-top:12px}
+.comparison-spec-points{display:grid;gap:5px;margin:0;padding-left:16px;color:var(--muted);font-size:10px;line-height:1.55}
+.comparison-spec-pros>span,.comparison-spec-cons>span{color:var(--purple);font-size:9px}
 .comparison-verdict{margin-top:14px;padding:18px 20px;border-left:2px solid var(--purple);background:#120c17}
 .comparison-verdict h4{margin:0 0 7px;color:var(--purple);font:10px var(--mono);letter-spacing:.1em;text-transform:uppercase}
 .comparison-verdict p{margin:0;color:var(--muted);font-size:12px;line-height:1.75}
@@ -142,8 +154,8 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
 .closing{margin-top:58px}
 #pc-view-group[hidden],#empty-results[hidden]{display:none}
 @media(max-width:900px){.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.explain-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:700px){.gear-hero{grid-template-columns:1fr;gap:20px}.platform-panel{padding:22px}.catalog-tools{align-items:stretch;flex-direction:column}.product-search-wrap{min-width:0}.product-grid{grid-template-columns:1fr}.comparison-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.comparison-card{padding:12px}.comparison-card .product-photo-link{height:128px;padding:5px}.comparison-spec{grid-template-columns:1fr;gap:3px;padding:7px 0}.comparison-spec span{font-size:7px}.comparison-points{grid-template-columns:1fr;gap:0}.comparison-card h5{margin-top:14px}.comparison-card ul{font-size:10px;line-height:1.5}.comparison-card h4{font-size:15px}.product-card{min-height:0}.explain-grid,.buyer-grid{grid-template-columns:1fr}.buyer-reminder{grid-template-columns:1fr;gap:10px}.guide-section{padding-top:44px}.catalog-section{padding-top:40px}}
-@media(max-width:380px){.comparison-grid{gap:6px}.comparison-card{padding:9px}.comparison-card .product-photo-link{height:108px;padding:4px}.comparison-card h4{font-size:13px}.comparison-spec{font-size:9px}.comparison-card ul{padding-left:14px;font-size:9px}}
+@media(max-width:700px){.gear-hero{grid-template-columns:1fr;gap:20px}.platform-panel{padding:22px}.catalog-tools{align-items:stretch;flex-direction:column}.product-search-wrap{min-width:0}.product-grid{grid-template-columns:1fr}.comparison-panel{padding:12px}.comparison-product-grid{gap:8px}.comparison-card{padding:0 8px 12px}.comparison-card:first-child{padding-left:0}.comparison-card:last-child{padding-right:0}.comparison-card .product-photo-link{height:128px;padding:5px}.comparison-detail{padding-top:12px}.comparison-spec>*{padding:8px 6px;font-size:9px}.comparison-spec>span{font-size:7px}.comparison-spec-points{font-size:9px}.comparison-card h4{font-size:15px}.product-card{min-height:0}.explain-grid,.buyer-grid{grid-template-columns:1fr}.buyer-reminder{grid-template-columns:1fr;gap:10px}.guide-section{padding-top:44px}.catalog-section{padding-top:40px}}
+@media(max-width:380px){.comparison-panel{padding:9px}.comparison-product-grid{gap:6px}.comparison-card{padding:0 5px 9px}.comparison-card:first-child{padding-left:0}.comparison-card:last-child{padding-right:0}.comparison-card .product-photo-link{height:108px;padding:4px}.comparison-card h4{font-size:13px}.comparison-spec>*{padding:7px 4px;font-size:8px}.comparison-spec>span{font-size:6px}.comparison-spec-points{padding-left:13px;font-size:8px}}
 @media(max-width:380px){.platform-buttons{grid-template-columns:1fr}.platform-button{min-height:42px}}
 @media(prefers-reduced-motion:reduce){.platform-button,.pc-view-button,.brand-filter-button,.product-card{transition:none}}
 </style></head>
@@ -509,6 +521,17 @@ function comparisonPedals(entry){
  const count=PEDAL_COUNTS[entry.id];
  return count===0?"Sold separately":count==="2-3"?"2–3; bundle varies":count?count+" included":"Not listed";
 }
+function comparisonFeedback(entry){
+ if(/TRUEFORCE/i.test(entry.item.description))return comparisonDriveType(entry)+"; TRUEFORCE support is listed for compatible games.";
+ if(/NO TRUE FFB/i.test(entry.item.kind))return "Spring resistance; no motor-driven force feedback.";
+ if(/force feedback/i.test(entry.item.kind))return comparisonDriveType(entry);
+ if(/direct drive/i.test(entry.item.kind))return "Direct-drive system; no separate feedback details are listed.";
+ return "Not listed.";
+}
+function comparisonMounting(entry){
+ const details=entry.item.description.match(/[^.!?]*\b(?:desk|clamp|mount|cockpit|rig)\b[^.!?]*[.!?]?/gi);
+ return details&&details.length?details.join(" ").trim():"Not listed.";
+}
 function comparisonStartingPrice(entry){
  const prices=USD_PRICES[entry.id];
  return prices&&prices.length?prices[0]:null;
@@ -519,12 +542,12 @@ function comparisonPros(entry,other){
   pros.push("Higher listed torque: "+torque.label+" vs "+otherTorque.label+".");
  }
  const pedals=PEDAL_COUNTS[entry.id],otherPedals=PEDAL_COUNTS[other.id];
- if(typeof pedals==="number"&&typeof otherPedals==="number"&&pedals>otherPedals)pros.push("Includes "+pedals+" pedals vs "+otherPedals+" on the other model.");
- else if(typeof pedals==="number"&&otherPedals===0)pros.push("Includes "+pedals+" pedals; the other model sells pedals separately.");
+ if(typeof pedals==="number"&&pedals>0&&otherPedals===0)pros.push("Includes "+pedals+" pedals; the other model sells pedals separately.");
+ else if(typeof pedals==="number"&&typeof otherPedals==="number"&&pedals>otherPedals)pros.push("Includes "+pedals+" pedals vs "+otherPedals+" on the other model.");
  else if(typeof pedals==="number"&&otherPedals==="2-3"&&pedals===3)pros.push("Includes 3 pedals; the other model's count varies by bundle.");
  const price=comparisonStartingPrice(entry),otherPrice=comparisonStartingPrice(other);
  if(price!==null&&otherPrice!==null&&price<otherPrice)pros.push("Lower listed starting price: "+formatCurrency(price,currencySelect.value)+" vs "+formatCurrency(otherPrice,currencySelect.value)+".");
- if(!pros.length)pros.push("No listed advantage on torque, pedal count, or starting price.");
+ if(!pros.length)pros.push("No listed advantage in the selected torque, pedal-count, or starting-price comparison.");
  return pros;
 }
 function comparisonCons(entry,other){
@@ -533,14 +556,16 @@ function comparisonCons(entry,other){
   cons.push("Lower listed torque: "+torque.label+" vs "+otherTorque.label+".");
  }else if(!torque){
   cons.push("Manufacturer torque is not listed here, so Nm output cannot be compared.");
+ }else if(!otherTorque||torque.value===null||otherTorque.value===null){
+  cons.push("Torque is listed as "+torque.label+"; a direct Nm ranking is not available for both models.");
  }
  const pedals=PEDAL_COUNTS[entry.id],otherPedals=PEDAL_COUNTS[other.id];
- if(typeof pedals==="number"&&typeof otherPedals==="number"&&pedals<otherPedals)cons.push("Includes "+pedals+" pedals vs "+otherPedals+" on the other model.");
- else if(pedals===0&&typeof otherPedals==="number")cons.push("Pedals are sold separately; the other model includes "+otherPedals+" pedals.");
+ if(pedals===0&&typeof otherPedals==="number"&&otherPedals>0)cons.push("Pedals are sold separately; the other model includes "+otherPedals+" pedals.");
+ else if(typeof pedals==="number"&&typeof otherPedals==="number"&&pedals<otherPedals)cons.push("Includes "+pedals+" pedals vs "+otherPedals+" on the other model.");
  else if(pedals==="2-3"&&typeof otherPedals==="number"&&otherPedals===3)cons.push("Pedal count varies by bundle; the other listing specifies 3 pedals.");
  const price=comparisonStartingPrice(entry),otherPrice=comparisonStartingPrice(other);
  if(price!==null&&otherPrice!==null&&price>otherPrice)cons.push("Higher listed starting price: "+formatCurrency(price,currencySelect.value)+" vs "+formatCurrency(otherPrice,currencySelect.value)+".");
- if(!cons.length)cons.push("No lower listed figure identified; verify bundle contents and compatibility before buying.");
+ if(!cons.length)cons.push("No lower listed figure identified in torque, pedals, or starting price; verify bundle contents and compatibility.");
  return cons.slice(0,3);
 }
 function comparisonVerdict(entries){
@@ -591,9 +616,31 @@ function populateComparisonChoices(products){
 }
 function comparisonCard(entry){
  const item=entry.item;
- const torque=comparisonTorque(entry);
- const other=entry.id===compareModelA.value?{id:compareModelB.value,item:MODEL_DATA[compareModelB.value]}:{id:compareModelA.value,item:MODEL_DATA[compareModelA.value]};
- return '<article class="comparison-card">'+productPhoto(entry)+'<h4>'+escapeText(item.name)+'</h4><p class="comparison-brand">'+escapeText(item.brand)+'</p><div class="comparison-specs" aria-label="Model summary"><div class="comparison-spec"><span>Drive</span><strong>'+escapeText(comparisonDriveType(entry))+'</strong></div><div class="comparison-spec"><span>Torque</span><strong>'+escapeText(torque?torque.label:"Not listed")+'</strong></div><div class="comparison-spec"><span>Pedals</span><strong>'+escapeText(comparisonPedals(entry))+'</strong></div><div class="comparison-spec"><span>Platform</span><strong>'+escapeText(item.fit)+'</strong></div></div><div class="comparison-price">'+productPrice(entry.id,item)+'</div><div class="comparison-points"><section><h5>Pros</h5><ul>'+comparisonPros(entry,other).map(function(pro){return "<li>"+escapeText(pro)+"</li>"}).join("")+'</ul></section><section><h5>Trade-offs</h5><ul>'+comparisonCons(entry,other).map(function(con){return "<li>"+escapeText(con)+"</li>"}).join("")+'</ul></section></div><a class="product-link" href="'+escapeText(regionalProductUrl(item))+'" target="_blank" rel="noopener noreferrer">'+escapeText(item.link)+'</a></article>';
+ return '<article class="comparison-card">'+productPhoto(entry)+'<h4>'+escapeText(item.name)+'</h4><p class="comparison-brand">'+escapeText(item.brand)+'</p><a class="product-link" href="'+escapeText(regionalProductUrl(item))+'" target="_blank" rel="noopener noreferrer">'+escapeText(item.link)+'</a></article>';
+}
+function comparisonSpecifications(entries){
+ const rows=[
+  {label:"Drive type",values:entries.map(comparisonDriveType)},
+  {label:"Rated torque",values:entries.map(function(entry){const torque=comparisonTorque(entry);return torque?torque.label:"Not listed"})},
+  {label:"Feedback technology",values:entries.map(comparisonFeedback)},
+  {label:"Pedals included",values:entries.map(comparisonPedals)},
+  {label:"Platform compatibility",values:entries.map(function(entry){return entry.item.fit})},
+  {label:"Mounting details",values:entries.map(comparisonMounting)},
+  {label:"Listed bundle details",values:entries.map(function(entry){return entry.item.description})},
+  {label:"Current price",values:entries.map(function(entry){return productPrice(entry.id,entry.item)}),html:true},
+  {label:"Pros",values:entries.map(function(entry,index){return comparisonPros(entry,entries[index===0?1:0])}),list:true},
+  {label:"Cons",values:entries.map(function(entry,index){return comparisonCons(entry,entries[index===0?1:0])}),list:true}
+ ];
+ let html='<section class="comparison-detail" aria-labelledby="comparison-specs-title"><h4 id="comparison-specs-title">More specifications</h4><div class="comparison-specs" role="table" aria-label="Wheel specifications"><div class="comparison-spec comparison-spec-head" role="row"><span role="columnheader">Specification</span>'+entries.map(function(entry){return '<strong role="columnheader">'+escapeText(entry.item.name)+'</strong>'}).join("")+'</div>';
+ rows.forEach(function(row){
+  const rowClass=row.list?(row.label==="Pros"?" comparison-spec-pros":" comparison-spec-cons"):"";
+  html+='<div class="comparison-spec'+rowClass+'" role="row"><span role="rowheader">'+escapeText(row.label)+'</span>'+row.values.map(function(value){const content=row.list?'<ul class="comparison-spec-points">'+value.map(function(point){return "<li>"+escapeText(point)+"</li>"}).join("")+'</ul>':row.html?value:escapeText(value||"Not listed");return '<div role="cell">'+content+'</div>'}).join("")+'</div>';
+ });
+ html+='</div></section>';
+ return html;
+}
+function comparisonMarkup(entries){
+ return '<div class="comparison-panel"><div class="comparison-product-grid">'+entries.map(comparisonCard).join("")+'</div>'+comparisonSpecifications(entries)+'</div>';
 }
 function showComparison(){
  const first=compareModelA.value,second=compareModelB.value;
@@ -607,7 +654,7 @@ function showComparison(){
   comparisonResults.hidden=true;
   return;
  }
- comparisonGrid.innerHTML=entries.map(comparisonCard).join("");
+ comparisonGrid.innerHTML=comparisonMarkup(entries);
  comparisonVerdictText.textContent=comparisonVerdict(entries);
  comparisonResults.hidden=false;
  comparisonResults.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"nearest"});
@@ -696,7 +743,7 @@ function renderCatalog(){
  emptyResults.hidden=shown.length>0;
  if(!comparisonResults.hidden){
   const entries=[compareModelA.value,compareModelB.value].map(function(id){return {id:id,item:MODEL_DATA[id]}});
-  comparisonGrid.innerHTML=entries.map(comparisonCard).join("");
+  comparisonGrid.innerHTML=comparisonMarkup(entries);
   comparisonVerdictText.textContent=comparisonVerdict(entries);
  }
 }
