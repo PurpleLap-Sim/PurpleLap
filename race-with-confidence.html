@@ -51,14 +51,13 @@
     .section-head h2 { margin:0; font-size:clamp(32px,4vw,48px); letter-spacing:-.06em; }
     .section-head p { max-width:370px; margin:0; color:var(--muted); font-size:12px; line-height:1.75; }
     .guide-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
-    .guide-card { min-height:220px; padding:23px; border:1px solid var(--line); background:var(--panel); }
+    .guide-card { min-height:220px; padding:23px; }
     .card-label { color:var(--purple); font:10px var(--mono); letter-spacing:.1em; }
     .guide-card h3 { margin:25px 0 10px; font-size:19px; letter-spacing:-.03em; }
     .guide-card p { margin:0; color:var(--muted); font-size:12px; line-height:1.8; }
     .pass-section { margin-top:58px; }
-    .pass-grid { display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--line); background:#0d0a10; }
-    .pass-step { min-height:176px; padding:23px; border-right:1px solid var(--line); }
-    .pass-step:last-child { border-right:0; }
+    .pass-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .pass-step { min-height:176px; padding:23px; }
     .pass-step span { color:var(--purple); font:10px var(--mono); letter-spacing:.1em; }
     .pass-step h3 { margin:22px 0 9px; font-size:17px; }
     .pass-step p { margin:0; color:var(--muted); font-size:11px; line-height:1.8; }
@@ -107,8 +106,7 @@
       .guide-grid,.pass-grid { grid-template-columns:1fr; }
       .guide-card { min-height:0; }
       .guide-card h3 { margin-top:16px; }
-      .pass-step { min-height:0; border-right:0; border-bottom:1px solid var(--line); }
-      .pass-step:last-child { border-bottom:0; }
+      .pass-step { min-height:0; }
       .pass-step h3 { margin-top:14px; }
       .incident { grid-template-columns:1fr; gap:13px; margin-top:24px; padding:22px; }
       .practice { grid-template-columns:1fr; gap:17px; margin-top:18px; padding:22px; }
