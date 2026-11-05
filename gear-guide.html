@@ -64,12 +64,21 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
 .comparison-results h3{margin:0 0 12px;font-size:18px;letter-spacing:-.03em}
 .comparison-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .comparison-card{min-width:0;padding:18px;border:1px solid #4a3556;background:linear-gradient(145deg,#14101a,#0d0a10)}
+.comparison-card .product-photo-link{width:100%;height:174px;margin:0 0 8px;padding:8px;border:1px solid var(--line);background:#0b080e}
+.comparison-card .product-photo-credit{margin:0 0 12px;text-align:center}
 .comparison-card h4{margin:0;font-size:18px;letter-spacing:-.03em}
 .comparison-brand{margin:5px 0 0;color:var(--purple);font:9px var(--mono);letter-spacing:.08em;text-transform:uppercase}
-.comparison-kind{margin:12px 0 0;color:var(--muted);font-size:11px}
+.comparison-kind{margin:8px 0 0;color:var(--muted);font-size:11px}
+.comparison-specs{display:grid;margin-top:16px;border-top:1px solid var(--line)}
+.comparison-spec{display:grid;grid-template-columns:74px minmax(0,1fr);gap:8px;padding:9px 0;border-bottom:1px solid var(--line);font-size:10px;line-height:1.55}
+.comparison-spec span{color:var(--subtle);font:8px var(--mono);letter-spacing:.05em;text-transform:uppercase}
+.comparison-spec strong{min-width:0;color:#e5dfea;font-weight:500;overflow-wrap:anywhere}
+.comparison-price{margin:12px 0 0;color:var(--ink);font-size:11px}
+.comparison-price .product-price{margin:0}
+.comparison-points{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .comparison-card h5{margin:18px 0 7px;color:var(--purple);font:9px var(--mono);letter-spacing:.1em;text-transform:uppercase}
 .comparison-card ul{display:grid;gap:6px;margin:0;padding-left:17px;color:var(--muted);font-size:11px;line-height:1.65}
-.comparison-card .product-link{margin-top:14px;padding-top:0}
+.comparison-card .product-link{width:auto;max-width:100%;margin-top:14px;padding-top:0;white-space:normal;overflow-wrap:anywhere}
 .price-note{margin:-3px 0 16px;color:var(--subtle);font:9px var(--mono);line-height:1.7}
 .brand-filters{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 17px}
 .brand-filter-button{min-height:35px;padding:0 12px;font-size:9px}
@@ -130,7 +139,8 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
 .closing{margin-top:58px}
 #pc-view-group[hidden],#empty-results[hidden]{display:none}
 @media(max-width:900px){.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.explain-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:700px){.gear-hero{grid-template-columns:1fr;gap:20px}.platform-panel{padding:22px}.catalog-tools{align-items:stretch;flex-direction:column}.product-search-wrap{min-width:0}.product-grid,.comparison-grid{grid-template-columns:1fr}.product-card{min-height:0}.explain-grid,.buyer-grid{grid-template-columns:1fr}.buyer-reminder{grid-template-columns:1fr;gap:10px}.guide-section{padding-top:44px}.catalog-section{padding-top:40px}}
+@media(max-width:700px){.gear-hero{grid-template-columns:1fr;gap:20px}.platform-panel{padding:22px}.catalog-tools{align-items:stretch;flex-direction:column}.product-search-wrap{min-width:0}.product-grid{grid-template-columns:1fr}.comparison-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.comparison-card{padding:12px}.comparison-card .product-photo-link{height:128px;padding:5px}.comparison-spec{grid-template-columns:1fr;gap:3px;padding:7px 0}.comparison-spec span{font-size:7px}.comparison-points{grid-template-columns:1fr;gap:0}.comparison-card h5{margin-top:14px}.comparison-card ul{font-size:10px;line-height:1.5}.comparison-card h4{font-size:15px}.product-card{min-height:0}.explain-grid,.buyer-grid{grid-template-columns:1fr}.buyer-reminder{grid-template-columns:1fr;gap:10px}.guide-section{padding-top:44px}.catalog-section{padding-top:40px}}
+@media(max-width:380px){.comparison-grid{gap:6px}.comparison-card{padding:9px}.comparison-card .product-photo-link{height:108px;padding:4px}.comparison-card h4{font-size:13px}.comparison-spec{font-size:9px}.comparison-card ul{padding-left:14px;font-size:9px}}
 @media(max-width:380px){.platform-buttons{grid-template-columns:1fr}.platform-button{min-height:42px}}
 @media(prefers-reduced-motion:reduce){.platform-button,.pc-view-button,.brand-filter-button,.product-card{transition:none}}
 </style></head>
@@ -522,7 +532,9 @@ function populateComparisonChoices(products){
 }
 function comparisonCard(entry){
  const item=entry.item;
- return '<article class="comparison-card"><h4>'+escapeText(item.name)+'</h4><p class="comparison-brand">'+escapeText(item.brand)+'</p><p class="comparison-kind">'+escapeText(item.kind)+'</p>'+productPrice(entry.id,item)+'<h5>Pros</h5><ul>'+comparisonPros(entry).map(function(pro){return "<li>"+escapeText(pro)+"</li>"}).join("")+'</ul><h5>Cons</h5><ul>'+comparisonCons(entry).map(function(con){return "<li>"+escapeText(con)+"</li>"}).join("")+'</ul><a class="product-link" href="'+escapeText(regionalProductUrl(item))+'" target="_blank" rel="noopener noreferrer">'+escapeText(item.link)+'</a></article>';
+ const pedalCount=PEDAL_COUNTS[entry.id];
+ const pedals=pedalCount===0?"Sold separately":pedalCount==="2-3"?"2–3; bundle varies":pedalCount?pedalCount+" included":"Check bundle";
+ return '<article class="comparison-card">'+productPhoto(entry)+'<h4>'+escapeText(item.name)+'</h4><p class="comparison-brand">'+escapeText(item.brand)+'</p><div class="comparison-specs" aria-label="Model summary"><div class="comparison-spec"><span>Drive</span><strong>'+escapeText(item.kind)+'</strong></div><div class="comparison-spec"><span>Platform</span><strong>'+escapeText(item.fit)+'</strong></div><div class="comparison-spec"><span>Pedals</span><strong>'+escapeText(pedals)+'</strong></div></div><div class="comparison-price">'+productPrice(entry.id,item)+'</div><div class="comparison-points"><section><h5>Pros</h5><ul>'+comparisonPros(entry).map(function(pro){return "<li>"+escapeText(pro)+"</li>"}).join("")+'</ul></section><section><h5>Cons</h5><ul>'+comparisonCons(entry).map(function(con){return "<li>"+escapeText(con)+"</li>"}).join("")+'</ul></section></div><a class="product-link" href="'+escapeText(regionalProductUrl(item))+'" target="_blank" rel="noopener noreferrer">'+escapeText(item.link)+'</a></article>';
 }
 function showComparison(){
  const first=compareModelA.value,second=compareModelB.value;
