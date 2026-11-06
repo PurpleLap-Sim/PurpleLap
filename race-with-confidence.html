@@ -61,6 +61,15 @@
     .pass-step span { color:var(--purple); font:10px var(--mono); letter-spacing:.1em; }
     .pass-step h3 { margin:22px 0 9px; font-size:17px; }
     .pass-step p { margin:0; color:var(--muted); font-size:11px; line-height:1.8; }
+    .race-tips { margin-top:48px; padding:25px 28px; border:1px solid var(--line); background:linear-gradient(120deg,#15101a,#0c090e); }
+    .tips-heading { display:flex; align-items:baseline; justify-content:space-between; gap:18px; padding-bottom:16px; border-bottom:1px solid var(--line); }
+    .tips-heading .eyebrow { margin:0; }
+    .tips-heading h2 { margin:0; font-size:22px; letter-spacing:-.04em; }
+    .tips-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; padding-top:19px; }
+    .race-tip { padding-left:14px; border-left:1px solid #4a2a5c; }
+    .race-tip span { color:var(--purple); font:9px var(--mono); letter-spacing:.08em; }
+    .race-tip p { margin:8px 0 0; color:var(--muted); font-size:11px; line-height:1.75; }
+    .race-tip strong { color:var(--ink); font-weight:600; }
     .incident { display:grid; grid-template-columns:.75fr 1.25fr; gap:32px; align-items:start; margin-top:28px; padding:27px 30px; border-left:2px solid var(--purple); background:#0c0911; }
     .incident .eyebrow { margin-bottom:13px; }
     .incident h2 { margin:0; font-size:clamp(25px,3vw,34px); letter-spacing:-.05em; }
@@ -104,6 +113,9 @@
       .section-head { display:block; }
       .section-head p { margin-top:13px; }
       .guide-grid,.pass-grid { grid-template-columns:1fr; }
+      .tips-heading { align-items:flex-start; flex-direction:column; gap:8px; }
+      .tips-grid { grid-template-columns:1fr; gap:15px; }
+      .race-tips { padding:21px; }
       .guide-card { min-height:0; }
       .guide-card h3 { margin-top:16px; }
       .pass-step { min-height:0; }
@@ -177,6 +189,14 @@
         <article class="pass-step"><span>03 / COMPLETE</span><h3>Finish the corner</h3><p>Stay in control, give space until clear, then return to the racing line smoothly. Skip the move if there isn’t room to finish it.</p></article>
       </div>
     </section>
+    <aside class="race-tips" aria-labelledby="tips-title">
+      <div class="tips-heading"><p class="eyebrow">QUICK RACECRAFT NOTES</p><h2 id="tips-title">Tips &amp; tricks</h2></div>
+      <div class="tips-grid">
+        <div class="race-tip"><span>01 / BEFORE THE GREEN</span><p><strong>Set up your view.</strong> Check your mirrors, relative display, and spotter volume before the race gets busy.</p></div>
+        <div class="race-tip"><span>02 / IN TRAFFIC</span><p><strong>Leave a little margin.</strong> Brake earlier and give yourself room to react when you’re following a pack.</p></div>
+        <div class="race-tip"><span>03 / AFTER A MISTAKE</span><p><strong>Reset, don’t rush.</strong> Take a breath, rejoin safely, and focus on the next corner rather than winning back time at once.</p></div>
+      </div>
+    </aside>
 
     <aside class="incident" aria-labelledby="incident-title">
       <div><p class="eyebrow">WHEN THINGS GO WRONG</p><h2 id="incident-title">Stay calm. Stay clear.</h2></div>
