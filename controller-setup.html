@@ -79,10 +79,12 @@
   </main>
   <script>
     const setupReturnTarget = new URLSearchParams(window.location.search).get('return');
-    const setupReturnAnchor = setupReturnTarget === 'setup-row' ? 'controller-setup-row' : 'start-here';
+    const setupReturnHref = setupReturnTarget === 'setup-row'
+      ? 'make-your-setup-yours.html'
+      : 'make-your-setup-yours.html#start-here';
 
     document.querySelectorAll('.setup-return-link').forEach((link) => {
-      link.href = `make-your-setup-yours.html#${setupReturnAnchor}`;
+      link.href = setupReturnHref;
     });
   </script>
 </body>
