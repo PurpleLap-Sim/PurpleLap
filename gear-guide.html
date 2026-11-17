@@ -3,8 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0e0a11">
 <meta name="description" content="A practical sim racing gear guide with beginner wheel options, platform compatibility, and what to check before you buy.">
-<link rel="icon" type="image/svg+xml" href="purplelap-favicon.svg?v=2">
-<link rel="icon" type="image/png" sizes="800x800" href="purplelap-favicon.png?v=2">
+<link rel="icon" type="image/svg+xml" href="purplelap-favicon.svg?v=3">
 <link rel="stylesheet" href="site-ui.css">
 <script src="back-navigation.js?v=20261117-1" defer></script>
 <script src="site-ui.js" defer></script>
@@ -73,7 +72,6 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
 .comparison-card:first-child{padding-left:0}
 .comparison-card:last-child{padding-right:0}
 .comparison-card .product-photo-link{width:100%;height:174px;margin:0 0 8px;padding:8px;border:1px solid var(--line);background:#0b080e}
-.comparison-card .product-photo-credit{margin:0 0 12px;text-align:center}
 .comparison-card h4{margin:0;font-size:18px;letter-spacing:-.03em}
 .comparison-brand{margin:5px 0 0;color:var(--purple);font:9px var(--mono);letter-spacing:.08em;text-transform:uppercase}
 .comparison-kind{margin:8px 0 0;color:var(--muted);font-size:11px}
@@ -107,7 +105,6 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
 .product-photo-list{display:grid;width:100%;height:100%;min-width:0;min-height:0;grid-template-columns:1fr;gap:8px;overflow:hidden}
 .product-photo-list.is-pair{grid-template-columns:repeat(2,minmax(0,1fr))}
 .product-photo{display:block;width:100%;height:100%;min-width:0;min-height:0;object-fit:contain;background:transparent}
-.product-photo-credit{display:block;margin:-11px 0 15px;color:var(--subtle);font:8px var(--mono);letter-spacing:.07em}
 .product-card-head{display:flex;justify-content:space-between;align-items:start;gap:10px;margin-bottom:17px}
 .product-brand,.product-kind,.product-fit-label{font:9px var(--mono);letter-spacing:.08em;text-transform:uppercase}
 .product-brand{color:var(--purple)}
@@ -116,6 +113,8 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
 .product-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}
 .product-card .product-fit{margin-top:12px;padding-top:11px;border-top:1px solid rgba(154,128,174,.18);color:#c5bacd;font-size:11px}
 .product-card .product-fit strong{color:var(--ink)}
+.product-card .product-wheel{margin-top:9px;color:#c5bacd;font-size:11px}
+.product-card .product-wheel strong{color:var(--ink)}
 .product-card .product-price{margin-top:10px;color:#e3d8e8;font-size:11px}
 .product-card .product-price strong{color:var(--ink)}
 .product-card .product-price.is-variable{color:var(--muted)}
@@ -300,7 +299,9 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
 </main>
 <script src="comparison-verdict.js?v=70be979"></script>
 <script src="comparison-options.js"></script>
+<script src="wheel-shapes.js"></script>
 <script>
+const wheelShapeLabel=window.PurpleLapWheelShapes.wheelShapeLabel;
 const MODEL_DATA = {
 "g920":{brand:"Logitech",name:"G920 Driving Force",kind:"Gear-driven force feedback · 2.3 Nm",description:"A familiar all-in-one wheel and pedal set with dual-motor force feedback. A sensible first wheel if you want straightforward controls and a large used-market footprint.",fit:"Xbox One / Series X|S and Windows PC. This is not the PlayStation G29.",verdict:{capability:"Logitech describes dual-motor force feedback with helical anti-backlash gearing.",capabilitySummary:"dual-motor geared force feedback",upgradeability:"Logitech's 2015 announcement lists the Driving Force Shifter as an optional add-on, but does not document an interchangeable wheel rim or component-by-component wheelbase and pedal upgrade route.",upgradeabilitySummary:"optional shifter; no modular rim/base path documented",lifecycle:"Announced by Logitech in June 2015, with retail availability expected in October 2015.",lifecycleSummary:"announced in 2015",sourceUrl:"https://news.logitech.com/press-releases/news-details/2015/logitech-g-introduces-first-force-feedback-racing-wheel-for-xbox-one-and-pc/default.aspx",sourceLabel:"Logitech G920 2015 announcement"},url:"https://www.logitechg.com/en-us/products/driving/driving-force-racing-wheel.html",link:"Official G920 details ↗"},
 "g29":{brand:"Logitech",name:"G29 Driving Force",kind:"Gear-driven force feedback · 2.3 Nm",description:"The PlayStation counterpart to the G920, with force feedback, paddle shifters, and three pedals in the usual bundle.",fit:"PlayStation 5 / 4 and Windows PC. This is not the Xbox G920.",url:"https://www.logitechg.com/en-us/products/driving/driving-force-racing-wheel.html",link:"Official G29 details ↗"},
@@ -610,6 +611,7 @@ function comparisonCard(entry){
 function comparisonSpecifications(entries){
  const rows=[
   {label:"Rated torque",values:entries.map(function(entry){const torque=comparisonTorque(entry);return torque?torque.label:"Not listed"})},
+  {label:"Included wheel shape",values:entries.map(function(entry){return wheelShapeLabel(entry.id)})},
   {label:"Feedback details",values:entries.map(comparisonFeedback)},
   {label:"Pedals included",values:entries.map(comparisonPedals)},
   {label:"Platform compatibility",values:entries.map(function(entry){return entry.item.fit})},
@@ -672,7 +674,7 @@ function productPhoto(entry){
   const subject=entry.id==="pc-tmx-t150"?(index===0?"Thrustmaster TMX":"Thrustmaster T150"):entry.id==="pc-g29"?(index===0?"Logitech G29":"Logitech G920"):entry.id==="pc-g923"?(index===0?"Logitech G923 PlayStation version":"Logitech G923 Xbox version"):entry.id==="pc-t128"?(index===0?"Thrustmaster T128 PlayStation version":"Thrustmaster T128 Xbox version"):entry.id==="pc-t248"?(index===0?"Thrustmaster T248 PlayStation version":"Thrustmaster T248 Xbox version"):entry.id==="pc-t598"?(index===0?"Thrustmaster T598 PlayStation version":"Thrustmaster T598 Xbox version"):entry.id==="fanatec-podium"?"Fanatec Podium series wheelbase":item.brand+" "+item.name;
   return '<img class="product-photo" src="'+escapeText(url)+'" alt="'+escapeText(subject+" product photo")+'" loading="lazy" decoding="async">';
  }).join("");
- return '<a class="product-photo-link" href="'+escapeText(regionalProductUrl(item))+'" target="_blank" rel="noopener noreferrer" aria-label="View the manufacturer details for '+escapeText(item.brand+" "+item.name)+'"><span class="product-photo-list'+(photos.length>1?" is-pair":"")+'">'+images+'</span></a><span class="product-photo-credit">MANUFACTURER PRODUCT PHOTO</span>';
+ return '<a class="product-photo-link" href="'+escapeText(regionalProductUrl(item))+'" target="_blank" rel="noopener noreferrer" aria-label="View the manufacturer details for '+escapeText(item.brand+" "+item.name)+'"><span class="product-photo-list'+(photos.length>1?" is-pair":"")+'">'+images+'</span></a>';
 }
 function setPlatform(name){
  selectedPlatform=name;
@@ -724,7 +726,7 @@ function renderCatalog(){
   const card=document.createElement("article");
   card.className="product-card"+(selectedPlatform==="pc"&&selectedPCView==="budget"?" budget-card":"");
   card.id="wheel-"+entry.id;
-  card.innerHTML=productPhoto(entry)+'<div class="product-card-head"><span class="product-brand">'+escapeText(item.brand)+'</span><span class="product-kind">'+escapeText(item.kind)+'</span></div><h3>'+escapeText(item.name)+'</h3><p>'+escapeText(item.description)+'</p><p class="product-fit"><strong>Compatibility:</strong> '+escapeText(item.fit)+'</p>'+productPrice(entry.id,item)+pedalIndicator(entry.id)+'<a class="product-link" href="'+escapeText(regionalProductUrl(item))+'" target="_blank" rel="noopener noreferrer">'+escapeText(item.link)+'</a>';
+  card.innerHTML=productPhoto(entry)+'<div class="product-card-head"><span class="product-brand">'+escapeText(item.brand)+'</span><span class="product-kind">'+escapeText(item.kind)+'</span></div><h3>'+escapeText(item.name)+'</h3><p>'+escapeText(item.description)+'</p><p class="product-fit"><strong>Compatibility:</strong> '+escapeText(item.fit)+'</p><p class="product-wheel"><strong>Included wheel:</strong> '+escapeText(wheelShapeLabel(entry.id))+'</p>'+productPrice(entry.id,item)+pedalIndicator(entry.id)+'<a class="product-link" href="'+escapeText(regionalProductUrl(item))+'" target="_blank" rel="noopener noreferrer">'+escapeText(item.link)+'</a>';
   productGrid.appendChild(card);
  });
  const label=selectedPlatform==="pc"?(selectedPCView==="budget"?"budget PC picks":"PC picks"):selectedPlatform==="xbox"?"Xbox options":"PlayStation options";

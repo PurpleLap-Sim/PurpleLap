@@ -17,6 +17,15 @@
     footerMessage.append(copyright);
   }
 
+  if (!footer.querySelector('.photo-credits-link')) {
+    const footerMessage = footer.querySelector('span') || footer;
+    const photoCreditsLink = document.createElement('a');
+    photoCreditsLink.className = 'photo-credits-link';
+    photoCreditsLink.href = 'photo-credits.html';
+    photoCreditsLink.textContent = 'Photo credits';
+    footerMessage.append(photoCreditsLink);
+  }
+
   const setupStartLink = document.querySelector('[data-scroll-without-hash]');
   if (setupStartLink) {
     window.history.scrollRestoration = 'manual';

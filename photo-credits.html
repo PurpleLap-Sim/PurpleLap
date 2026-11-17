@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e0a11">
+  <meta name="description" content="Photo and image credits for PurpleLap.">
+  <link rel="icon" type="image/svg+xml" href="purplelap-favicon.svg?v=3">
+  <link rel="stylesheet" href="site-ui.css">
+  <script src="site-ui.js" defer></script>
+  <script src="photo-credits.js" defer></script>
+  <title>Photo credits — PurpleLap</title>
+  <style>
+    :root{color-scheme:dark;--bg:#08070a;--ink:#f5f1f7;--muted:#a39ba9;--subtle:#89818f;--line:#36273f;--purple:#A020F0;--mono:ui-monospace,SFMono-Regular,Menlo,monospace;--sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans)}
+    a{color:inherit;text-decoration:none}
+    .shell{width:min(1040px,calc(100% - 40px));margin-inline:auto}
+    .site-header{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+    .brand img{display:block;width:205px;max-height:65px;object-fit:contain}
+    .back-link{display:inline-flex;align-items:center;min-height:42px;padding:0 14px;border:1px solid var(--line);color:var(--muted);font:10px var(--mono);letter-spacing:.06em}
+    .back-link:hover,.credit-list a:hover{color:#C77DFF}
+    main{padding:58px 0 84px}
+    h1{margin:0;font-size:clamp(42px,7vw,72px);letter-spacing:-.07em}
+    h1 em{color:var(--purple);font-family:Georgia,serif;font-weight:400}
+    main>p{max-width:680px;margin:18px 0 44px;color:var(--muted);font-size:13px;line-height:1.8}
+    h2{margin:38px 0 14px;font-size:19px}
+    .credit-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0;padding:0;list-style:none}
+    .credit-list li{min-width:0;padding:14px;border:1px solid var(--line);background:#100d13;color:var(--muted);font-size:11px;line-height:1.7;overflow-wrap:anywhere}
+    .credit-list a{color:var(--purple);text-decoration:underline;text-underline-offset:2px}
+    .site-footer{display:flex;justify-content:space-between;gap:18px;padding:24px 0;border-top:1px solid var(--line);color:var(--subtle);font-size:10px}
+    @media(max-width:680px){.shell{width:calc(100% - 32px)}.site-header{height:68px}.brand img{width:165px}.back-link{min-height:38px;padding-inline:9px;font-size:9px}main{padding-top:42px}.credit-list{grid-template-columns:1fr}.site-footer{flex-direction:column}}
+  </style>
+</head>
+<body>
+  <header class="site-header shell">
+    <a class="brand" href="index.html#top" aria-label="PurpleLap home"><img src="purplelap-logo.png" alt="PurpleLap — Learn to Sim Race"></a>
+    <a class="back-link" href="index.html">BACK TO PURPLELAP</a>
+  </header>
+  <main class="shell">
+    <h1>Photo <em>credits.</em></h1>
+    <p>Click an image title to open the image in a new tab. Creator and license details are included where they were recorded; “not recorded” means the existing project files did not include source attribution.</p>
+    <section aria-labelledby="photographs-title">
+      <h2 id="photographs-title">Photographs</h2>
+      <ul class="credit-list" id="photograph-credits"></ul>
+    </section>
+    <section aria-labelledby="products-title">
+      <h2 id="products-title">Wheel product images</h2>
+      <ul class="credit-list" id="product-photo-credits"></ul>
+    </section>
+    <section aria-labelledby="artwork-title">
+      <h2 id="artwork-title">Site artwork</h2>
+      <ul class="credit-list" id="site-artwork-credits"></ul>
+    </section>
+  </main>
+  <footer class="site-footer shell"><span>Made for the next generation of racers.</span><a href="all-guides.html">ALL GUIDES</a></footer>
+</body>
+</html>
