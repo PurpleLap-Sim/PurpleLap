@@ -21,6 +21,21 @@
   margin-top: 6px;
 }
 
+.photo-credits-link {
+  display: block;
+  width: fit-content;
+  margin-top: 6px;
+  color: inherit;
+  font-size: 9px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.photo-credits-link:hover,
+.photo-credits-link:focus-visible {
+  color: #C77DFF;
+}
+
 .site-back-top {
   position: fixed;
   z-index: 50;
