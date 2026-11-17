@@ -19,10 +19,6 @@
    if(type==="no motor-driven force feedback")return false;
    return null;
   };
-  const torqueText=function(entry){
-   const torque=facts.getTorque(entry);
-   return torque?torque.label:"torque not listed";
-  };
   const pedalText=function(entry){
    const count=facts.getPedalCount(entry);
    if(count===0)return "pedals sold separately";
@@ -49,45 +45,102 @@
    if(/newer|current-generation/i.test(text))return "newer model";
    return "launch date not listed";
   };
+  const hasModularUpgrades=function(entry){
+   const verdict=entry.item.verdict||{},text=verdict.upgradeabilitySummary||entry.item.description;
+   if(/\bno\b[^;,.]*\b(?:modular|upgrade|upgrades|interchangeable|detachable|quick[- ]release)\b[^;,.]*\b(?:path|upgrade|upgrades|rim|wheelbase|components?)\b/i.test(text))return false;
+   return /quick[- ]release|wheel swaps|detachable[- ]rim|detachable (?:wheel|rim)|interchangeable|modular|component-by-component|optional (?:clutch|pedal)[^;,.]*(?:kit|upgrade|add-on)/i.test(text);
+  };
+  const lifecycleNote=function(entry){
+   const status=lifecycleSummary(entry);
+   if(/^announced in \d{4}$/.test(status))return "it was "+status;
+   if(/^(?:discontinued|legacy|older model|upcoming model|newer model)$/.test(status))return "it is "+status;
+   return null;
+  };
+  const upgradeReason=function(entry){
+   const verdict=entry.item.verdict||{},text=verdict.upgradeabilitySummary||entry.item.description;
+   const wheel=/quick[- ]release|wheel swaps|detachable[- ]rim|detachable (?:wheel|rim)|interchangeable/i.test(text);
+   const pedals=/pedal[^;,.]*(?:optional|upgrade|add-on|kit)|(?:optional|upgrade|add-on|kit)[^;,.]*pedal|clutch|performance kit/i.test(text);
+   if(wheel&&pedals&&/quick[- ]release|wheel swaps/i.test(text))return "quick-release wheel swaps and pedal add-ons";
+   if(wheel&&pedals)return "documented wheel and pedal upgrades";
+   if(wheel)return "a detachable-rim upgrade path";
+   if(pedals)return "documented pedal upgrades";
+   return "documented component-upgrade options";
+  };
   const firstPrice=facts.getPrice(first),secondPrice=facts.getPrice(second);
   const firstTorque=facts.getTorque(first),secondTorque=facts.getTorque(second);
-  const capabilityNotes=[first,second].filter(function(entry){return entry.item.verdict&&entry.item.verdict.capabilitySummary}).map(function(entry){return entry.item.name+": "+entry.item.verdict.capabilitySummary}).join("; ");
-  const capabilitySentence="Drive: "+first.item.name+" is "+driveType(first)+" ("+torqueText(first)+"), while "+second.item.name+" is "+driveType(second)+" ("+torqueText(second)+")"+(capabilityNotes?"; "+capabilityNotes:"")+".";
-  let valueSentence;
-  if(firstPrice!==null&&secondPrice!==null){
-   const firstPedals=pedalText(first),secondPedals=pedalText(second);
-   if(firstPrice===secondPrice)valueSentence="Value: Both start at "+facts.formatPrice(firstPrice)+"; "+first.item.name+" has "+firstPedals+" and "+second.item.name+" has "+secondPedals+".";
-   else{
-    const cheaper=firstPrice<secondPrice?first:second,pricier=cheaper===first?second:first;
-    const cheaperPrice=Math.min(firstPrice,secondPrice),pricierPrice=Math.max(firstPrice,secondPrice);
-    valueSentence="Value: "+cheaper.item.name+" starts at "+facts.formatPrice(cheaperPrice)+", "+facts.formatPrice(Math.abs(firstPrice-secondPrice))+" less than "+pricier.item.name+" ("+facts.formatPrice(pricierPrice)+"), and includes "+pedalText(cheaper)+" versus "+pedalText(pricier)+".";
-   }
-  }else valueSentence="Value: Current prices are not listed for both; compare complete bundle costs and included pedals ("+first.item.name+": "+pedalText(first)+"; "+second.item.name+": "+pedalText(second)+").";
-  const upgradeSentence="Upgrades/age: "+first.item.name+" — "+upgradeSummary(first)+", "+lifecycleSummary(first)+"; "+second.item.name+" — "+upgradeSummary(second)+", "+lifecycleSummary(second)+".";
   const directFirst=/direct drive/i.test(driveType(first)),directSecond=/direct drive/i.test(driveType(second));
   const higherTorque=firstTorque&&secondTorque&&firstTorque.value!==null&&secondTorque.value!==null&&firstTorque.value!==secondTorque.value
    ?firstTorque.value>secondTorque.value?first:second:null;
-  let capabilityPick=null,capabilityReason="";
+  let capabilityPick=null;
   if(directFirst!==directSecond){
    capabilityPick=directFirst?first:second;
-   capabilityReason="direct drive";
   }else if(hasMotorFeedback(first)!==null&&hasMotorFeedback(second)!==null&&hasMotorFeedback(first)!==hasMotorFeedback(second)){
    capabilityPick=hasMotorFeedback(first)?first:second;
-   capabilityReason="motor-driven force feedback";
   }else if(higherTorque){
    capabilityPick=higherTorque;
-   capabilityReason="higher listed torque";
   }
-  let recommendation;
-  if(firstPrice!==null&&secondPrice!==null&&firstPrice!==secondPrice&&capabilityPick){
-   const cheaper=firstPrice<secondPrice?first:second;
-   recommendation="Best fit: Choose "+cheaper.item.name+" if upfront cost is the priority, or "+capabilityPick.item.name+" if "+capabilityReason+" and upgrade potential matter more; verify the exact platform version.";
-  }else if(capabilityPick){
-   recommendation="Best fit: Choose "+capabilityPick.item.name+" if "+capabilityReason+" matters most; compare complete bundle cost and verify the exact platform version.";
+  const firstUpgrade=hasModularUpgrades(first),secondUpgrade=hasModularUpgrades(second);
+  const upgradePick=firstUpgrade!==secondUpgrade?(firstUpgrade?first:second):null;
+  const firstPedals=facts.getPedalCount(first),secondPedals=facts.getPedalCount(second);
+  let winner=capabilityPick||upgradePick,winnerType=capabilityPick?"performance":"upgrade";
+  if(!winner&&firstPrice!==null&&secondPrice!==null&&firstPrice!==secondPrice){
+   winner=firstPrice<secondPrice?first:second;
+   winnerType="value";
+  }else if(!winner&&typeof firstPedals==="number"&&typeof secondPedals==="number"&&firstPedals!==secondPedals){
+   winner=firstPedals>secondPedals?first:second;
+   winnerType="bundle value";
+  }
+  if(!winner)return "Neither wheel is clearly better from the documented comparison data; choose based on your budget, platform, and preferred feedback.";
+  const other=winner===first?second:first;
+  const winnerTorque=winner===first?firstTorque:secondTorque,otherTorque=winner===first?secondTorque:firstTorque;
+  const winnerDirect=winner===first?directFirst:directSecond,otherDirect=winner===first?directSecond:directFirst;
+  const winnerFeedback=hasMotorFeedback(winner),otherFeedback=hasMotorFeedback(other);
+  const reasons=[];
+  if(winnerDirect!==otherDirect&&winnerDirect)reasons.push("direct-drive feedback");
+  else if(winnerFeedback!==null&&otherFeedback!==null&&winnerFeedback!==otherFeedback&&winnerFeedback)reasons.push("motor-driven force feedback");
+  if(higherTorque===winner&&winnerTorque&&otherTorque)reasons.push("higher listed torque ("+winnerTorque.label+" versus "+otherTorque.label+")");
+  if(upgradePick===winner)reasons.push(upgradeReason(winner));
+  if(winnerType==="value")reasons.push("the lower listed price");
+  if(winnerType==="bundle value")reasons.push("more included pedals");
+  const capabilitySummary=winner.item.verdict&&winner.item.verdict.capabilitySummary;
+  const additionalEvidence=[];
+  if(capabilitySummary&&/encoder|dead zone|trueforce/i.test(capabilitySummary))additionalEvidence.push(capabilitySummary);
+  const isCheaper=firstPrice!==null&&secondPrice!==null&&firstPrice!==secondPrice
+   ?(firstPrice<secondPrice?first:second):null;
+  let firstSentence;
+  if(winnerType==="value"){
+   firstSentence="Overall, "+winner.item.name+" is the better value at "+facts.formatPrice(facts.getPrice(winner))+" because no stronger documented performance advantage separates the two.";
   }else{
-   recommendation="Best fit: Neither is a universal winner; decide by budget, feedback preference, bundle contents, and platform compatibility.";
+   const pickLabel=winnerType==="upgrade"?"for future upgrades":winnerType==="bundle value"?"for bundle value":upgradePick===winner?"for performance and future upgrades":"for performance";
+   const joinedReasons=reasons.length>2?reasons.slice(0,-1).join(", ")+", and "+reasons[reasons.length-1]:reasons.length===2?reasons.join(" and "):reasons[0];
+   firstSentence="Overall, "+winner.item.name+" is the better choice "+pickLabel+" because it offers "+joinedReasons+".";
   }
-  return [capabilitySentence,valueSentence,upgradeSentence,recommendation].join("\n");
+  if(additionalEvidence.length)firstSentence=firstSentence.slice(0,-1)+"; "+additionalEvidence.join("; ")+".";
+  const sentences=[firstSentence];
+  if(isCheaper){
+   const saving=facts.formatPrice(Math.abs(firstPrice-secondPrice));
+   const cheaperPedals=facts.getPedalCount(isCheaper),pricier=facts.getPedalCount(isCheaper===first?second:first);
+   const pedalDifference=typeof cheaperPedals==="number"&&typeof pricier==="number"&&cheaperPedals!==pricier
+    ?" and includes "+pedalText(isCheaper)+" versus "+pedalText(isCheaper===first?second:first):"";
+   if(isCheaper===winner){
+    if(winnerType!=="value"||pedalDifference)sentences.push("It is also "+saving+" cheaper"+pedalDifference+".");
+   }
+   else{
+    const note=lifecycleNote(isCheaper);
+    const cheaperSentence=isCheaper.item.name+" is "+saving+" cheaper"+pedalDifference;
+    if(note&&/discontinued|legacy/.test(lifecycleSummary(isCheaper)))sentences.push(cheaperSentence+"; "+note+", so verify condition and parts availability before considering it.");
+    else sentences.push(cheaperSentence+(note?"; "+note:"")+", so choose it if upfront cost matters most.");
+   }
+  }else if(typeof firstPedals==="number"&&typeof secondPedals==="number"&&firstPedals!==secondPedals){
+   const pedalWinner=firstPedals>secondPedals?first:second;
+   if(pedalWinner!==winner)sentences.push(pedalWinner.item.name+" includes "+pedalText(pedalWinner)+" versus "+pedalText(winner)+".");
+  }
+  const winnerLifecycle=lifecycleSummary(winner);
+  if(/^(?:discontinued|legacy)$/.test(winnerLifecycle)){
+   const note=lifecycleNote(winner);
+   sentences.push(note.charAt(0).toUpperCase()+note.slice(1)+"; verify condition and parts availability.");
+  }
+  return sentences.join(" ");
  }
  return comparisonVerdict;
 });
