@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0e0a11">
 <meta name="description" content="A practical sim racing gear guide with beginner wheel options, platform compatibility, and what to check before you buy.">
-<link rel="icon" type="image/svg+xml" href="purplelap-favicon.svg">
+<link rel="icon" type="image/svg+xml" href="purplelap-favicon.svg?v=2">
+<link rel="icon" type="image/png" sizes="800x800" href="purplelap-favicon.png?v=2">
 <link rel="stylesheet" href="site-ui.css">
 <script src="site-ui.js" defer></script>
 <link rel="stylesheet" href="guide-media.css">
@@ -93,7 +94,7 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
 .comparison-spec-pros>span,.comparison-spec-cons>span{color:var(--purple);font-size:9px}
 .comparison-verdict{margin-top:14px;padding:18px 20px;border-left:2px solid var(--purple);background:#120c17}
 .comparison-verdict h4{margin:0 0 7px;color:var(--purple);font:10px var(--mono);letter-spacing:.1em;text-transform:uppercase}
-.comparison-verdict p{margin:0;color:var(--muted);font-size:12px;line-height:1.75}
+.comparison-verdict p{margin:0;color:var(--muted);font-size:12px;line-height:1.75;white-space:pre-line}
 .price-note{margin:-3px 0 16px;color:var(--subtle);font:9px var(--mono);line-height:1.7}
 .brand-filters{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 17px}
 .brand-filter-button{min-height:35px;padding:0 12px;font-size:9px}
@@ -297,9 +298,11 @@ main{padding:68px 0 92px}.eyebrow{display:flex;align-items:center;gap:10px;margi
   <a class="guide-nav-card guide-nav-card--next" href="make-your-setup-yours.html"><span class="guide-nav-copy"><span class="guide-nav-label">NEXT GUIDE</span><span class="guide-nav-title">Make your setup yours</span></span><span class="guide-nav-arrow" aria-hidden="true">→</span></a>
 </nav>
 </main>
+<script src="comparison-verdict.js"></script>
+<script src="comparison-options.js"></script>
 <script>
 const MODEL_DATA = {
-"g920":{brand:"Logitech",name:"G920 Driving Force",kind:"Gear-driven force feedback · 2.3 Nm",description:"A familiar all-in-one wheel and pedal set with dual-motor force feedback. A sensible first wheel if you want straightforward controls and a large used-market footprint.",fit:"Xbox One / Series X|S and Windows PC. This is not the PlayStation G29.",url:"https://www.logitechg.com/en-us/products/driving/driving-force-racing-wheel.html",link:"Official G920 details ↗"},
+"g920":{brand:"Logitech",name:"G920 Driving Force",kind:"Gear-driven force feedback · 2.3 Nm",description:"A familiar all-in-one wheel and pedal set with dual-motor force feedback. A sensible first wheel if you want straightforward controls and a large used-market footprint.",fit:"Xbox One / Series X|S and Windows PC. This is not the PlayStation G29.",verdict:{capability:"Logitech describes dual-motor force feedback with helical anti-backlash gearing.",upgradeability:"Logitech's 2015 announcement lists the Driving Force Shifter as an optional add-on, but does not document an interchangeable wheel rim or component-by-component wheelbase and pedal upgrade route.",lifecycle:"Announced by Logitech in June 2015, with retail availability expected in October 2015.",sourceUrl:"https://news.logitech.com/press-releases/news-details/2015/logitech-g-introduces-first-force-feedback-racing-wheel-for-xbox-one-and-pc/default.aspx",sourceLabel:"Logitech G920 2015 announcement"},url:"https://www.logitechg.com/en-us/products/driving/driving-force-racing-wheel.html",link:"Official G920 details ↗"},
 "g29":{brand:"Logitech",name:"G29 Driving Force",kind:"Gear-driven force feedback · 2.3 Nm",description:"The PlayStation counterpart to the G920, with force feedback, paddle shifters, and three pedals in the usual bundle.",fit:"PlayStation 5 / 4 and Windows PC. This is not the Xbox G920.",url:"https://www.logitechg.com/en-us/products/driving/driving-force-racing-wheel.html",link:"Official G29 details ↗"},
 "g923-x":{brand:"Logitech",name:"G923 — Xbox version",kind:"Gear-driven force feedback · 2.3 Nm",description:"A gear-driven wheel with Logitech TRUEFORCE support in compatible games. Buy the Xbox-labeled version for Xbox.",fit:"Xbox One / Series X|S and Windows PC. A separate PlayStation version exists.",url:"https://www.logitechg.com/en-us/shop/p/g923-trueforce-sim-racing-wheel.941-000156",link:"Official G923 details ↗"},
 "g923-ps":{brand:"Logitech",name:"G923 — PlayStation version",kind:"Gear-driven force feedback · 2.3 Nm",description:"The PlayStation-labeled G923 adds the same basic force-feedback format with TRUEFORCE in compatible games.",fit:"PlayStation 5 / 4 and Windows PC. A separate Xbox version exists.",url:"https://www.logitechg.com/en-us/shop/p/g923-trueforce-sim-racing-wheel.941-000156",link:"Official G923 details ↗"},
@@ -324,8 +327,8 @@ const MODEL_DATA = {
 "t98-ps":{brand:"Thrustmaster",name:"T98 Ferrari 296 GTB — PlayStation/PC",kind:"Spring resistance · no true FFB",description:"A basic spring-resistance wheel for steering practice at a lower entry level. It is not motor-driven force feedback.",fit:"PlayStation 5 / 4 and Windows PC; choose the Ferrari 296 GTB version.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
 "t80":{brand:"Thrustmaster",name:"T80 / T80 Ferrari 488 GTB",kind:"Bungee resistance · no true FFB",description:"An older, simple PlayStation wheel with bungee resistance. It can be cheap used, but it does not provide motor-driven force feedback.",fit:"PlayStation 5 / 4 and Windows PC for supported titles. Check the exact T80 model.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
 "ferrari458":{brand:"Thrustmaster",name:"Ferrari 458 Spider Racing Wheel",kind:"Spring resistance · Xbox only",description:"An older basic Xbox wheel with spring resistance rather than motor-driven force feedback. Verify supported games and condition before considering a used one.",fit:"Xbox One / Series X|S. Thrustmaster does not list this model for PC or PlayStation.",url:"https://support.thrustmaster.com/en/kb/1801-en/",link:"Official platform compatibility ↗"},
-"moza-r3-x":{brand:"MOZA",name:"R3 Racing Bundle — Xbox & PC",kind:"Direct drive · 3.9 Nm",description:"MOZA’s Xbox-licensed entry direct-drive bundle includes the base, ESX Xbox wheel, SR-P Lite pedals, and table clamp.",fit:"Xbox One / Series X|S and Windows PC. Choose the Xbox & PC bundle; the separate PC-only R3 does not work on Xbox.",url:"https://us.mozaracing.com/products/r3-racing-bundle-xbox",link:"Official R3 Xbox bundle ↗"},
-"moza-r3-pc":{brand:"MOZA",name:"R3 Racing Bundle — PC edition",kind:"Direct drive · 3.9 Nm",description:"An entry direct-drive bundle with a table clamp, wheel, and pedals. It is a PC choice at the lower end of MOZA’s direct-drive range.",fit:"Windows PC only for this PC edition. Do not select it for Xbox.",url:"https://us.mozaracing.com/products/r3-racing-bundle-pc",link:"Official R3 PC bundle ↗"},
+"moza-r3-x":{brand:"MOZA",name:"R3 Racing Bundle — Xbox & PC",kind:"Direct drive · 3.9 Nm",description:"MOZA’s Xbox-licensed entry direct-drive bundle includes the base, ESX Xbox wheel, SR-P Lite pedals, and table clamp.",fit:"Xbox One / Series X|S and Windows PC. Choose the Xbox & PC bundle; the separate PC-only R3 does not work on Xbox.",verdict:{capability:"MOZA lists a 15-bit encoder and says the R3's direct-drive feedback provides zero dead zone; that is the manufacturer's claim, not an independent precision comparison.",upgradeability:"MOZA says its quick release supports swapping MOZA steering wheels. The SR-P Lite pedals have adjustable spacing and plate height, with an optional clutch pedal and performance kit. The Xbox bundle uses the Xbox-licensed ESX wheel, so verify console licensing before changing rims.",lifecycle:"MOZA's R3 support page documents the current bundle and specifications but does not state its launch date.",sourceUrl:"https://support.mozaracing.com/en/support/solutions/articles/70000668605-moza-r3-wheel-base-support",sourceLabel:"MOZA R3 specifications and upgrades"},url:"https://us.mozaracing.com/products/r3-racing-bundle-xbox",link:"Official R3 Xbox bundle ↗"},
+"moza-r3-pc":{brand:"MOZA",name:"R3 Racing Bundle — PC edition",kind:"Direct drive · 3.9 Nm",description:"An entry direct-drive bundle with a table clamp, wheel, and pedals. It is a PC choice at the lower end of MOZA’s direct-drive range.",fit:"Windows PC only for this PC edition. Do not select it for Xbox.",verdict:{capability:"MOZA lists a 15-bit encoder and says the R3's direct-drive feedback provides zero dead zone; that is the manufacturer's claim, not an independent precision comparison.",upgradeability:"MOZA says its quick release supports swapping MOZA steering wheels. The SR-P Lite pedals have adjustable spacing and plate height, with an optional clutch pedal and performance kit.",lifecycle:"MOZA's R3 support page documents the current bundle and specifications but does not state its launch date.",sourceUrl:"https://support.mozaracing.com/en/support/solutions/articles/70000668605-moza-r3-wheel-base-support",sourceLabel:"MOZA R3 specifications and upgrades"},url:"https://us.mozaracing.com/products/r3-racing-bundle-pc",link:"Official R3 PC bundle ↗"},
 "moza-r5":{brand:"MOZA",name:"R5 Racing Bundle",kind:"Direct drive · 5.5 Nm",description:"A compact PC bundle that includes a 5.5 Nm base, wheel, pedals, and desk clamp. A step up from a gear-driven starter, with more force and detail.",fit:"Windows PC. MOZA lists the R5 as PC-only; it is not an Xbox or PlayStation wheel.",url:"https://us.mozaracing.com/products/r5-racing-bundle",link:"Official R5 bundle ↗"},
 "moza-r9":{brand:"MOZA",name:"R9 V3 wheel base",kind:"Direct drive · 9 Nm",description:"A 9 Nm PC wheelbase for someone ready to build around a separate base, steering wheel, pedals, and rigid mount.",fit:"Windows PC. Include compatible MOZA components and check the bundle details.",url:"https://us.mozaracing.com/products/r9-wheelbase",link:"Official R9 wheelbase ↗"},
 "moza-r12-x":{brand:"MOZA",name:"R12 V1/V2 + ESX wheel",kind:"Direct drive · 12 Nm",description:"MOZA’s support page lists Xbox use for the R12 V1/V2 when paired with the Xbox-licensed ESX steering wheel. The base alone is not enough.",fit:"Xbox One / Series X|S and Windows PC with the ESX wheel; not PlayStation.",url:"https://support.mozaracing.com/en/support/solutions/articles/70000668789-moza-r12-wheel-base-support",link:"Official R12 compatibility ↗"},
@@ -522,10 +525,14 @@ function comparisonPedals(entry){
  return count===0?"Sold separately":count==="2-3"?"2–3; bundle varies":count?count+" included":"Not listed";
 }
 function comparisonFeedback(entry){
- if(/TRUEFORCE/i.test(entry.item.description))return comparisonDriveType(entry)+"; TRUEFORCE support is listed for compatible games.";
- if(/NO TRUE FFB/i.test(entry.item.kind))return "Spring resistance; no motor-driven force feedback.";
- if(/force feedback/i.test(entry.item.kind))return comparisonDriveType(entry);
- if(/direct drive/i.test(entry.item.kind))return "Direct-drive system; no separate feedback details are listed.";
+ const kind=entry.item.kind,description=entry.item.description;
+ if(/TRUEFORCE/i.test(description))return "TRUEFORCE effects are supported in compatible games.";
+ if(/bungee resistance/i.test(kind))return "Bungee resistance; no motor-driven force feedback.";
+ if(/spring resistance/i.test(kind))return "Spring resistance; no motor-driven force feedback.";
+ if(/no vibration or force feedback/i.test(description))return "No vibration or force feedback.";
+ if(/does not list motor-driven force feedback/i.test(description))return "Motor-driven force feedback is not listed by the manufacturer.";
+ if(/direct drive/i.test(kind))return "Direct-drive motor feedback.";
+ if(/force[- ]feedback/i.test(kind))return "Motor-driven force feedback.";
  return "Not listed.";
 }
 function comparisonMounting(entry){
@@ -535,6 +542,14 @@ function comparisonMounting(entry){
 function comparisonStartingPrice(entry){
  const prices=USD_PRICES[entry.id];
  return prices&&prices.length?prices[0]:null;
+}
+function comparisonVerdictFacts(){
+ return {
+  getTorque:comparisonTorque,
+  getPrice:comparisonStartingPrice,
+  getPedalCount:function(entry){return PEDAL_COUNTS[entry.id]},
+  formatPrice:function(value){return formatCurrency(value,currencySelect.value)}
+ };
 }
 function comparisonPros(entry,other){
  const pros=[],torque=comparisonTorque(entry),otherTorque=comparisonTorque(other);
@@ -568,51 +583,26 @@ function comparisonCons(entry,other){
  if(!cons.length)cons.push("No lower listed figure identified in torque, pedals, or starting price; verify bundle contents and compatibility.");
  return cons.slice(0,3);
 }
-function comparisonVerdict(entries){
- const first=entries[0],second=entries[1],firstTorque=comparisonTorque(first),secondTorque=comparisonTorque(second);
- const firstPrice=comparisonStartingPrice(first),secondPrice=comparisonStartingPrice(second);
- if(firstTorque&&secondTorque&&firstTorque.value!==null&&secondTorque.value!==null&&firstTorque.value!==secondTorque.value){
-  const stronger=firstTorque.value>secondTorque.value?first:second;
-  const lighter=stronger===first?second:first;
-  const strongTorque=stronger===first?firstTorque:secondTorque;
-  const lightTorque=lighter===first?firstTorque:secondTorque;
-  let verdict="For the higher listed torque, choose "+stronger.item.name+" ("+strongTorque.label+" vs "+lightTorque.label+").";
-  if(firstPrice!==null&&secondPrice!==null&&firstPrice!==secondPrice){
-   const cheaper=firstPrice<secondPrice?first:second;
-   verdict+=" For the lower listed starting price, choose "+cheaper.item.name+" ("+formatCurrency(Math.min(firstPrice,secondPrice),currencySelect.value)+" vs "+formatCurrency(Math.max(firstPrice,secondPrice),currencySelect.value)+").";
-  }
-  const lighterPedals=PEDAL_COUNTS[lighter.id],strongerPedals=PEDAL_COUNTS[stronger.id];
-  if(lighterPedals>strongerPedals)verdict+=" "+lighter.item.name+" also lists more included pedals.";
-  verdict+=" Torque is a hardware rating, not a lap-time prediction; match the wheel to your budget, platform, and mount.";
-  return verdict;
- }
- if(firstPrice!==null&&secondPrice!==null&&firstPrice!==secondPrice){
-  const cheaper=firstPrice<secondPrice?first:second,pricier=cheaper===first?second:first;
-  const torqueNote=firstTorque&&secondTorque&&firstTorque.value!==null&&secondTorque.value!==null
-   ?firstTorque.value===secondTorque.value?" Both list "+firstTorque.label+". "
-   :" "
-   :" The torque figures are not both listed as single values. ";
-  return "The listed starting price favors "+cheaper.item.name+" ("+formatCurrency(Math.min(firstPrice,secondPrice),currencySelect.value)+" vs "+formatCurrency(Math.max(firstPrice,secondPrice),currencySelect.value)+")."+torqueNote+"Check pedal inclusion and platform licensing before deciding.";
- }
- const torqueNote=firstTorque&&secondTorque
-  ?firstTorque.label===secondTorque.label?"Both list the same torque: "+firstTorque.label+". ":""
-  :"A matching torque figure is not listed for both models. ";
- return torqueNote+"There is no single spec-based winner from the listed data. Compare drive type, pedal inclusion, platform licensing, and current bundle price.";
-}
 function populateComparisonChoices(products){
  const selectedA=compareModelA.value,selectedB=compareModelB.value;
  [compareModelA,compareModelB].forEach(function(select,index){
+  const selected=index===0?selectedA:selectedB;
+  const excluded=index===0?selectedB:selectedA;
+  const choices=availableComparisonOptions(products,excluded);
   select.innerHTML='<option value="">'+(index===0?"Choose a wheel":"Choose a different wheel")+'</option>';
-  products.forEach(function(entry){
+  choices.forEach(function(entry){
    const option=document.createElement("option");
    option.value=entry.id;
    option.textContent=entry.item.brand+" · "+entry.item.name;
    select.appendChild(option);
   });
+  if(choices.some(function(entry){return entry.id===selected}))select.value=selected;
  });
- if(products.some(function(entry){return entry.id===selectedA}))compareModelA.value=selectedA;
- if(products.some(function(entry){return entry.id===selectedB}))compareModelB.value=selectedB;
  if(comparisonResults.hidden===false&&(!compareModelA.value||!compareModelB.value))comparisonResults.hidden=true;
+}
+function refreshComparisonChoices(){
+ const products=currentIds().map(function(id){return {id:id,item:MODEL_DATA[id]}}).filter(function(entry){return Boolean(entry.item)});
+ populateComparisonChoices(products);
 }
 function comparisonCard(entry){
  const item=entry.item;
@@ -622,11 +612,12 @@ function comparisonSpecifications(entries){
  const rows=[
   {label:"Drive type",values:entries.map(comparisonDriveType)},
   {label:"Rated torque",values:entries.map(function(entry){const torque=comparisonTorque(entry);return torque?torque.label:"Not listed"})},
-  {label:"Feedback technology",values:entries.map(comparisonFeedback)},
+  {label:"Feedback details",values:entries.map(comparisonFeedback)},
   {label:"Pedals included",values:entries.map(comparisonPedals)},
   {label:"Platform compatibility",values:entries.map(function(entry){return entry.item.fit})},
   {label:"Mounting details",values:entries.map(comparisonMounting)},
   {label:"Listed bundle details",values:entries.map(function(entry){return entry.item.description})},
+  {label:"Manufacturer comparison source",values:entries.map(function(entry){const source=entry.item.verdict;return source?'<a class="product-link" href="'+escapeText(source.sourceUrl)+'" target="_blank" rel="noopener noreferrer">'+escapeText(source.sourceLabel)+'</a>':"Not listed"}),html:true},
   {label:"Current price",values:entries.map(function(entry){return productPrice(entry.id,entry.item)}),html:true},
   {label:"Pros",values:entries.map(function(entry,index){return comparisonPros(entry,entries[index===0?1:0])}),list:true},
   {label:"Cons",values:entries.map(function(entry,index){return comparisonCons(entry,entries[index===0?1:0])}),list:true}
@@ -655,7 +646,7 @@ function showComparison(){
   return;
  }
  comparisonGrid.innerHTML=comparisonMarkup(entries);
- comparisonVerdictText.textContent=comparisonVerdict(entries);
+ comparisonVerdictText.textContent=comparisonVerdict(entries,comparisonVerdictFacts());
  comparisonResults.hidden=false;
  comparisonResults.scrollIntoView({behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"nearest"});
 }
@@ -744,7 +735,7 @@ function renderCatalog(){
  if(!comparisonResults.hidden){
   const entries=[compareModelA.value,compareModelB.value].map(function(id){return {id:id,item:MODEL_DATA[id]}});
   comparisonGrid.innerHTML=comparisonMarkup(entries);
-  comparisonVerdictText.textContent=comparisonVerdict(entries);
+  comparisonVerdictText.textContent=comparisonVerdict(entries,comparisonVerdictFacts());
  }
 }
 platformButtons.forEach(function(button){button.addEventListener("click",function(){setPlatform(button.dataset.platform)})});
@@ -752,8 +743,8 @@ pcViewButtons.forEach(function(button){button.addEventListener("click",function(
 productSearch.addEventListener("input",renderCatalog);
 currencySelect.addEventListener("change",renderCatalog);
 compareModelsButton.addEventListener("click",showComparison);
-compareModelA.addEventListener("change",function(){comparisonResults.hidden=true;comparisonMessage.textContent=""});
-compareModelB.addEventListener("change",function(){comparisonResults.hidden=true;comparisonMessage.textContent=""});
+compareModelA.addEventListener("change",function(){comparisonResults.hidden=true;comparisonMessage.textContent="";refreshComparisonChoices()});
+compareModelB.addEventListener("change",function(){comparisonResults.hidden=true;comparisonMessage.textContent="";refreshComparisonChoices()});
 setPlatform("xbox");
 </script>
 <footer class="site-footer shell"><span>Made for the next generation of racers.</span><a href="all-guides.html">ALL GUIDES</a><button type="button" id="back-to-top" class="back-top" aria-label="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4M5 11l7-7 7 7"/></svg><span>BACK TO TOP</span></button></footer>
