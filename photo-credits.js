@@ -15,7 +15,6 @@
   {file:"images/racing-dashboard-analysis.jpg",title:"Historic Honda dashboard",credit:"Zytonits via Wikimedia Commons · CC BY-SA 2.0.",source:"https://commons.wikimedia.org/wiki/File:1964_Honda_Race_Car_dashboard_(20849400968).jpg",license:"https://creativecommons.org/licenses/by-sa/2.0/"},
   {file:"images/race-strategy-pit-stop.jpg",title:"Stock-car pit stop",credit:"Brandon Zeman via Wikimedia Commons · CC BY-SA 2.0.",source:"https://commons.wikimedia.org/wiki/File:Pit_Stop_Action_(3711847632).jpg",license:"https://creativecommons.org/licenses/by-sa/2.0/"},
   {file:"images/vincenzo-imola-1990.jpg",title:"Vincenzo Sospiri at Imola, 1990",credit:"Carlom1961 via Wikimedia Commons · CC BY-SA 4.0.",source:"https://commons.wikimedia.org/wiki/File:Vincenzo_Sospiri_David_Sears_Racing_Imola_1990.jpg",license:"https://creativecommons.org/licenses/by-sa/4.0/"},
-  {file:"images/sim-racing-setup.jpg",title:"Logitech G29 sim-racing setup",credit:"Antoineets via Wikimedia Commons · CC BY-SA 4.0.",source:"https://commons.wikimedia.org/wiki/File:Logitech_G29_steering_wheel.jpg",license:"https://creativecommons.org/licenses/by-sa/4.0/"}
  ];
  const productPhotoFiles=[
   "assets/wheels/fanatec-csdd-0.png","assets/wheels/fanatec-csddplus-0.png","assets/wheels/fanatec-csl-0.png","assets/wheels/fanatec-csl-elite-0.png","assets/wheels/fanatec-dd1-0.png","assets/wheels/fanatec-dd2-0.png","assets/wheels/fanatec-gtdd-0.png","assets/wheels/fanatec-podium-0.png",
