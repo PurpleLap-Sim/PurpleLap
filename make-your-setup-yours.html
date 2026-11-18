@@ -8,7 +8,7 @@
   <link rel="icon" type="image/svg+xml" href="purplelap-favicon.svg">
   <link rel="stylesheet" href="site-ui.css">
   <script src="back-navigation.js?v=20261117-1" defer></script>
-  <script src="site-ui.js?v=20261104-2" defer></script>
+  <script src="site-ui.js?v=20261118-1" defer></script>
   <link rel="stylesheet" href="guide-media.css">
   <title>Make Your Setup Yours — PurpleLap</title>
   <style>
@@ -39,13 +39,13 @@
     .primary-link:hover { background:#C77DFF; transform:translateY(-2px); }
     .secondary-link { border:1px solid var(--line); color:var(--muted); }
     .secondary-link:hover { border-color:var(--purple); color:var(--purple); transform:translateY(-2px); }
-    .setup-visual { position:relative; padding:24px; border:1px solid var(--line); border-radius:12px; background:linear-gradient(145deg,#18121d,#0c090e); }
-    .setup-photo { margin:4px 0 18px; }
-    .setup-photo img { display:block; width:100%; aspect-ratio:1.5; border-radius:8px; object-fit:cover; }
-    .setup-photo figcaption { margin-top:8px; color:var(--subtle); font-size:9px; line-height:1.6; }
-    .setup-photo figcaption a { color:inherit; text-decoration:underline; text-underline-offset:2px; }
+    .setup-visual { position:relative; padding:26px; border:1px solid var(--line); border-radius:12px; background:radial-gradient(ellipse at 100% 0%,#281933 0,transparent 58%),linear-gradient(145deg,#18121d,#0c090e); }
     .visual-top { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-bottom:16px; border-bottom:1px solid var(--line); color:var(--subtle); font:9px var(--mono); letter-spacing:.11em; }
     .visual-top strong { color:var(--purple); font-weight:500; }
+    .setup-message { padding:22px 0 19px; border-bottom:1px solid var(--line); }
+    .setup-message > span { color:var(--purple); font:9px var(--mono); letter-spacing:.1em; }
+    .setup-message h2 { margin:10px 0 8px; max-width:330px; font-size:clamp(23px,2.5vw,30px); line-height:1.08; letter-spacing:-.05em; }
+    .setup-message p { margin:0; color:var(--muted); font-size:10px; line-height:1.7; }
     .setup-stack { display:grid; gap:10px; padding-top:15px; }
     .setup-row { display:grid; grid-template-columns:40px 1fr; gap:14px; align-items:center; min-height:66px; padding:12px 14px; border:1px solid #33253b; background:#0c0911; }
     a.setup-row { transition:border-color .2s,background .2s; }
@@ -112,6 +112,8 @@
       h1 { font-size:clamp(48px,13vw,70px); }
       .intro { font-size:13px; }
       .setup-visual { padding:18px; }
+      .setup-message { padding-block:19px 17px; }
+      .setup-message h2 { font-size:25px; }
       .section-head { display:block; }
       .section-head p { margin-top:13px; }
       .choice-grid,.tip-grid { grid-template-columns:1fr; }
@@ -149,11 +151,9 @@
         <p class="intro">A good setup is one that lets you drive comfortably and consistently. You can learn a lot with a controller, and a wheel is an option when you’re ready. Start with what you own, then change one thing at a time.</p>
         <div class="hero-actions"><a class="primary-link" href="#start-here" data-scroll-without-hash>START WITH WHAT YOU HAVE <span aria-hidden="true">↓</span></a></div>
       </div>
-      <aside class="setup-visual" aria-label="A sim-racing setup and two ways to get started">
-        <figure class="setup-photo">
-          <img src="images/sim-racing-setup.jpg" alt="A Logitech G29 racing wheel viewed from the front">
-        </figure>
+      <aside class="setup-visual" aria-label="Two practical ways to improve your sim-racing setup">
         <div class="visual-top"><strong>THE GARAGE</strong><span>COMFORT · CONTROL · CONSISTENCY</span></div>
+        <div class="setup-message"><span>START WITH THE BASICS</span><h2>Comfort is your first upgrade.</h2><p>Small changes to your position and controls can make practice feel more consistent—no expensive rig required.</p></div>
         <div class="setup-stack">
           <a class="setup-row" href="sim-racing-positioning.html?return=top"><b>01</b><div><strong>Where you sit</strong><span>Seat angle, wheel reach, and pedal distance.</span></div></a>
           <a class="setup-row" id="controller-setup-row" href="controller-setup.html?return=setup-row"><b>02</b><div><strong>What you drive with</strong><span>Controller or wheel—choose what you already have.</span></div></a>

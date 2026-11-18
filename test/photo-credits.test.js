@@ -90,8 +90,19 @@ test("HTML pages no longer place attribution labels beside images", () => {
   }
 });
 
-test("footers provide a shared link to the credits page", () => {
+test("the removed setup photo is not used or credited", () => {
+  const setupPage = fs.readFileSync(path.join(root, "make-your-setup-yours.html"), "utf8");
+  const creditsSource = fs.readFileSync(path.join(root, "photo-credits.js"), "utf8");
+
+  assert.doesNotMatch(setupPage, /sim-racing-setup\.jpg/);
+  assert.doesNotMatch(creditsSource, /sim-racing-setup\.jpg/);
+  assert.doesNotMatch(setupPage, /class=["'][^"']*\bsetup-photo\b/);
+});
+
+test("footers provide shared links to credits and README pages", () => {
   const siteUi = fs.readFileSync(path.join(root, "site-ui.js"), "utf8");
   assert.match(siteUi, /photo-credits-link/);
   assert.match(siteUi, /photoCreditsLink\.href = 'photo-credits\.html'/);
+  assert.match(siteUi, /site-readme-link/);
+  assert.match(siteUi, /readmeLink\.href = 'readme\.html'/);
 });
