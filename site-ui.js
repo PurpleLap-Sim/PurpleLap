@@ -26,15 +26,6 @@
     footerMessage.append(photoCreditsLink);
   }
 
-  if (!footer.querySelector('.site-readme-link')) {
-    const footerMessage = footer.querySelector('span') || footer;
-    const readmeLink = document.createElement('a');
-    readmeLink.className = 'site-readme-link';
-    readmeLink.href = 'readme.html';
-    readmeLink.textContent = 'About this site';
-    footerMessage.append(readmeLink);
-  }
-
   const setupStartLink = document.querySelector('[data-scroll-without-hash]');
   if (setupStartLink) {
     window.history.scrollRestoration = 'manual';

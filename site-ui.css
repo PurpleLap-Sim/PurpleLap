@@ -36,21 +36,6 @@
   color: #C77DFF;
 }
 
-.site-readme-link {
-  display: block;
-  width: fit-content;
-  margin-top: 6px;
-  color: inherit;
-  font-size: 9px;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.site-readme-link:hover,
-.site-readme-link:focus-visible {
-  color: #C77DFF;
-}
-
 .site-back-top {
   position: fixed;
   z-index: 50;

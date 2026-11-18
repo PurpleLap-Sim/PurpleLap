@@ -4,8 +4,6 @@ PurpleLap is a beginner-friendly sim-racing learning site. It combines practical
 
 **Live site:** [purplelap-sim.github.io/PurpleLap](https://purplelap-sim.github.io/PurpleLap/)
 
-**Read this on the site:** [About PurpleLap](https://purplelap-sim.github.io/PurpleLap/readme.html)
-
 ## What’s in the site
 
 - **Home page (`index.html`)** introduces the guides and offers quick search.
